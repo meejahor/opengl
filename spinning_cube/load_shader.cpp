@@ -1,7 +1,7 @@
 // shader loaded by Håvard Kindem
 // https://badvertex.com/2012/11/20/how-to-load-a-glsl-shader-in-opengl-using-c.html
 
-#include "GLShader.hpp"
+#include "load_shader.hpp"
 
 #include <string>
 #include <iostream>
@@ -28,7 +28,7 @@ std::string readFile(const char *filePath) {
     return content;
 }
 
-GLuint LoadShader(const char *vertex_path, const char *fragment_path) {
+GLuint loadShader(const char *vertex_path, const char *fragment_path) {
     GLuint vertShader = glCreateShader(GL_VERTEX_SHADER);
     GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 

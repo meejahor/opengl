@@ -8,8 +8,6 @@
 // C++ Standard Libraries
 #include <iostream>
 
-#include "GLShader.hpp"
-
 // Third-party library
 #include <SDL.h>
 // #include <GL/glew.h>
@@ -23,21 +21,15 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
+#include "load_shader.hpp"
+#include "model.hpp"
+
 // Include GLAD
 // #include <glad/glad.h>
 
 SDL_Window* window = nullptr;
 SDL_Renderer* renderer = nullptr;
 SDL_GLContext context;
-
-SDL_Rect makeRect(int width, int height) {
-    SDL_Rect rectangle;
-    rectangle.w = width;
-    rectangle.h = height;
-    rectangle.x = -width/2;
-    rectangle.y = -height/2;
-    return rectangle;
-}
 
 float vertices[] = {
     -0.5f,  0.5f, -0.5f,
@@ -127,6 +119,8 @@ void initGL() {
 
 int main(int argc, char* argv[]) {
 
+    Model* m = new Model("cube.obj");
+
     initSDL();
     initGL();
 
@@ -144,23 +138,7 @@ int main(int argc, char* argv[]) {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    // glDisableVertexAttribArray(0);
-
-
-    // glVertexAttribPointer(0, 1, GL_INT, GL_FALSE, sizeof(int), (void*)0);
-
-    // glBindVertexArray(vertAttributes);
-
-    // glGenBuffers(1, &VBO);  
-    // glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-    shader = LoadShader("vert.shader", "frag.shader");
-
-    SDL_Rect rectangle = makeRect(200, 200);
-
-    // Request a window to be created for our platform
-    // The parameters are for the title, x and y position,
-    // and the width and height of the window.
+    shader = loadShader("vert.shader", "frag.shader");
 
     bool gameIsRunning = true;
     float rotation = 0;
@@ -192,23 +170,8 @@ int main(int argc, char* argv[]) {
         unsigned int matrixID = glGetUniformLocation(shader, "transform");
         glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(matrix));
 
-        // glColor(0.0f,0.0f,0.0f,1.0f);
         glUseProgram(shader);
-        // glBindBuffer(GL_ARRAY_BUFFER, vertBuffer);
-        // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-        // glDrawElements(GL_TRIANGLES, 2, GL_UNSIGNED_BYTE, 0);
         glDrawElements(GL_TRIANGLES, sizeof(indices), GL_UNSIGNED_INT, 0);
-        // glBindVertexArray(0);
-
-        // SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-        // SDL_RenderClear(renderer);
-
-        // SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-        // SDL_RenderFillRect(renderer, &rectangle);
-
-        // SDL_RenderPresent(renderer);
-
-        // glfwSwapBuffers(window);
 
         SDL_GL_SwapWindow(window);
     }
