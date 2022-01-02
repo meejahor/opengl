@@ -44,7 +44,7 @@ bool Model::loadFace() {
     return true;
 }
 
-Model::Model(const char *filename) {
+Model::Model(const char* filename) {
     valid = false;
 
     file = fopen(filename, "r");

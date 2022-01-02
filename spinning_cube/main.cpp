@@ -37,6 +37,7 @@ GLuint normalBuffer;
 GLuint shader;
 
 glm::mat4 projectionMatrix;
+glm::mat4 viewMatrix;
 
 Uint64 timeNow = SDL_GetPerformanceCounter();
 Uint64 timeLast = 0;
@@ -74,12 +75,13 @@ void initSDL() {
     context = SDL_GL_CreateContext(window);
 }
 
-void initGL() {
-    // projectionMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(0.1, 0.1, 0.1));
-    projectionMatrix = glm::perspective(glm::radians(70.0f), 800.0f/800.0f, 0.0001f, 1000.0f);
-    // projectionMatrix *= glm::scale(glm::mat4(1.0f), glm::vec3(0.01, 0.01, 0.01));
-    // projectionMatrix = glm::rotate(projectionMatrix, glm::radians(45), glm::vec3(0.0, 0.0, 1.0));
+void setShaderMatrix(const char* name, glm::f32* matrix) {
+    unsigned int matrixID = glGetUniformLocation(shader, name);
+    std::cout << matrixID << std::endl;
+    glUniformMatrix4fv(matrixID, 1, GL_FALSE, matrix);
+}
 
+void initGL() {
     glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 5.0f);
     glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
     glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
@@ -88,11 +90,15 @@ void initGL() {
     glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
     glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
 
-    projectionMatrix *= glm::lookAt(
+    viewMatrix = glm::lookAt(
         cameraPos,
         cameraTarget,
         cameraUp
         );
+
+    projectionMatrix = glm::perspective(glm::radians(70.0f), 800.0f/800.0f, 0.0001f, 1000.0f);
+
+    glEnable(GL_DEPTH_TEST);  
 }
 
 int main(int argc, char* argv[]) {
@@ -106,6 +112,10 @@ int main(int argc, char* argv[]) {
 
     initSDL();
     initGL();
+
+    shader = loadShader("vert.vert", "frag.frag");
+    setShaderMatrix("mat4_view", glm::value_ptr(viewMatrix));
+    setShaderMatrix("mat4_projection", glm::value_ptr(projectionMatrix));
 
     glGenBuffers(1, &vertexBuffer);
     // glGenBuffers(1, &normalBuffer);
@@ -126,10 +136,8 @@ int main(int argc, char* argv[]) {
 
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3) * 2, (void*)0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3) * 2, (void*)sizeof(glm::vec3));
-
-    shader = loadShader("vert.shader", "frag.shader");
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2, (void*)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2, (void*)sizeof(glm::vec3));
 
     // GLint posIndex = glGetAttribLocation(shader, "aPos");
     // GLint normalIndex = glGetAttribLocation(shader, "aNormal");
@@ -157,11 +165,9 @@ int main(int argc, char* argv[]) {
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
         rotation += SPEED * deltaTime;
-        glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 1));
-        glm::mat4 matrix = projectionMatrix * rotationMatrix;
+        glm::mat4 modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 1));
 
-        unsigned int matrixID = glGetUniformLocation(shader, "transform");
-        glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(matrix));
+        setShaderMatrix("mat4_model", glm::value_ptr(modelMatrix));
 
         glUseProgram(shader);
         glDrawArrays(GL_TRIANGLES, 0, m->out_vertices.size() * 3);
