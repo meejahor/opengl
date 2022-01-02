@@ -46,7 +46,7 @@ bool Model::loadFace() {
 
 Model::Model(const char *filename) {
     valid = false;
-    
+
     file = fopen(filename, "r");
     if (file == NULL) return;
 
@@ -68,8 +68,11 @@ Model::Model(const char *filename) {
 
     for (unsigned int i=0; i<vertexIndices.size(); i++) {
         unsigned int vertexIndex = vertexIndices[i];
+        unsigned int normalIndex = normalIndices[i];
         glm::vec3 vertex = temp_vertices[vertexIndex-1];
         out_vertices.push_back(vertex);
+        glm::vec3 normal = temp_normals[normalIndex-1];
+        out_vertices.push_back(normal);
     }
 
     valid = true;

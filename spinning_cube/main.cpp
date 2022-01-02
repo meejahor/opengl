@@ -31,8 +31,9 @@ SDL_Window* window = nullptr;
 SDL_Renderer* renderer = nullptr;
 SDL_GLContext context;
 
-GLuint vertArray;
-GLuint vertBuffer;
+GLuint vertexArray;
+GLuint vertexBuffer;
+GLuint normalBuffer;
 GLuint shader;
 
 glm::mat4 projectionMatrix;
@@ -106,17 +107,32 @@ int main(int argc, char* argv[]) {
     initSDL();
     initGL();
 
-    glGenVertexArrays(1, &vertArray);
-    glBindVertexArray(vertArray);
+    glGenBuffers(1, &vertexBuffer);
+    // glGenBuffers(1, &normalBuffer);
 
-    glGenBuffers(1, &vertBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertBuffer);
+    glGenVertexArrays(1, &vertexArray);
+    glBindVertexArray(vertexArray);
+
+    // unsigned long sizeofVertices = sizeof(glm::vec3) * m->out_vertices.size();
+    // unsigned long sizeofNormals = sizeof(glm::vec3) * m->out_normals.size();
+
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * m->out_vertices.size(), m->out_vertices.data(), GL_STATIC_DRAW);
+    // glBufferSubData(GL_ARRAY_BUFFER, 0, sizeofVertices, m->out_vertices.data());
+    // glBufferSubData(GL_ARRAY_BUFFER, sizeofVertices, sizeofNormals, m->out_normals.data());
+
+    // glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
+    // glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * m->out_normals.size(), m->out_normals.data(), GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3) * 2, (void*)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3) * 2, (void*)sizeof(glm::vec3));
 
     shader = loadShader("vert.shader", "frag.shader");
+
+    // GLint posIndex = glGetAttribLocation(shader, "aPos");
+    // GLint normalIndex = glGetAttribLocation(shader, "aNormal");
 
     bool gameIsRunning = true;
     float rotation = 0;
