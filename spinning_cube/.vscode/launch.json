@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "clang++ - andrew Build and debug active file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [
+				"./glad/src/glad.c",
+				"-I/Library/Frameworks/SDL2.framework/Headers",
+				"-I./glad2/include/",
+				"-I/usr/local/Cellar/glew/2.2.0_1/include",
+				"-F/Library/Frameworks/",
+				"-framework",
+				"SDL2"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb",
+            "preLaunchTask": "C/C++: clang++ build active file"
+        }
+    ]
+}
