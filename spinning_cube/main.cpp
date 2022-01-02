@@ -98,6 +98,11 @@ int main(int argc, char* argv[]) {
 
     Model* m = new Model("cube.obj");
 
+    if (!m->valid) {
+        std::cout << "Error loading model." << std::endl;
+        return 0;
+    }
+
     initSDL();
     initGL();
 
