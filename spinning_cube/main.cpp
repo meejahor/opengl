@@ -31,25 +31,8 @@ SDL_Window* window = nullptr;
 SDL_Renderer* renderer = nullptr;
 SDL_GLContext context;
 
-float vertices[] = {
-    -0.5f,  0.5f, -0.5f,
-     0.5f,  0.5f, -0.5f,
-    -0.5f, -0.5f, -0.5f,
-     0.5f, -0.5f, -0.5f,
-    -0.5f,  0.5f,  0.5f,
-     0.5f,  0.5f,  0.5f,
-    -0.5f, -0.5f,  0.5f,
-     0.5f, -0.5f,  0.5f,
-};
-
-unsigned int indices[] = {
-    0, 1, 3, 0, 3, 2,
-    5, 4, 6, 5, 6, 7,
-};
-
-GLuint vertAttributes;
+GLuint vertArray;
 GLuint vertBuffer;
-GLuint indexBuffer;
 GLuint shader;
 
 glm::mat4 projectionMatrix;
@@ -88,20 +71,15 @@ void initSDL() {
         );
 
     context = SDL_GL_CreateContext(window);
-    // gladLoadGLLoader(SDL_GL_GetProcAddress);
 }
 
 void initGL() {
-    // SDL_GL_MAT
-    // glMatrixMode(GL_PROJECTION);
-    // glLoadIdentity();
-
     // projectionMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(0.1, 0.1, 0.1));
     projectionMatrix = glm::perspective(glm::radians(70.0f), 800.0f/800.0f, 0.0001f, 1000.0f);
     // projectionMatrix *= glm::scale(glm::mat4(1.0f), glm::vec3(0.01, 0.01, 0.01));
     // projectionMatrix = glm::rotate(projectionMatrix, glm::radians(45), glm::vec3(0.0, 0.0, 1.0));
 
-    glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+    glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 5.0f);
     glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
     glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
 
@@ -109,7 +87,6 @@ void initGL() {
     glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
     glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
 
-    // glm::mat4 view;
     projectionMatrix *= glm::lookAt(
         cameraPos,
         cameraTarget,
@@ -124,19 +101,15 @@ int main(int argc, char* argv[]) {
     initSDL();
     initGL();
 
-    glGenVertexArrays(1, &vertAttributes);
+    glGenVertexArrays(1, &vertArray);
+    glBindVertexArray(vertArray);
+
     glGenBuffers(1, &vertBuffer);
-    glGenBuffers(1, &indexBuffer);
-
-    glBindVertexArray(vertAttributes);
     glBindBuffer(GL_ARRAY_BUFFER, vertBuffer);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * m->out_vertices.size(), m->out_vertices.data(), GL_STATIC_DRAW);
 
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
     shader = loadShader("vert.shader", "frag.shader");
 
@@ -164,14 +137,13 @@ int main(int argc, char* argv[]) {
 
         rotation += SPEED * deltaTime;
         glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 1));
-        // glm::mat4 transformMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 0.0, -2));
         glm::mat4 matrix = projectionMatrix * rotationMatrix;
 
         unsigned int matrixID = glGetUniformLocation(shader, "transform");
         glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(matrix));
 
         glUseProgram(shader);
-        glDrawElements(GL_TRIANGLES, sizeof(indices), GL_UNSIGNED_INT, 0);
+        glDrawArrays(GL_TRIANGLES, 0, m->out_vertices.size() * 3);
 
         SDL_GL_SwapWindow(window);
     }

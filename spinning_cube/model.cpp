@@ -49,14 +49,14 @@ Model::Model(const char *filename) {
             normalIndices.push_back(normalIndex[0]);
             normalIndices.push_back(normalIndex[1]);
             normalIndices.push_back(normalIndex[2]);
-
-            for (unsigned int i=0; i<vertexIndices.size(); i++) {
-                unsigned int vertexIndex = vertexIndices[i];
-                glm::vec3 vertex = temp_vertices[vertexIndex-1];
-                out_vertices.push_back(vertex);
-            }
         }
     }
 
-    std::cout << out_vertices.size() << std::endl;
+    for (unsigned int i=0; i<vertexIndices.size(); i++) {
+        unsigned int vertexIndex = vertexIndices[i];
+        glm::vec3 vertex = temp_vertices[vertexIndex-1];
+        out_vertices.push_back(vertex);
+    }
+
+    // std::cout << "end of model loading " << out_vertices.size() << std::endl;
 }
