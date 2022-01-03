@@ -2,18 +2,20 @@
 #define MODEL_H
 
 #include <vector>
-#include "glm/glm.hpp"
 
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/OpenGL.h>
 #include "glm/glm.hpp"
+#include "window.hpp"
 
 class Model {
     public:
     std::vector<glm::vec3> out_vertices;
     std::vector<glm::vec2> out_uvs;
     std::vector<glm::vec3> out_normals;
+
     Model(const char *filename, GLuint _shader);
+    void render(Window* window, glm::mat4 const& modelMatrix);
 
     private:
     FILE* file;
@@ -28,13 +30,15 @@ class Model {
 
     GLuint shader;
 
+    unsigned int matrixModel_ID;
+    unsigned int matrixMVP_ID;
+
     void loadVertex();
     void loadUV();
     void loadNormal();
     void loadFace();
     void setupBuffers();
     void load(const char *filename);
-    void render();
 };
 
 #endif

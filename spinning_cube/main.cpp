@@ -6,20 +6,17 @@
 #include <OpenGL/gl3.h>
 #include <OpenGL/glext.h>
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
-
 #include "window.hpp"
 #include "shader.hpp"
 #include "model.hpp"
 #include "deltatime.hpp"
+#include "object.hpp"
 
 GLuint shader;
 
 int main(int argc, char* argv[]) {
 
-    Window *window;
+    Window* window;
     try {
         window = new Window();
     } catch (...) {
@@ -28,16 +25,16 @@ int main(int argc, char* argv[]) {
 
     shader = loadShader("vert.vert", "frag.frag");
 
-    Model *model;
+    Model* model;
     try {
         model = new Model("cube.obj", shader);
     } catch (...) {
         return 0;
     }
 
+    Object* object = new Object(model);
+
     bool gameIsRunning = true;
-    float rotation = 0;
-    const float SPEED = 90;
 
     deltaTimeInit();
 
@@ -53,13 +50,8 @@ int main(int argc, char* argv[]) {
 
         window->clear();
 
-        rotation += SPEED * deltaTime;
-        glm::mat4 modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 1));
-
-        setShaderProperty(shader, "matrix_model", modelMatrix);
-        setShaderProperty(shader, "matrix_mvp", window->matrixViewProjection * modelMatrix);
-
-        glDrawArrays(GL_TRIANGLES, 0, model->out_vertices.size() * 3);
+        object->update();
+        object->render(window);
 
         window->swap();
     }

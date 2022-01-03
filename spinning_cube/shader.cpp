@@ -86,7 +86,7 @@ GLuint loadShader(const char *vertex_path, const char *fragment_path) {
     return program;
 }
 
-void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 matrix) {
-    unsigned int propertyID = glGetUniformLocation(shaderID, name);
-    glUniformMatrix4fv(propertyID, 1, GL_FALSE, glm::value_ptr(matrix));
-}
+// void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 const& matrix) {
+//     unsigned int propertyID = glGetUniformLocation(shaderID, name);
+//     glUniformMatrix4fv(propertyID, 1, GL_FALSE, glm::value_ptr(matrix[0]));
+// }

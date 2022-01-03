@@ -3,13 +3,8 @@
 #include "model.hpp"
 
 #define GL_SILENCE_DEPRECATION
-#include <OpenGL/OpenGL.h>
 #include <OpenGL/gl3.h>
-#include <OpenGL/glext.h>
-
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
+#include "shader.hpp"
 
 void Model::loadVertex() {
     glm::vec3 vertex;
@@ -111,7 +106,13 @@ Model::Model(const char* filename, GLuint _shader) {
     }
 
     setupBuffers();
+
+    matrixModel_ID = glGetUniformLocation(shader, "matrix_model");
+    matrixMVP_ID = glGetUniformLocation(shader, "matrix_mvp");
 }
 
-void Model::render() {
+void Model::render(Window* window, glm::mat4 const& modelMatrix) {
+    glUniformMatrix4fv(matrixModel_ID, 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glUniformMatrix4fv(matrixMVP_ID, 1, GL_FALSE, glm::value_ptr(window->matrixViewProjection * modelMatrix));
+    glDrawArrays(GL_TRIANGLES, 0, out_vertices.size() * 3);
 }
