@@ -1,9 +1,11 @@
+#ifndef MODEL_H
+#define MODEL_H
+
 #include <vector>
 #include "glm/glm.hpp"
 
 class Model {
     public:
-    bool valid;
     std::vector<glm::vec3> out_vertices;
     std::vector<glm::vec2> out_uvs;
     std::vector<glm::vec3> out_normals;
@@ -18,5 +20,7 @@ class Model {
     void loadVertex();
     void loadUV();
     void loadNormal();
-    bool loadFace();
+    void loadFace();
 };
+
+#endif

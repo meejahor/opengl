@@ -20,7 +20,7 @@ void Model::loadNormal() {
     temp_normals.push_back(normal);
 }
 
-bool Model::loadFace() {
+void Model::loadFace() {
     std::string vertex1, vertex2, vertex3;
     unsigned int vertexIndex[3], uvIndex[3], normalIndex[3];
     int matches = fscanf(
@@ -30,7 +30,7 @@ bool Model::loadFace() {
         &vertexIndex[1], &uvIndex[1], &normalIndex[1],
         &vertexIndex[2], &uvIndex[2], &normalIndex[2]
         );
-    if (matches != 9) return false;
+    // if (matches != 9) return false;
 
     vertexIndices.push_back(vertexIndex[0]);
     vertexIndices.push_back(vertexIndex[1]);
@@ -41,14 +41,13 @@ bool Model::loadFace() {
     normalIndices.push_back(normalIndex[0]);
     normalIndices.push_back(normalIndex[1]);
     normalIndices.push_back(normalIndex[2]);
-    return true;
 }
 
 Model::Model(const char* filename) {
-    valid = false;
-
     file = fopen(filename, "r");
-    if (file == NULL) return;
+    if (file == NULL) {
+        throw std::exception();
+    }
 
     while (true) {
         char lineHeader[128];
@@ -62,7 +61,7 @@ Model::Model(const char* filename) {
         } else if (strcmp(lineHeader, "vn") == 0) {
             loadNormal();
         } else if (strcmp(lineHeader, "f") == 0) {
-            if (!loadFace()) return;
+            loadFace();
         }
     }
 
@@ -74,6 +73,4 @@ Model::Model(const char* filename) {
         glm::vec3 normal = temp_normals[normalIndex-1];
         out_vertices.push_back(normal);
     }
-
-    valid = true;
 }
