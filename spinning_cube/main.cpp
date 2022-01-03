@@ -114,6 +114,8 @@ int main(int argc, char* argv[]) {
     initGL();
 
     shader = loadShader("vert.vert", "frag.frag");
+    glUseProgram(shader);
+
     setShaderMatrix("mat4_view", glm::value_ptr(viewMatrix));
     setShaderMatrix("mat4_projection", glm::value_ptr(projectionMatrix));
 
@@ -169,7 +171,6 @@ int main(int argc, char* argv[]) {
 
         setShaderMatrix("mat4_model", glm::value_ptr(modelMatrix));
 
-        glUseProgram(shader);
         glDrawArrays(GL_TRIANGLES, 0, m->out_vertices.size() * 3);
 
         SDL_GL_SwapWindow(window);
