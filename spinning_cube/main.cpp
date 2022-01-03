@@ -1,17 +1,6 @@
-// On linux compile with:
-// g++ -std=c++17 main.cpp glad/src/glad.c -I./glad/include -o prog -lSDL2 -ldl
-// On windows compile with (if using mingw)
-// g++ main.cpp ./glad/src/glad.c -I./glad/include -o prog.exe -lmingw32 -lSDL2main -lSDL2
-
-// https://stackoverflow.com/questions/31933141/opengl-es2-black-screen-c-osx-sdl2
-
-// C++ Standard Libraries
 #include <iostream>
 
-// Third-party library
 #include <SDL.h>
-// #include <GL/glew.h>
-// #include <SDL_opengl.h>
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/OpenGL.h>
 #include <OpenGL/gl3.h>
@@ -23,9 +12,6 @@
 
 #include "load_shader.hpp"
 #include "model.hpp"
-
-// Include GLAD
-// #include <glad/glad.h>
 
 SDL_Window* window = nullptr;
 SDL_Renderer* renderer = nullptr;
@@ -43,12 +29,8 @@ Uint64 timeNow = SDL_GetPerformanceCounter();
 Uint64 timeLast = 0;
 float deltaTime = 0;
 
-void initSDL() {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        std::cout << "SDL could not be initialized: " << SDL_GetError();
-    } else {
-        std::cout << "SDL video system is ready to go\n";
-    }
+bool initSDL() {
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) return false;
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
@@ -73,12 +55,12 @@ void initSDL() {
         );
 
     context = SDL_GL_CreateContext(window);
+    return true;
 }
 
-void setShaderMatrix(const char* name, glm::f32* matrix) {
+void setShaderMatrix(const char* name, glm::mat4 matrix) {
     unsigned int matrixID = glGetUniformLocation(shader, name);
-    std::cout << matrixID << std::endl;
-    glUniformMatrix4fv(matrixID, 1, GL_FALSE, matrix);
+    glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 void initGL() {
@@ -110,39 +92,28 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    initSDL();
+    if (!initSDL()) return 0;
     initGL();
 
     shader = loadShader("vert.vert", "frag.frag");
     glUseProgram(shader);
 
-    setShaderMatrix("mat4_view", glm::value_ptr(viewMatrix));
-    setShaderMatrix("mat4_projection", glm::value_ptr(projectionMatrix));
+    setShaderMatrix("mat4_view", viewMatrix);
+    setShaderMatrix("mat4_projection", projectionMatrix);
+    setShaderMatrix("mat4_vp", projectionMatrix * viewMatrix);
 
     glGenBuffers(1, &vertexBuffer);
-    // glGenBuffers(1, &normalBuffer);
 
     glGenVertexArrays(1, &vertexArray);
     glBindVertexArray(vertexArray);
 
-    // unsigned long sizeofVertices = sizeof(glm::vec3) * m->out_vertices.size();
-    // unsigned long sizeofNormals = sizeof(glm::vec3) * m->out_normals.size();
-
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * m->out_vertices.size(), m->out_vertices.data(), GL_STATIC_DRAW);
-    // glBufferSubData(GL_ARRAY_BUFFER, 0, sizeofVertices, m->out_vertices.data());
-    // glBufferSubData(GL_ARRAY_BUFFER, sizeofVertices, sizeofNormals, m->out_normals.data());
-
-    // glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
-    // glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * m->out_normals.size(), m->out_normals.data(), GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2, (void*)0);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2, (void*)sizeof(glm::vec3));
-
-    // GLint posIndex = glGetAttribLocation(shader, "aPos");
-    // GLint normalIndex = glGetAttribLocation(shader, "aNormal");
 
     bool gameIsRunning = true;
     float rotation = 0;
@@ -169,7 +140,7 @@ int main(int argc, char* argv[]) {
         rotation += SPEED * deltaTime;
         glm::mat4 modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 1));
 
-        setShaderMatrix("mat4_model", glm::value_ptr(modelMatrix));
+        setShaderMatrix("mat4_model", modelMatrix);
 
         glDrawArrays(GL_TRIANGLES, 0, m->out_vertices.size() * 3);
 
