@@ -10,7 +10,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-#include "load_shader.hpp"
+#include "shader.hpp"
 #include "model.hpp"
 
 SDL_Window* window = nullptr;
@@ -59,11 +59,6 @@ bool initSDL() {
     return true;
 }
 
-void setShaderProperty(const char* name, glm::mat4 matrix) {
-    unsigned int id = glGetUniformLocation(shader, name);
-    glUniformMatrix4fv(id, 1, GL_FALSE, glm::value_ptr(matrix));
-}
-
 void initGL() {
     glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 5.0f);
     glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -99,10 +94,6 @@ int main(int argc, char* argv[]) {
 
     shader = loadShader("vert.vert", "frag.frag");
     glUseProgram(shader);
-
-    // setShaderMatrix("mat4_view", matrixView);
-    // setShaderMatrix("mat4_projection", matrixProjection);
-    // setShaderMatrix("mat4_mvp", matrixProjection * matrixView);
 
     glGenBuffers(1, &vertexBuffer);
 
@@ -142,8 +133,8 @@ int main(int argc, char* argv[]) {
         rotation += SPEED * deltaTime;
         glm::mat4 modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 1));
 
-        setShaderProperty("matrix_model", modelMatrix);
-        setShaderProperty("matrix_mvp", matrixViewProjection * modelMatrix);
+        setShaderProperty(shader, "matrix_model", modelMatrix);
+        setShaderProperty(shader, "matrix_mvp", matrixViewProjection * modelMatrix);
 
         glDrawArrays(GL_TRIANGLES, 0, m->out_vertices.size() * 3);
 

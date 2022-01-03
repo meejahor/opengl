@@ -1,13 +1,11 @@
-// shader loaded by Håvard Kindem
-// https://badvertex.com/2012/11/20/how-to-load-a-glsl-shader-in-opengl-using-c.html
-
-#include "load_shader.hpp"
-
+#define GL_SILENCE_DEPRECATION
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <OpenGL/gl3.h>
+#include "glm/gtc/type_ptr.hpp"
 
 std::string readFile(const char *filePath) {
     std::string content;
@@ -86,4 +84,9 @@ GLuint loadShader(const char *vertex_path, const char *fragment_path) {
     glDeleteShader(fragShader);
 
     return program;
+}
+
+void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 matrix) {
+    unsigned int propertyID = glGetUniformLocation(shaderID, name);
+    glUniformMatrix4fv(propertyID, 1, GL_FALSE, glm::value_ptr(matrix));
 }
