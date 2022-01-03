@@ -59,6 +59,7 @@ void Window::initGL() {
     matrixViewProjection = matrixProjection * matrixView;
 
     glEnable(GL_DEPTH_TEST);  
+    glViewport(0, 0, 800, 800);
 }
 
 void Window::swap() {
@@ -76,4 +77,9 @@ Window::Window() {
         throw;
     }
     initGL();
+}
+
+void Window::clear() {
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 }

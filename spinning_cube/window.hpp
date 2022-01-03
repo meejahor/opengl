@@ -16,6 +16,7 @@ class Window {
         Window();
         void swap();
         void destroy();
+        void clear();
 
     private:
         SDL_Window* window;

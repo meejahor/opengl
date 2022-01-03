@@ -13,13 +13,9 @@
 #include "window.hpp"
 #include "shader.hpp"
 #include "model.hpp"
+#include "deltatime.hpp"
 
 GLuint shader;
-
-float timeLast;
-float timeNow;
-float timeFrequencyReciprocal;
-float deltaTime;
 
 int main(int argc, char* argv[]) {
 
@@ -43,18 +39,10 @@ int main(int argc, char* argv[]) {
     float rotation = 0;
     const float SPEED = 90;
 
-    timeNow = static_cast<float>(SDL_GetPerformanceCounter());
-    timeFrequencyReciprocal = static_cast<float>(SDL_GetPerformanceFrequency());
-    timeFrequencyReciprocal = 1.0f / timeFrequencyReciprocal;
+    deltaTimeInit();
 
     while (gameIsRunning) {
-        timeLast = timeNow;
-        timeNow = static_cast<float>(SDL_GetPerformanceCounter());
-        float timeDiff = timeNow - timeLast;
-        timeDiff *= timeFrequencyReciprocal;
-        deltaTime = timeDiff;
-
-        glViewport(0, 0, 800, 800);
+        deltaTimeUpdate();
 
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
@@ -63,8 +51,7 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+        window->clear();
 
         rotation += SPEED * deltaTime;
         glm::mat4 modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 1));
