@@ -1,6 +1,6 @@
 {
     "code-runner.executorMap": {
-        "cpp": "cd $dir && /usr/bin/clang++ *.cpp -I/Library/Frameworks/SDL2.framework/Headers -I/usr/local/Cellar/glew/2.2.0_1/include -F/Library/Frameworks/ -framework SDL2 -framework OpenGL -o $fileNameWithoutExt && ./$fileNameWithoutExt"
+        "cpp": "cd $dir && /usr/bin/clang++ *.cpp -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks/ -framework SDL2 -framework OpenGL -o $fileNameWithoutExt && ./$fileNameWithoutExt"
     },
     "files.associations": {
         "ios": "cpp",

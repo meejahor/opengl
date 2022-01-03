@@ -14,23 +14,14 @@
 #include "shader.hpp"
 #include "model.hpp"
 
-GLuint vertexArray;
-GLuint vertexBuffer;
-GLuint normalBuffer;
 GLuint shader;
 
-Uint64 timeNow = SDL_GetPerformanceCounter();
-Uint64 timeLast = 0;
-float deltaTime = 0;
+float timeLast;
+float timeNow;
+float timeFrequencyReciprocal;
+float deltaTime;
 
 int main(int argc, char* argv[]) {
-
-    Model *model;
-    try {
-        model = new Model("cube.obj");
-    } catch (...) {
-        return 0;
-    }
 
     Window *window;
     try {
@@ -40,30 +31,28 @@ int main(int argc, char* argv[]) {
     }
 
     shader = loadShader("vert.vert", "frag.frag");
-    glUseProgram(shader);
 
-    glGenBuffers(1, &vertexBuffer);
-
-    glGenVertexArrays(1, &vertexArray);
-    glBindVertexArray(vertexArray);
-
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * model->out_vertices.size(), model->out_vertices.data(), GL_STATIC_DRAW);
-
-    glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2, (void*)0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2, (void*)sizeof(glm::vec3));
+    Model *model;
+    try {
+        model = new Model("cube.obj", shader);
+    } catch (...) {
+        return 0;
+    }
 
     bool gameIsRunning = true;
     float rotation = 0;
     const float SPEED = 90;
 
-    while (gameIsRunning) {
+    timeNow = static_cast<float>(SDL_GetPerformanceCounter());
+    timeFrequencyReciprocal = static_cast<float>(SDL_GetPerformanceFrequency());
+    timeFrequencyReciprocal = 1.0f / timeFrequencyReciprocal;
 
+    while (gameIsRunning) {
         timeLast = timeNow;
-        timeNow = SDL_GetPerformanceCounter();
-        deltaTime = (float)((timeNow - timeLast) / (double)SDL_GetPerformanceFrequency());
+        timeNow = static_cast<float>(SDL_GetPerformanceCounter());
+        float timeDiff = timeNow - timeLast;
+        timeDiff *= timeFrequencyReciprocal;
+        deltaTime = timeDiff;
 
         glViewport(0, 0, 800, 800);
 

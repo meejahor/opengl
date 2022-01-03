@@ -11,14 +11,13 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				"${file}",
-				"./glad/src/glad.c",
+				"*.cpp",
 				"-I/Library/Frameworks/SDL2.framework/Headers",
-				"-I./glad2/include",
-				"-I/usr/local/Cellar/glew/2.2.0_1/include",
 				"-F/Library/Frameworks/",
 				"-framework",
 				"SDL2",
+				"-framework",
+				"OpenGL",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}"
 			],

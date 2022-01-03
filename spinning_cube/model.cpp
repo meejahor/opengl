@@ -2,6 +2,15 @@
 
 #include "model.hpp"
 
+#define GL_SILENCE_DEPRECATION
+#include <OpenGL/OpenGL.h>
+#include <OpenGL/gl3.h>
+#include <OpenGL/glext.h>
+
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
 void Model::loadVertex() {
     glm::vec3 vertex;
     fscanf(file, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z);
@@ -43,7 +52,24 @@ void Model::loadFace() {
     normalIndices.push_back(normalIndex[2]);
 }
 
-Model::Model(const char* filename) {
+void Model::setupBuffers() {
+    glUseProgram(shader);
+
+    glGenBuffers(1, &vertexBuffer);
+
+    glGenVertexArrays(1, &vertexArray);
+    glBindVertexArray(vertexArray);
+
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * out_vertices.size(), out_vertices.data(), GL_STATIC_DRAW);
+
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2, (void*)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2, (void*)sizeof(glm::vec3));
+}
+
+void Model::load(const char *filename) {
     file = fopen(filename, "r");
     if (file == NULL) {
         throw std::exception();
@@ -73,4 +99,19 @@ Model::Model(const char* filename) {
         glm::vec3 normal = temp_normals[normalIndex-1];
         out_vertices.push_back(normal);
     }
+}
+
+Model::Model(const char* filename, GLuint _shader) {
+    shader = _shader;
+
+    try {
+        load(filename);
+    } catch (...) {
+        throw;
+    }
+
+    setupBuffers();
+}
+
+void Model::render() {
 }
