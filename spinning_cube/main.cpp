@@ -16,6 +16,22 @@ GLuint shader;
 
 int main(int argc, char* argv[]) {
 
+    std::chrono::time_point<std::chrono::high_resolution_clock> tp_start, tp_end;
+
+    tp_start = std::chrono::high_resolution_clock::now();
+
+    deltaTimeInit();
+
+    for (int n=0; n<1000000; n++) {
+        deltaTimeUpdate();
+    }
+
+    tp_end = std::chrono::high_resolution_clock::now();
+
+    long start = std::chrono::time_point_cast<std::chrono::microseconds>(tp_start).time_since_epoch().count();
+    long end = std::chrono::time_point_cast<std::chrono::microseconds>(tp_end).time_since_epoch().count();
+    std::cout << "deltaTimeUpdate " << (end - start) / 1000 << "ms" << std::endl;
+
     Window* window;
     try {
         window = new Window();

@@ -12,8 +12,7 @@ out VS_FS_INTERFACE {
 } vertex;
 
 void main() {
-    // mat4 mvp = mat4_vp * mat4_model;
     gl_Position = matrix_mvp * vec4(pos, 1);
-    // vertex.position = (mat4_model * vec4(pos, 1)).xyz;
+    // vertex.position = (matrix_model * vec4(pos, 1)).xyz;
     vertex.normal = (matrix_model * vec4(normal, 0)).xyz;
 }
