@@ -1,21 +1,19 @@
 #include "deltatime.hpp"
 #include <SDL.h>
 
-float timeLast;
-float timeNow;
-float timeFrequencyReciprocal;
-float deltaTime;
+Uint64 timeLast;
+Uint64 timeNow;
+double timeFrequencyReciprocal;
+float deltaTime = 0;
 
 void deltaTimeInit() {
-    timeNow = static_cast<float>(SDL_GetPerformanceCounter());
+    timeNow = SDL_GetPerformanceCounter();
     timeFrequencyReciprocal = static_cast<float>(SDL_GetPerformanceFrequency());
     timeFrequencyReciprocal = 1.0f / timeFrequencyReciprocal;
 }
 
 void deltaTimeUpdate() {
     timeLast = timeNow;
-    timeNow = static_cast<float>(SDL_GetPerformanceCounter());
-    float timeDiff = timeNow - timeLast;
-    timeDiff *= timeFrequencyReciprocal;
-    deltaTime = timeDiff;
+    timeNow = SDL_GetPerformanceCounter();
+    deltaTime = (float)((timeNow - timeLast) * timeFrequencyReciprocal);
 }
