@@ -9,6 +9,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 #include "window.hpp"
+#include "utils.hpp"
 
 void Window::initSDL() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -26,16 +27,16 @@ void Window::initSDL() {
         "C++ SDL2 Window",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        800,
-        800,
+        width,
+        height,
         SDL_WINDOW_SHOWN
         );
 
-    renderer = SDL_CreateRenderer(
-        window,
-        -1,
-        SDL_RENDERER_ACCELERATED
-        );
+    // renderer = SDL_CreateRenderer(
+    //     window,
+    //     -1,
+    //     SDL_RENDERER_ACCELERATED
+    //     );
 
     context = SDL_GL_CreateContext(window);
 }
@@ -43,23 +44,10 @@ void Window::initSDL() {
 void Window::initGL() {
     glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 5.0f);
     glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-    glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
 
-    glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f); 
-    glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
-    glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
-
-    glm::mat4 matrixView = glm::lookAt(
-        cameraPos,
-        cameraTarget,
-        cameraUp
-        );
-
-    glm::mat4 matrixProjection = glm::perspective(glm::radians(70.0f), 800.0f/800.0f, 0.0001f, 1000.0f);
-    matrixViewProjection = matrixProjection * matrixView;
+    matrixViewProjection = calcViewProjection(cameraPos, cameraTarget, 70.0f);
 
     glEnable(GL_DEPTH_TEST);  
-    glViewport(0, 0, 800, 800);
 }
 
 void Window::swap() {
@@ -67,19 +55,29 @@ void Window::swap() {
 }
 
 void Window::destroy() {
+    SDL_GL_DeleteContext(context);  
     SDL_DestroyWindow(window);
 }
 
-Window::Window() {
+Window::Window(int _width, int _height) {
+    width = _width;
+    height = _height;
+
     try {
         initSDL();
     } catch (...) {
         throw;
     }
+
     initGL();
 }
 
 void Window::clear() {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+}
+
+void Window::activate() {
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glViewport(0, 0, width, height);
 }

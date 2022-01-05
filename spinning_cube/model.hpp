@@ -15,7 +15,7 @@ class Model {
     std::vector<glm::vec3> out_normals;
 
     Model(const char *filename, GLuint _shader);
-    void render(Window* window, glm::mat4 const& modelMatrix);
+    void render(glm::mat4 const& matrixViewProjection, glm::mat4 const& matrixModel, GLuint renderShader = -1);
 
     private:
     FILE* file;

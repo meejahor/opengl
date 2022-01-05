@@ -10,11 +10,12 @@ class Object {
     Model* model;
     float rotation;
     glm::mat4 modelMatrix;
+    void calcMatrix();
 
     public:
     Object(Model* _model);
     void update();
-    void render(Window* window);
+    void render(glm::mat4 const& matrixViewProjection, GLuint renderShader = -1);
 };
 
 #endif

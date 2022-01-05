@@ -7,21 +7,21 @@
 #include <OpenGL/gl3.h>
 
 #include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
 
 class Window {
     public:
         glm::mat4 matrixViewProjection;
 
-        Window();
+        Window(int _width, int _height);
         void swap();
         void destroy();
         void clear();
+        void activate();
 
     private:
         SDL_Window* window;
-        SDL_Renderer* renderer;
         SDL_GLContext context;
+        int width, height;
 
         void initSDL();
         void initGL();

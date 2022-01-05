@@ -1,10 +1,11 @@
 #include <iostream>
 
 #include "model.hpp"
+#include "shader.hpp"
 
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/gl3.h>
-#include "shader.hpp"
+#include "glm/glm.hpp"
 
 void Model::loadVertex() {
     glm::vec3 vertex;
@@ -49,7 +50,6 @@ void Model::loadFace() {
 
 void Model::setupBuffers() {
     glUseProgram(shader);
-
     glGenBuffers(1, &vertexBuffer);
 
     glGenVertexArrays(1, &vertexArray);
@@ -60,8 +60,10 @@ void Model::setupBuffers() {
 
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2, (void*)0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*2, (void*)sizeof(glm::vec3));
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)sizeof(glm::vec3));
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)(sizeof(glm::vec3)*2));
 }
 
 void Model::load(const char *filename) {
@@ -89,10 +91,13 @@ void Model::load(const char *filename) {
     for (unsigned int i=0; i<vertexIndices.size(); i++) {
         unsigned int vertexIndex = vertexIndices[i];
         unsigned int normalIndex = normalIndices[i];
+        unsigned int uvIndex = uvIndices[i];
         glm::vec3 vertex = temp_vertices[vertexIndex-1];
         out_vertices.push_back(vertex);
         glm::vec3 normal = temp_normals[normalIndex-1];
         out_vertices.push_back(normal);
+        glm::vec2 uv = temp_uvs[uvIndex-1];
+        out_vertices.push_back(glm::vec3(uv.x, uv.y, 0));
     }
 }
 
@@ -111,8 +116,23 @@ Model::Model(const char* filename, GLuint _shader) {
     matrixMVP_ID = glGetUniformLocation(shader, "matrix_mvp");
 }
 
-void Model::render(Window* window, glm::mat4 const& modelMatrix) {
-    glUniformMatrix4fv(matrixModel_ID, 1, GL_FALSE, glm::value_ptr(modelMatrix));
-    glUniformMatrix4fv(matrixMVP_ID, 1, GL_FALSE, glm::value_ptr(window->matrixViewProjection * modelMatrix));
+void Model::render(glm::mat4 const& matrixViewProjection, glm::mat4 const& matrixModel, GLuint renderShader) {
+    if (renderShader == -1) {
+        glUseProgram(shader);
+    } else {
+        glUseProgram(renderShader);
+    }
+
+    glBindVertexArray(vertexArray);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)sizeof(glm::vec3));
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)(sizeof(glm::vec3)*2));
+
+    glUniformMatrix4fv(matrixModel_ID, 1, GL_FALSE, glm::value_ptr(matrixModel));
+    glUniformMatrix4fv(matrixMVP_ID, 1, GL_FALSE, glm::value_ptr(matrixViewProjection * matrixModel));
     glDrawArrays(GL_TRIANGLES, 0, out_vertices.size() * 3);
 }
