@@ -61,6 +61,10 @@ void Model::setupBuffers() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)0);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)sizeof(glm::vec3));
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)(sizeof(glm::vec3)*2));
+
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
 }
 
 void Model::load(const char *filename) {
@@ -118,13 +122,16 @@ void Model::render(glm::mat4 const& matrixViewProjection, glm::mat4 const& matri
     renderShader->activate(matrixModel, matrixViewProjection * matrixModel);
     // glUseProgram(renderShader);
     // glBindTexture(GL_TEXTURE_2D, rt->texture);
-    rt->activate();
+
+    if (rt != NULL) {
+        rt->activate();
+    } else {
+    }
+
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBindVertexArray(vertexArray);
 
     // glBindVertexArray(vertexArray);
-    glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
-    glEnableVertexAttribArray(2);
-
     glDrawArrays(GL_TRIANGLES, 0, out_vertices.size() * 3);
 
     return;

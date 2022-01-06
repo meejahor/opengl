@@ -92,7 +92,7 @@ int main(int argc, char* argv[]) {
         // glActiveTexture(GL_TEXTURE0);
         // glUniform1i(texID, 0);
 
-        // objectCube->render(window->matrixViewProjection, shader);
+        objectCube->render(window->matrixViewProjection, shader);
 
         objectPlane->render(window->matrixViewProjection, shaderTexture, rt);
         // show back buffer
