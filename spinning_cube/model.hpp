@@ -8,14 +8,17 @@
 #include "glm/glm.hpp"
 #include "window.hpp"
 
+#include "renderTexture.hpp"
+#include "shader.hpp"
+
 class Model {
     public:
     std::vector<glm::vec3> out_vertices;
     std::vector<glm::vec2> out_uvs;
     std::vector<glm::vec3> out_normals;
 
-    Model(const char *filename, GLuint _shader);
-    void render(glm::mat4 const& matrixViewProjection, glm::mat4 const& matrixModel, GLuint renderShader = -1);
+    Model(const char *filename, Shader* _shader);
+    void render(glm::mat4 const& matrixViewProjection, glm::mat4 const& matrixModel, Shader* renderShader = NULL, RenderTexture* rt = NULL);
 
     private:
     FILE* file;
@@ -28,10 +31,7 @@ class Model {
     GLuint vertexArray;
     GLuint vertexBuffer;
 
-    GLuint shader;
-
-    unsigned int matrixModel_ID;
-    unsigned int matrixMVP_ID;
+    Shader* shader;
 
     void loadVertex();
     void loadUV();

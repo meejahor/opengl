@@ -7,7 +7,6 @@
 class RenderTexture {
     private:
     GLuint frameBuffer;
-    GLuint texture;
     GLuint depthBuffer;
     GLenum drawBuffers[1];
     int width, height;
@@ -17,6 +16,7 @@ class RenderTexture {
     void createDepth();
 
     public:
+    GLuint texture;     // TODO: this should be back in private
     static RenderTexture* createColorTexture(int _width, int _height);
     void activate();
 };

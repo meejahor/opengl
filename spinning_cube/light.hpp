@@ -3,8 +3,9 @@
 
 #include "glm/glm.hpp"
 #include "renderTexture.hpp"
+#include "shader.hpp"
 
-extern GLuint depthShader;
+extern Shader* depthShader;
 
 class Light {
     private:

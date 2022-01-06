@@ -1,7 +1,7 @@
 {
 	"version": "2.0.0",
     "code-runner.executorMap": {
-        "cpp": "cd $dir && /usr/bin/clang++ *.cpp -o $fileNameWithoutExt && ./$fileNameWithoutExt"
+        "cpp": "cd $dir && /usr/bin/clang++ *.cpp -o main && ./main"
     },
 	"tasks": [
 		{

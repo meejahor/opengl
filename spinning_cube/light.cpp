@@ -8,10 +8,10 @@
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/gl3.h>
 
-GLuint depthShader;
+Shader* depthShader;
 
 void Light::loadDepthShader() {
-    depthShader = loadShader("shaders/vert.vert", "shaders/depth.frag");
+    depthShader = new Shader("shaders/vert.vert", "shaders/depth.frag");
 }
 
 Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone) {
@@ -40,4 +40,11 @@ void Light::activate() {
 void Light::clear() {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+
+        glEnable(GL_SCISSOR_TEST);
+        glScissor(100, 100, 50, 50);
+        glClearColor(1,1,1,1);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glDisable(GL_SCISSOR_TEST);
+
 }

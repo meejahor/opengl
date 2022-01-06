@@ -7,6 +7,8 @@
 #include <OpenGL/gl3.h>
 #include "glm/gtc/type_ptr.hpp"
 
+#include "shader.hpp"
+
 std::string readFile(const char *filePath) {
     std::string content;
     std::ifstream fileStream(filePath, std::ios::in);
@@ -26,7 +28,12 @@ std::string readFile(const char *filePath) {
     return content;
 }
 
-GLuint loadShader(const char *vertex_path, const char *fragment_path) {
+void Shader::findIDs() {
+    matrixModel_ID = glGetUniformLocation(program, "matrix_model");
+    matrixMVP_ID = glGetUniformLocation(program, "matrix_mvp");
+}
+
+Shader::Shader(const char *vertex_path, const char *fragment_path) {
     GLuint vertShader = glCreateShader(GL_VERTEX_SHADER);
     GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 
@@ -69,7 +76,7 @@ GLuint loadShader(const char *vertex_path, const char *fragment_path) {
     std::cout << &fragShaderError[0] << std::endl;
 
     std::cout << "Linking program" << std::endl;
-    GLuint program = glCreateProgram();
+    program = glCreateProgram();
     glAttachShader(program, vertShader);
     glAttachShader(program, fragShader);
     glLinkProgram(program);
@@ -83,7 +90,13 @@ GLuint loadShader(const char *vertex_path, const char *fragment_path) {
     glDeleteShader(vertShader);
     glDeleteShader(fragShader);
 
-    return program;
+    findIDs();
+}
+
+void Shader::activate(glm::mat4 const& matrixModel, glm::mat4 const& matrixMVP) {
+    glUseProgram(program);
+    glUniformMatrix4fv(matrixModel_ID, 1, GL_FALSE, glm::value_ptr(matrixModel));
+    glUniformMatrix4fv(matrixMVP_ID, 1, GL_FALSE, glm::value_ptr(matrixMVP));
 }
 
 // void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 const& matrix) {

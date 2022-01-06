@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [
-				"./glad/src/glad.c",
+				// "./glad/src/glad.c",
 				"-I/Library/Frameworks/SDL2.framework/Headers",
 				"-I./glad2/include/",
 				"-I/usr/local/Cellar/glew/2.2.0_1/include",

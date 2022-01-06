@@ -20,6 +20,6 @@ void Object::update() {
     calcMatrix();
 }
 
-void Object::render(glm::mat4 const& matrixViewProjection, GLuint renderShader) {
-    model->render(matrixViewProjection, modelMatrix, renderShader);
+void Object::render(glm::mat4 const& matrixViewProjection, Shader* renderShader, RenderTexture* rt) {
+    model->render(matrixViewProjection, modelMatrix, renderShader, rt);
 }
