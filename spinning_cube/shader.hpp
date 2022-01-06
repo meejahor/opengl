@@ -14,7 +14,8 @@
 class Shader {
     public:
     Shader(const char *vertex_path, const char *fragment_path);
-    void activate(glm::mat4 const& matrixModel, glm::mat4 const& matrixMVP);
+    void use();
+    void setMatrices(glm::mat4 const& matrixModel, glm::mat4 const& matrixMVP);
 
     private:
     void findIDs();

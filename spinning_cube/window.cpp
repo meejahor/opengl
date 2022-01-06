@@ -78,6 +78,9 @@ void Window::clear() {
 }
 
 void Window::activate() {
+    // glBindTexture(GL_TEXTURE_2D, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    // glBindRenderbuffer(GL_RENDERBUFFER, 0);
+    // glDrawBuffer(GL_BACK);
     glViewport(0, 0, width, height);
 }

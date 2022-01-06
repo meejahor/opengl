@@ -7,9 +7,11 @@
 class RenderTexture {
     private:
     GLuint frameBuffer;
+    GLuint renderBuffer;
     GLuint depthBuffer;
-    GLenum drawBuffers[1];
+    // GLenum drawBuffers[1];
     int width, height;
+    GLuint textureSampler;
 
     protected:
     void createColor();
@@ -18,7 +20,8 @@ class RenderTexture {
     public:
     GLuint texture;     // TODO: this should be back in private
     static RenderTexture* createColorTexture(int _width, int _height);
-    void activate();
+    void activateAsLightmap();
+    void useAsTexture();
 };
 
 #endif

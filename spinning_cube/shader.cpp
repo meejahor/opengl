@@ -93,8 +93,14 @@ Shader::Shader(const char *vertex_path, const char *fragment_path) {
     findIDs();
 }
 
-void Shader::activate(glm::mat4 const& matrixModel, glm::mat4 const& matrixMVP) {
+void Shader::use() {
     glUseProgram(program);
+
+	// GLuint TextureID = glGetUniformLocation(program, "renderedTexture");
+    // glUniform1i(TextureID, 0);
+}
+
+void Shader::setMatrices(glm::mat4 const& matrixModel, glm::mat4 const& matrixMVP) {
     glUniformMatrix4fv(matrixModel_ID, 1, GL_FALSE, glm::value_ptr(matrixModel));
     glUniformMatrix4fv(matrixMVP_ID, 1, GL_FALSE, glm::value_ptr(matrixMVP));
 }

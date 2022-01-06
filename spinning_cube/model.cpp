@@ -49,8 +49,6 @@ void Model::loadFace() {
 }
 
 void Model::setupBuffers() {
-    // glUseProgram(shader);
-
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * out_vertices.size(), out_vertices.data(), GL_STATIC_DRAW);
@@ -119,39 +117,17 @@ void Model::render(glm::mat4 const& matrixViewProjection, glm::mat4 const& matri
         renderShader = shader;
     }
 
-    renderShader->activate(matrixModel, matrixViewProjection * matrixModel);
-    // glUseProgram(renderShader);
-    // glBindTexture(GL_TEXTURE_2D, rt->texture);
+    renderShader->setMatrices(matrixModel, matrixViewProjection * matrixModel);
 
     if (rt != NULL) {
-        rt->activate();
+        rt->useAsTexture();
     } else {
     }
 
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBindVertexArray(vertexArray);
 
-    // glBindVertexArray(vertexArray);
     glDrawArrays(GL_TRIANGLES, 0, out_vertices.size() * 3);
 
     return;
-
-
-
-    // glBindTexture(GL_TEXTURE_2D, rt->texture);
-    // glActiveTexture(rt->texture);
-    // glUniform1i(glGetUniformLocation(renderShader, "renderedTexture"), 0);
-
-    // glBindVertexArray(vertexArray);
-    // // glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    // glEnableVertexAttribArray(0);
-    // glEnableVertexAttribArray(1);
-    // glEnableVertexAttribArray(2);
-    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)0);
-    // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)sizeof(glm::vec3));
-    // glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)(sizeof(glm::vec3)*2));
-
-    // glUniformMatrix4fv(matrixModel_ID, 1, GL_FALSE, glm::value_ptr(matrixModel));
-    // glUniformMatrix4fv(matrixMVP_ID, 1, GL_FALSE, glm::value_ptr(matrixViewProjection * matrixModel));
-    // glDrawArrays(GL_TRIANGLES, 0, out_vertices.size() * 3);
 }

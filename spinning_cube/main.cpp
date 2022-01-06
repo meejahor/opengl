@@ -30,14 +30,13 @@ int main(int argc, char* argv[]) {
     shader = new Shader("shaders/vert.vert", "shaders/frag.frag");
     shaderTexture = new Shader("shaders/vert.vert", "shaders/texture.frag");
 
-    // shaderTexture->activate();
     RenderTexture* rt = RenderTexture::createColorTexture(1024, 1024);
 
     Light* light;
     try {
         light = new Light(
-            glm::vec3(0.0f, 0.0f, 5.0f),
-            glm::vec3(0.0f, 0.0f, -1.0f),
+            glm::vec3( 5.0f, 0.0f, 0.0f),
+            glm::vec3(-1.0f, 0.0f, 0.0f),
             45.0f
         );
     } catch (...) {
@@ -79,11 +78,13 @@ int main(int argc, char* argv[]) {
         objectCube->update();
 
         // render light views of objects
-        // light->activate();
-        // light->clear();
-        // objectCube->render(light->matrixViewProjection, depthShader);
+        light->activate();
+        // depthShader->use();
+        depthShader->use();
+        objectCube->render(light->matrixViewProjection, depthShader);
 
         // render camera views of objects
+        // shader->use();
         window->activate();
         window->clear();
 
@@ -92,9 +93,12 @@ int main(int argc, char* argv[]) {
         // glActiveTexture(GL_TEXTURE0);
         // glUniform1i(texID, 0);
 
+        // window->activate();
+        shader->use();
         objectCube->render(window->matrixViewProjection, shader);
 
-        objectPlane->render(window->matrixViewProjection, shaderTexture, rt);
+        shaderTexture->use();
+        objectPlane->render(window->matrixViewProjection, shaderTexture, light->texture);
         // show back buffer
         window->swap();
     }

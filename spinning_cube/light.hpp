@@ -12,13 +12,14 @@ class Light {
     glm::vec3 position;
     glm::vec3 direction;
     float cone;
+    
+    public:
     RenderTexture* texture;
 
     public:
     static void loadDepthShader();
     Light(glm::vec3 _position, glm::vec3 _direction, float _cone);
     void activate();
-    void clear();
     glm::mat4 matrixViewProjection;
 };
 
