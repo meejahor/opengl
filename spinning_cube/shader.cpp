@@ -9,12 +9,12 @@
 
 #include "shader.hpp"
 
-glm::mat4 biasMatrix(
-    0.5, 0.0, 0.0, 0.0,
-    0.0, 0.5, 0.0, 0.0,
-    0.0, 0.0, 0.5, 0.0,
-    0.5, 0.5, 0.5, 1.0
-);
+// glm::mat4 biasMatrix(
+//     0.5, 0.0, 0.0, 0.0,
+//     0.0, 0.5, 0.0, 0.0,
+//     0.0, 0.0, 0.5, 0.0,
+//     0.5, 0.5, 0.5, 1.0
+// );
 
 std::string readFile(const char *filePath) {
     std::string content;
@@ -108,14 +108,14 @@ void Shader::use() {
     // glUniform1i(TextureID, 0);
 }
 
-void Shader::setLightmapMatrices(glm::mat4 const& mat4_MVP) {
-    glUniformMatrix4fv(mat4_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_MVP));
+void Shader::setLightmapMatrices(glm::mat4 const& mat4_LightMVP) {
+    glUniformMatrix4fv(mat4_LightMVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_LightMVP));
 }
 
 void Shader::setRenderMatrices(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_MVP, glm::mat4 const& mat4_LightMVP) {
     glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
     glUniformMatrix4fv(mat4_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_MVP));
-    glUniformMatrix4fv(mat4_LightMVP_ID, 1, GL_FALSE, glm::value_ptr(biasMatrix * mat4_LightMVP));
+    glUniformMatrix4fv(mat4_LightMVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_LightMVP));
 }
 
 // void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 const& matrix) {

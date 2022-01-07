@@ -84,26 +84,33 @@ void RenderTexture::createDepth() {
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
 
-    // glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
 
-    float pixels[] = {
-        0.0f, 0.0f,
-        0.0f, 0.0f
-    };
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, 2, 2, 0, GL_DEPTH_COMPONENT, GL_FLOAT, pixels);
+    // float pixels[] = {
+    //     1.0f, 0.0f,
+    //     0.0f, 1.0f
+    // };
+    // glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, 2, 2, 0, GL_DEPTH_COMPONENT, GL_FLOAT, pixels);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture, 0);
-    // glDrawBuffer(GL_NONE);
+    glDrawBuffer(GL_NONE);
+
+    glDisable(GL_DEPTH_TEST);
 
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         throw std::exception();
     }
 }
+
+// https://stackoverflow.com/questions/22419682/glsl-sampler2dshadow-and-shadow2d-clarification
+// https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glDepthRange.xhtml
 
 RenderTexture* RenderTexture::createColorTexture(int _width, int _height) {
     std::cout << "creating rt" << std::endl;
@@ -140,7 +147,12 @@ RenderTexture* RenderTexture::createDepthTexture(int _width, int _height) {
 void RenderTexture::activateAsLightmap() {
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glViewport(0, 0, width, height);
+    glClearDepth(0.5);
+    glEnable(GL_SCISSOR_TEST);
+    glScissor(width/4, height/4, width/4, height/4);
     glClear(GL_DEPTH_BUFFER_BIT);
+    glDisable(GL_SCISSOR_TEST);
+    glDepthMask(true);
 
     // glEnable(GL_SCISSOR_TEST);
     // glScissor(100, 100, 50, 50);

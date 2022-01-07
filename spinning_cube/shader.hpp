@@ -15,7 +15,7 @@ class Shader {
     public:
     Shader(const char *vertex_path, const char *fragment_path);
     void use();
-    void setLightmapMatrices(glm::mat4 const& mat4_MVP);
+    void setLightmapMatrices(glm::mat4 const& mat4_LightMVP);
     void setRenderMatrices(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_MVP, glm::mat4 const& mat4_LightMVP);
 
     private:
