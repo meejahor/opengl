@@ -2,6 +2,7 @@
 
 #include "model.hpp"
 #include "shader.hpp"
+#include "window.hpp"
 
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/gl3.h>
@@ -96,7 +97,7 @@ void Model::load(const char *filename) {
         glm::vec3 normal = temp_normals[normalIndex-1];
         out_vertices.push_back(normal);
         glm::vec2 uv = temp_uvs[uvIndex-1];
-        out_vertices.push_back(glm::vec3(uv.x, uv.y, 0));
+        out_vertices.push_back(glm::vec3(uv.x, 1-uv.y, 0));
     }
 }
 
@@ -112,22 +113,43 @@ Model::Model(const char* filename, Shader* _shader) {
     setupBuffers();
 }
 
-void Model::render(glm::mat4 const& matrixViewProjection, glm::mat4 const& matrixModel, Shader* renderShader, RenderTexture* rt) {
-    if (renderShader == NULL) {
-        renderShader = shader;
-    }
-
-    renderShader->setMatrices(matrixModel, matrixViewProjection * matrixModel);
-
-    if (rt != NULL) {
-        rt->useAsTexture();
-    } else {
-    }
-
+void Model::draw() {
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBindVertexArray(vertexArray);
-
     glDrawArrays(GL_TRIANGLES, 0, out_vertices.size() * 3);
+}
 
-    return;
+void Model::renderLightMap(Light* light, glm::mat4 const& matrixModel) {
+    depthShader->use();
+    depthShader->setLightmapMatrices(light->matrixViewProjection * matrixModel);
+    // glDisableVertexAttribArray(1);
+    // glDisableVertexAttribArray(2);
+    draw();
+}
+
+void Model::render(Light* light, glm::mat4 const& matrixModel) {
+    light->texture->useAsTexture();
+    shader->use();
+    shader->setRenderMatrices(
+        matrixModel,
+        window->matrixViewProjection * matrixModel,
+        light->matrixViewProjection * matrixModel
+        );
+    // glEnableVertexAttribArray(1);
+    // glEnableVertexAttribArray(2);
+    draw();
+}
+
+void Model::showLightmap(Light* light, glm::mat4 const& matrixModel, RenderTexture* rt) {
+    light->texture->useAsTexture();
+    shader->use();
+    // rt->useAsTexture();
+    shader->setRenderMatrices(
+        matrixModel,
+        window->matrixViewProjection * matrixModel,
+        light->matrixViewProjection * matrixModel
+        );
+    // glEnableVertexAttribArray(1);
+    // glEnableVertexAttribArray(2);
+    draw();
 }

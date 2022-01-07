@@ -15,10 +15,9 @@
 #include "light.hpp"
 
 Shader* shader;
-Shader* shaderTexture;
+Shader* shaderRenderDepth;
 
 int main(int argc, char* argv[]) {
-    Window* window;
     try {
         window = new Window(800, 800);
     } catch (...) {
@@ -27,16 +26,17 @@ int main(int argc, char* argv[]) {
 
     Light::loadDepthShader();
 
-    shader = new Shader("shaders/vert.vert", "shaders/frag.frag");
-    shaderTexture = new Shader("shaders/vert.vert", "shaders/texture.frag");
+    shader = new Shader("shaders/render.vert", "shaders/render.frag");
+    // shaderTexture = new Shader("shaders/vert.vert", "shaders/texture.frag");
+    shaderRenderDepth = new Shader("shaders/renderDepth.vert", "shaders/renderDepth.frag");
 
     RenderTexture* rt = RenderTexture::createColorTexture(1024, 1024);
 
     Light* light;
     try {
         light = new Light(
-            glm::vec3( 5.0f, 0.0f, 0.0f),
-            glm::vec3(-1.0f, 0.0f, 0.0f),
+            glm::vec3(0.0f,  5.0f, 0.0f),
+            glm::vec3(0.0f, -1.0f, 0.0f),
             45.0f
         );
     } catch (...) {
@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
 
     Model* modelPlane;
     try {
-        modelPlane = new Model("plane.obj", shaderTexture);
+        modelPlane = new Model("plane.obj", shaderRenderDepth);
     } catch (...) {
         return 0;
     }
@@ -79,9 +79,7 @@ int main(int argc, char* argv[]) {
 
         // render light views of objects
         light->activate();
-        // depthShader->use();
-        depthShader->use();
-        objectCube->render(light->matrixViewProjection, depthShader);
+        objectCube->renderLightMap(light);
 
         // render camera views of objects
         // shader->use();
@@ -94,11 +92,10 @@ int main(int argc, char* argv[]) {
         // glUniform1i(texID, 0);
 
         // window->activate();
-        shader->use();
-        objectCube->render(window->matrixViewProjection, shader);
+        // objectCube->render(light);
+        objectPlane->showLightmap(light, rt);
 
-        shaderTexture->use();
-        objectPlane->render(window->matrixViewProjection, shaderTexture, light->texture);
+        // objectPlane->render(window->matrixViewProjection, shaderTexture, light->texture);
         // show back buffer
         window->swap();
     }
