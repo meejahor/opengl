@@ -83,7 +83,7 @@ void RenderTexture::createDepth() {
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
 
     // int width, height, nrChannels;
 
@@ -103,8 +103,8 @@ void RenderTexture::createDepth() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_EQUAL);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_EQUAL);
 
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture, 0);
 
@@ -161,16 +161,14 @@ void RenderTexture::activateAsLightmap() {
     glViewport(0, 0, width, height);
 
     // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClearDepth(1);
-    glClear(GL_DEPTH_BUFFER_BIT);
-
-    glEnable(GL_SCISSOR_TEST);
     glClearDepth(0);
-    glScissor(width/4, height/4, width/4, height/4);
     glClear(GL_DEPTH_BUFFER_BIT);
-    glDisable(GL_SCISSOR_TEST);
 
-    glDepthFunc(GL_ALWAYS);
+    // glEnable(GL_SCISSOR_TEST);
+    // glClearDepth(0);
+    // glScissor(width/4, height/4, width/4, height/4);
+    // glClear(GL_DEPTH_BUFFER_BIT);
+    // glDisable(GL_SCISSOR_TEST);
 }
 
 void RenderTexture::useAsTexture() {

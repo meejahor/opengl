@@ -122,7 +122,9 @@ void Model::draw() {
 void Model::renderToLightmap(Light* light, glm::mat4 const& matrixModel) {
     depthShader->use();
     depthShader->setMatricesForLightmap(matrixModel, light->matrixViewProjection * matrixModel);
+    glDepthFunc(GL_ALWAYS);
     draw();
+    glDepthFunc(GL_LEQUAL);
 }
 
 void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {

@@ -9,7 +9,7 @@ in VS_FS_INTERFACE {
 uniform sampler2D depthTexture;
 
 void main() {
-    vec4 col = texture(depthTexture, vertex.uv);
+    vec4 col = vec4(texture(depthTexture, vertex.uv).r);
     color = col;
     // fragmentdepth = gl_FragCoord.z;
 }

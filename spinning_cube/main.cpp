@@ -94,9 +94,7 @@ int main(int argc, char* argv[]) {
         // glUniform1i(texID, 0);
 
         // window->activate();
-        shaderToScreen->use();
         objectCube->render();
-
         objectPlane->render(light->texture);
         // show back buffer
         window->swap();
