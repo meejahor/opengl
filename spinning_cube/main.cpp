@@ -18,7 +18,6 @@ Shader* shader;
 Shader* shaderTexture;
 
 int main(int argc, char* argv[]) {
-    Window* window;
     try {
         window = new Window(800, 800);
     } catch (...) {
@@ -82,7 +81,7 @@ int main(int argc, char* argv[]) {
         light->activate();
         // depthShader->use();
         depthShader->use();
-        objectCube->render(light->matrixViewProjection, depthShader);
+        objectCube->renderToLightmap(light);
 
         // render camera views of objects
         // shader->use();
@@ -96,10 +95,10 @@ int main(int argc, char* argv[]) {
 
         // window->activate();
         shader->use();
-        objectCube->render(window->matrixViewProjection, shader);
+        objectCube->render();
 
         shaderTexture->use();
-        objectPlane->render(window->matrixViewProjection, shaderTexture, light->texture);
+        objectPlane->render(light->texture);
         // show back buffer
         window->swap();
     }

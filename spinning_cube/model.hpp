@@ -6,10 +6,11 @@
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/OpenGL.h>
 #include "glm/glm.hpp"
-#include "window.hpp"
 
+#include "window.hpp"
 #include "renderTexture.hpp"
 #include "shader.hpp"
+#include "light.hpp"
 
 class Model {
     public:
@@ -18,7 +19,9 @@ class Model {
     std::vector<glm::vec3> out_normals;
 
     Model(const char *filename, Shader* _shader);
-    void render(glm::mat4 const& matrixViewProjection, glm::mat4 const& matrixModel, Shader* renderShader = NULL, RenderTexture* rt = NULL);
+    void draw();
+    void renderToLightmap(Light* light, glm::mat4 const& matrixModel);
+    void render(glm::mat4 const& matrixModel, RenderTexture* rt = NULL);
 
     private:
     FILE* file;

@@ -2,6 +2,7 @@
 
 #include "model.hpp"
 #include "shader.hpp"
+#include "window.hpp"
 
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/gl3.h>
@@ -112,22 +113,24 @@ Model::Model(const char* filename, Shader* _shader) {
     setupBuffers();
 }
 
-void Model::render(glm::mat4 const& matrixViewProjection, glm::mat4 const& matrixModel, Shader* renderShader, RenderTexture* rt) {
-    if (renderShader == NULL) {
-        renderShader = shader;
-    }
+void Model::draw() {
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBindVertexArray(vertexArray);
+    glDrawArrays(GL_TRIANGLES, 0, out_vertices.size() * 3);
+}
 
-    renderShader->setMatrices(matrixModel, matrixViewProjection * matrixModel);
+void Model::renderToLightmap(Light* light, glm::mat4 const& matrixModel) {
+    shader->setMatricesForLightmap(matrixModel, light->matrixViewProjection * matrixModel);
+    draw();
+}
+
+void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {
+    shader->setMatricesForCamera(matrixModel, window->matrixViewProjection * matrixModel);
 
     if (rt != NULL) {
         rt->useAsTexture();
     } else {
     }
 
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBindVertexArray(vertexArray);
-
-    glDrawArrays(GL_TRIANGLES, 0, out_vertices.size() * 3);
-
-    return;
+    draw();
 }

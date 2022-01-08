@@ -11,6 +11,8 @@
 #include "window.hpp"
 #include "utils.hpp"
 
+Window* window;
+
 void Window::initSDL() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         throw std::exception();

@@ -5,6 +5,7 @@
 #include "glm/glm.hpp"
 #include "window.hpp"
 #include "shader.hpp"
+#include "light.hpp"
 
 class Object {
     private:
@@ -17,7 +18,8 @@ class Object {
     public:
     Object(Model* _model, glm::vec3 _translation = glm::vec3(0, 0, 0));
     void update();
-    void render(glm::mat4 const& matrixViewProjection, Shader* renderShader = NULL, RenderTexture* rt = NULL);
+    void renderToLightmap(Light* light);
+    void render(RenderTexture* rt = NULL);
 };
 
 #endif

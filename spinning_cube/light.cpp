@@ -11,7 +11,7 @@
 Shader* depthShader;
 
 void Light::loadDepthShader() {
-    depthShader = new Shader("shaders/vert.vert", "shaders/depth.frag");
+    depthShader = new Shader("shaders/depth.vert", "shaders/depth.frag");
 }
 
 Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 up) {
@@ -27,7 +27,7 @@ Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 u
         );
 
     try {
-        texture = RenderTexture::createColorTexture(1024, 1024);
+        texture = RenderTexture::createDepthTexture(1024, 1024);
     } catch (...) {
         std::cout << "couldn't create render texture for light" << std::endl;
         throw;

@@ -13,9 +13,9 @@ glm::mat4 calcViewProjection(glm::vec3 position, glm::vec3 lookAt, float fov, gl
     glm::vec3 viewRight = glm::normalize(glm::cross(up, direction));
     glm::vec3 viewUp = glm::cross(direction, viewRight);
 
-    std::cout << glm::to_string(direction) << std::endl;
-    std::cout << glm::to_string(viewRight) << std::endl;
-    std::cout << glm::to_string(viewUp) << std::endl;
+    // std::cout << glm::to_string(direction) << std::endl;
+    // std::cout << glm::to_string(viewRight) << std::endl;
+    // std::cout << glm::to_string(viewUp) << std::endl;
 
     glm::mat4 matrixView = glm::lookAt(
         position,

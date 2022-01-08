@@ -29,8 +29,9 @@ std::string readFile(const char *filePath) {
 }
 
 void Shader::findIDs() {
-    matrixModel_ID = glGetUniformLocation(program, "matrix_model");
-    matrixMVP_ID = glGetUniformLocation(program, "matrix_mvp");
+    mat4_Model_ID = glGetUniformLocation(program, "mat4_Model");
+    mat4_Camera_MVP_ID = glGetUniformLocation(program, "mat4_Camera_MVP");
+    mat4_Light_MVP_ID = glGetUniformLocation(program, "mat4_Light_MVP");
 }
 
 Shader::Shader(const char *vertex_path, const char *fragment_path) {
@@ -100,9 +101,14 @@ void Shader::use() {
     // glUniform1i(TextureID, 0);
 }
 
-void Shader::setMatrices(glm::mat4 const& matrixModel, glm::mat4 const& matrixMVP) {
-    glUniformMatrix4fv(matrixModel_ID, 1, GL_FALSE, glm::value_ptr(matrixModel));
-    glUniformMatrix4fv(matrixMVP_ID, 1, GL_FALSE, glm::value_ptr(matrixMVP));
+void Shader::setMatricesForLightmap(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Light_MVP) {
+    glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
+    glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Light_MVP));
+}
+
+void Shader::setMatricesForCamera(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP) {
+    glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
+    glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
 }
 
 // void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 const& matrix) {

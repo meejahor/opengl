@@ -22,6 +22,10 @@ void Object::update() {
     calcMatrix();
 }
 
-void Object::render(glm::mat4 const& matrixViewProjection, Shader* renderShader, RenderTexture* rt) {
-    model->render(matrixViewProjection, modelMatrix, renderShader, rt);
+void Object::renderToLightmap(Light* light) {
+    model->renderToLightmap(light, modelMatrix);
+}
+
+void Object::render(RenderTexture* rt) {
+    model->render(modelMatrix, rt);
 }

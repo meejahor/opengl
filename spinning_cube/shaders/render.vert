@@ -5,8 +5,8 @@ layout (location = 1) in vec3 normal;
 layout (location = 2) in vec2 uv;
 
 uniform mat4 mat4_Model;
-uniform mat4 mat4_MVP;
-uniform mat4 mat4_LightMVP;
+uniform mat4 mat4_Camera_MVP;
+uniform mat4 mat4_Light_MVP;
 
 out VS_FS_INTERFACE {
     vec3 normal;
@@ -15,8 +15,8 @@ out VS_FS_INTERFACE {
 } vertex;
 
 void main() {
-    gl_Position = mat4_MVP * vec4(pos, 1);
+    gl_Position = mat4_Camera_MVP * vec4(pos, 1);
     vertex.normal = (mat4_Model * vec4(normal, 0)).xyz;
     vertex.uv = uv;
-    vertex.shadowCoords = mat4_LightMVP * vec4(pos, 1);
+    vertex.shadowCoords = mat4_Light_MVP * vec4(pos, 1);
 }
