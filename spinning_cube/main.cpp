@@ -80,9 +80,8 @@ int main(int argc, char* argv[]) {
         objectCube->update();
 
         // render light views of objects
-        // light->activate();
-        // depthShader->use();
-        // objectCube->renderToLightmap(light);
+        light->activate();
+        objectCube->renderToLightmap(light);
 
         // render camera views of objects
         // shader->use();
@@ -98,7 +97,6 @@ int main(int argc, char* argv[]) {
         shaderToScreen->use();
         objectCube->render();
 
-        shaderShowDepth->use();
         objectPlane->render(light->texture);
         // show back buffer
         window->swap();
