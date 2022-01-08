@@ -35,9 +35,10 @@ int main(int argc, char* argv[]) {
     Light* light;
     try {
         light = new Light(
-            glm::vec3( 5.0f, 0.0f, 0.0f),
-            glm::vec3(-1.0f, 0.0f, 0.0f),
-            45.0f
+            glm::vec3(  0.0f,  5.0f,  0.0f),
+            glm::vec3(  0.0f, -1.0f,  0.0f),
+            45.0f,
+            glm::vec3(  0.0f,  0.0f, -1.0f)
         );
     } catch (...) {
         std::cout << "couldn't create light" << std::endl;
@@ -59,7 +60,7 @@ int main(int argc, char* argv[]) {
     }
 
     Object* objectCube = new Object(modelCube);
-    Object* objectPlane = new Object(modelPlane);
+    Object* objectPlane = new Object(modelPlane, glm::vec3(2, 0, 0));
 
     bool gameIsRunning = true;
 

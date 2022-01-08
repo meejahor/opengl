@@ -14,7 +14,7 @@ void Light::loadDepthShader() {
     depthShader = new Shader("shaders/vert.vert", "shaders/depth.frag");
 }
 
-Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone) {
+Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 up) {
     position = _position;
     direction = _direction;
     cone = _cone;
@@ -22,7 +22,8 @@ Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone) {
     matrixViewProjection = calcViewProjection(
         position,
         position + direction,
-        cone
+        cone,
+        up
         );
 
     try {

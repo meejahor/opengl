@@ -5,14 +5,16 @@
 
 static const float SPEED = 90;
 
-Object::Object(Model* _model) {
+Object::Object(Model* _model, glm::vec3 _translation) {
     model = _model;
+    translation = _translation;
     rotation = 0;
     calcMatrix();
 }
 
 void Object::calcMatrix() {
-    modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 1));
+    modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 0));
+    modelMatrix = glm::translate(modelMatrix, translation);
 }
 
 void Object::update() {
