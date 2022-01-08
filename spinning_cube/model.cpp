@@ -120,11 +120,13 @@ void Model::draw() {
 }
 
 void Model::renderToLightmap(Light* light, glm::mat4 const& matrixModel) {
-    shader->setMatricesForLightmap(matrixModel, light->matrixViewProjection * matrixModel);
+    depthShader->use();
+    depthShader->setMatricesForLightmap(matrixModel, light->matrixViewProjection * matrixModel);
     draw();
 }
 
 void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {
+    shader->use();
     shader->setMatricesForCamera(matrixModel, window->matrixViewProjection * matrixModel);
 
     if (rt != NULL) {

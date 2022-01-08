@@ -14,8 +14,8 @@
 #include "renderTexture.hpp"
 #include "light.hpp"
 
-Shader* shader;
-Shader* shaderTexture;
+Shader* shaderToScreen;
+Shader* shaderShowTexture;
 
 int main(int argc, char* argv[]) {
     try {
@@ -26,8 +26,8 @@ int main(int argc, char* argv[]) {
 
     Light::loadDepthShader();
 
-    shader = new Shader("shaders/vert.vert", "shaders/frag.frag");
-    shaderTexture = new Shader("shaders/vert.vert", "shaders/texture.frag");
+    shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
+    shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
 
     RenderTexture* rt = RenderTexture::createColorTexture(1024, 1024);
 
@@ -46,14 +46,14 @@ int main(int argc, char* argv[]) {
 
     Model* modelCube;
     try {
-        modelCube = new Model("cube.obj", shader);
+        modelCube = new Model("cube.obj", shaderToScreen);
     } catch (...) {
         return 0;
     }
 
     Model* modelPlane;
     try {
-        modelPlane = new Model("plane.obj", shaderTexture);
+        modelPlane = new Model("plane.obj", shaderShowTexture);
     } catch (...) {
         return 0;
     }
@@ -80,7 +80,6 @@ int main(int argc, char* argv[]) {
         // render light views of objects
         light->activate();
         // depthShader->use();
-        depthShader->use();
         objectCube->renderToLightmap(light);
 
         // render camera views of objects
@@ -94,10 +93,10 @@ int main(int argc, char* argv[]) {
         // glUniform1i(texID, 0);
 
         // window->activate();
-        shader->use();
+        shaderToScreen->use();
         objectCube->render();
 
-        shaderTexture->use();
+        shaderShowTexture->use();
         objectPlane->render(light->texture);
         // show back buffer
         window->swap();
