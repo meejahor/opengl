@@ -27,6 +27,4 @@ class Window {
         void initGL();
 };
 
-extern Window* window;
-
 #endif

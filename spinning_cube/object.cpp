@@ -20,14 +20,6 @@ void Object::update() {
     calcMatrix();
 }
 
-void Object::renderLightMap(Light* light) {
-    model->renderLightMap(light, modelMatrix);
-}
-
-void Object::render(Light* light) {
-    model->render(light, modelMatrix);
-}
-
-void Object::showLightmap(Light* light, RenderTexture* rt) {
-    model->showLightmap(light, modelMatrix, rt);
+void Object::render(glm::mat4 const& matrixViewProjection, Shader* renderShader, RenderTexture* rt) {
+    model->render(matrixViewProjection, modelMatrix, renderShader, rt);
 }

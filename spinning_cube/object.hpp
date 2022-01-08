@@ -5,7 +5,6 @@
 #include "glm/glm.hpp"
 #include "window.hpp"
 #include "shader.hpp"
-#include "light.hpp"
 
 class Object {
     private:
@@ -17,9 +16,7 @@ class Object {
     public:
     Object(Model* _model);
     void update();
-    void renderLightMap(Light* light);
-    void render(Light* light);
-    void showLightmap(Light* light, RenderTexture* rt);
+    void render(glm::mat4 const& matrixViewProjection, Shader* renderShader = NULL, RenderTexture* rt = NULL);
 };
 
 #endif

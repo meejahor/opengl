@@ -9,13 +9,6 @@
 
 #include "shader.hpp"
 
-// glm::mat4 biasMatrix(
-//     0.5, 0.0, 0.0, 0.0,
-//     0.0, 0.5, 0.0, 0.0,
-//     0.0, 0.0, 0.5, 0.0,
-//     0.5, 0.5, 0.5, 1.0
-// );
-
 std::string readFile(const char *filePath) {
     std::string content;
     std::ifstream fileStream(filePath, std::ios::in);
@@ -36,9 +29,8 @@ std::string readFile(const char *filePath) {
 }
 
 void Shader::findIDs() {
-    mat4_Model_ID = glGetUniformLocation(program, "mat4_Model");
-    mat4_MVP_ID = glGetUniformLocation(program, "mat4_MVP");
-    mat4_LightMVP_ID = glGetUniformLocation(program, "mat4_LightMVP");
+    matrixModel_ID = glGetUniformLocation(program, "matrix_model");
+    matrixMVP_ID = glGetUniformLocation(program, "matrix_mvp");
 }
 
 Shader::Shader(const char *vertex_path, const char *fragment_path) {
@@ -108,15 +100,9 @@ void Shader::use() {
     // glUniform1i(TextureID, 0);
 }
 
-void Shader::setLightmapMatrices(glm::mat4 const& mat4_LightMVP) {
-    // TODO: find out what the transpose value does
-    glUniformMatrix4fv(mat4_LightMVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_LightMVP));
-}
-
-void Shader::setRenderMatrices(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_MVP, glm::mat4 const& mat4_LightMVP) {
-    glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
-    glUniformMatrix4fv(mat4_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_MVP));
-    glUniformMatrix4fv(mat4_LightMVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_LightMVP));
+void Shader::setMatrices(glm::mat4 const& matrixModel, glm::mat4 const& matrixMVP) {
+    glUniformMatrix4fv(matrixModel_ID, 1, GL_FALSE, glm::value_ptr(matrixModel));
+    glUniformMatrix4fv(matrixMVP_ID, 1, GL_FALSE, glm::value_ptr(matrixMVP));
 }
 
 // void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 const& matrix) {

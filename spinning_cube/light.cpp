@@ -11,7 +11,7 @@
 Shader* depthShader;
 
 void Light::loadDepthShader() {
-    depthShader = new Shader("shaders/depth.vert", "shaders/depth.frag");
+    depthShader = new Shader("shaders/vert.vert", "shaders/depth.frag");
 }
 
 Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone) {

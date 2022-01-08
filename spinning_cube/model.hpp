@@ -10,7 +10,6 @@
 
 #include "renderTexture.hpp"
 #include "shader.hpp"
-#include "light.hpp"
 
 class Model {
     public:
@@ -19,19 +18,7 @@ class Model {
     std::vector<glm::vec3> out_normals;
 
     Model(const char *filename, Shader* _shader);
-    void renderLightMap(
-        Light* light,
-        glm::mat4 const& matrixModel
-        );
-    void render(
-        Light* light,
-        glm::mat4 const& matrixModel
-        );
-    void showLightmap(
-        Light* light,
-        glm::mat4 const& matrixModel,
-        RenderTexture* rt
-        );
+    void render(glm::mat4 const& matrixViewProjection, glm::mat4 const& matrixModel, Shader* renderShader = NULL, RenderTexture* rt = NULL);
 
     private:
     FILE* file;
@@ -52,7 +39,6 @@ class Model {
     void loadFace();
     void setupBuffers();
     void load(const char *filename);
-    void draw();
 };
 
 #endif
