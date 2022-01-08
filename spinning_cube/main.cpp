@@ -16,6 +16,7 @@
 
 Shader* shaderToScreen;
 Shader* shaderShowTexture;
+Shader* shaderShowDepth;
 
 int main(int argc, char* argv[]) {
     try {
@@ -28,6 +29,7 @@ int main(int argc, char* argv[]) {
 
     shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
+    shaderShowDepth = new Shader("shaders/showDepth.vert", "shaders/showDepth.frag");
 
     RenderTexture* rt = RenderTexture::createColorTexture(1024, 1024);
 
@@ -53,7 +55,7 @@ int main(int argc, char* argv[]) {
 
     Model* modelPlane;
     try {
-        modelPlane = new Model("plane.obj", shaderShowTexture);
+        modelPlane = new Model("plane.obj", shaderShowDepth);
     } catch (...) {
         return 0;
     }
@@ -78,9 +80,9 @@ int main(int argc, char* argv[]) {
         objectCube->update();
 
         // render light views of objects
-        light->activate();
+        // light->activate();
         // depthShader->use();
-        objectCube->renderToLightmap(light);
+        // objectCube->renderToLightmap(light);
 
         // render camera views of objects
         // shader->use();
@@ -96,7 +98,7 @@ int main(int argc, char* argv[]) {
         shaderToScreen->use();
         objectCube->render();
 
-        shaderShowTexture->use();
+        shaderShowDepth->use();
         objectPlane->render(light->texture);
         // show back buffer
         window->swap();

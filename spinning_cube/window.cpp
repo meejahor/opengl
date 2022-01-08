@@ -76,6 +76,7 @@ Window::Window(int _width, int _height) {
 
 void Window::clear() {
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClearDepth(1);
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 }
 
