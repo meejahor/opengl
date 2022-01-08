@@ -9,7 +9,6 @@ class RenderTexture {
     GLuint frameBuffer;
     GLuint renderBuffer;
     GLuint depthBuffer;
-    // GLenum drawBuffers[1];
     int width, height;
     GLuint textureSampler;
 

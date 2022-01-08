@@ -9,5 +9,6 @@ in VS_FS_INTERFACE {
 uniform sampler2D renderedTexture;
 
 void main() {
+    // color = vec4(1);
     color = texture(renderedTexture, vertex.uv);
 }

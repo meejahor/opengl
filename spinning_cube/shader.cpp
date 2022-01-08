@@ -109,6 +109,7 @@ void Shader::use() {
 }
 
 void Shader::setLightmapMatrices(glm::mat4 const& mat4_LightMVP) {
+    // TODO: find out what the transpose value does
     glUniformMatrix4fv(mat4_LightMVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_LightMVP));
 }
 

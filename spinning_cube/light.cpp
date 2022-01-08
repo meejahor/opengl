@@ -26,7 +26,7 @@ Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone) {
         );
 
     try {
-        texture = RenderTexture::createDepthTexture(1024, 1024);
+        texture = RenderTexture::createColorTexture(1024, 1024);
     } catch (...) {
         std::cout << "couldn't create render texture for light" << std::endl;
         throw;
