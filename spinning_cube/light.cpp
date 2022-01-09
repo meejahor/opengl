@@ -37,3 +37,7 @@ Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 u
 void Light::activate() {
     texture->activateAsLightmap();
 }
+
+void Light::useShadowMap() {
+    texture->useAsTexture();
+}

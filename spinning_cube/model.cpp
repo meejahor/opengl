@@ -123,13 +123,20 @@ void Model::renderToLightmap(Light* light, glm::mat4 const& matrixModel) {
     depthShader->use();
     depthShader->setMatricesForLightmap(matrixModel, light->matrixViewProjection * matrixModel);
     glDepthFunc(GL_ALWAYS);
-    draw();
     glDepthFunc(GL_LEQUAL);
+    draw();
+}
+
+void Model::renderWithShadow(Light* light, glm::mat4 const& matrixModel) {
+    shader->use();
+    shader->setMatricesForCamera(matrixModel, window->matrixViewProjection * matrixModel, light->matrixViewProjection * matrixModel);
+    light->useShadowMap();
+    draw();
 }
 
 void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->use();
-    shader->setMatricesForCamera(matrixModel, window->matrixViewProjection * matrixModel);
+    shader->setMatricesForCameraNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
 
     if (rt != NULL) {
         rt->useAsTexture();

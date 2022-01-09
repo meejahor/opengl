@@ -106,7 +106,13 @@ void Shader::setMatricesForLightmap(glm::mat4 const& mat4_Model, glm::mat4 const
     glUniformMatrix4fv(mat4_Light_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Light_MVP));
 }
 
-void Shader::setMatricesForCamera(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP) {
+void Shader::setMatricesForCamera(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP, glm::mat4 const& mat4_Light_MVP) {
+    glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
+    glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
+    glUniformMatrix4fv(mat4_Light_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Light_MVP));
+}
+
+void Shader::setMatricesForCameraNoLighting(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP) {
     glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
     glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
 }

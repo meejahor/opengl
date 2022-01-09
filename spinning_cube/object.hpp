@@ -19,6 +19,7 @@ class Object {
     Object(Model* _model, glm::vec3 _translation = glm::vec3(0, 0, 0));
     void update();
     void renderToLightmap(Light* light);
+    void renderWithShadow(Light* light);
     void render(RenderTexture* rt = NULL);
 };
 

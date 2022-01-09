@@ -21,6 +21,7 @@ class Light {
     Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 up);
     void activate();
     glm::mat4 matrixViewProjection;
+    void useShadowMap();
 };
 
 #endif

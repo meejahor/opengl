@@ -26,6 +26,10 @@ void Object::renderToLightmap(Light* light) {
     model->renderToLightmap(light, modelMatrix);
 }
 
+void Object::renderWithShadow(Light* light) {
+    model->renderWithShadow(light, modelMatrix);
+}
+
 void Object::render(RenderTexture* rt) {
     model->render(modelMatrix, rt);
 }

@@ -36,10 +36,10 @@ int main(int argc, char* argv[]) {
     Light* light;
     try {
         light = new Light(
-            glm::vec3(  0.0f,  5.0f,  0.0f),
-            glm::vec3(  0.0f, -1.0f,  0.0f),
-            45.0f,
-            glm::vec3(  0.0f,  0.0f, -1.0f)
+            glm::vec3(  3.0f,  0.0f,  5.0f),
+            glm::vec3(  0.0f,  0.0f, -1.0f),
+            15.0f,
+            glm::vec3(  0.0f,  1.0f,  0.0f)
         );
     } catch (...) {
         std::cout << "couldn't create light" << std::endl;
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 
     Model* modelCube;
     try {
-        modelCube = new Model("cube.obj", shaderToScreen);
+        modelCube = new Model("cube_with_plane.obj", shaderToScreen);
     } catch (...) {
         return 0;
     }
@@ -94,7 +94,7 @@ int main(int argc, char* argv[]) {
         // glUniform1i(texID, 0);
 
         // window->activate();
-        objectCube->render();
+        objectCube->renderWithShadow(light);
         objectPlane->render(light->texture);
         // show back buffer
         window->swap();

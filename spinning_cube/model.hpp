@@ -21,6 +21,7 @@ class Model {
     Model(const char *filename, Shader* _shader);
     void draw();
     void renderToLightmap(Light* light, glm::mat4 const& matrixModel);
+    void renderWithShadow(Light* light, glm::mat4 const& matrixModel);
     void render(glm::mat4 const& matrixModel, RenderTexture* rt = NULL);
 
     private:

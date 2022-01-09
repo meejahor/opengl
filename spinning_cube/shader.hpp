@@ -16,7 +16,8 @@ class Shader {
     Shader(const char *vertex_path, const char *fragment_path);
     void use();
     void setMatricesForLightmap(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Light_MVP);
-    void setMatricesForCamera(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP);
+    void setMatricesForCamera(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP, glm::mat4 const& mat4_Light_MVP);
+    void setMatricesForCameraNoLighting(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP);
 
     private:
     void findIDs();
