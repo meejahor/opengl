@@ -15,7 +15,10 @@ vec4 matColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
 uniform sampler2DShadow lightmap;
 
 void main() {
-    float inShadow = texture(lightmap, vertex.proj);
+    float inShadow = texture(
+        lightmap,
+        vec3(vertex.proj.xy, vertex.proj.z + 0.00001)
+        );
 
     float d = dot(lightDir, vertex.normal.xyz);
     d = clamp(d, 0, 1);

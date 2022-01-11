@@ -36,10 +36,10 @@ int main(int argc, char* argv[]) {
     Light* light;
     try {
         light = new Light(
-            glm::vec3(  3.0f,  0.0f,  5.0f),
-            glm::vec3(  0.0f,  0.0f, -1.0f),
-            15.0f,
-            glm::vec3(  0.0f,  1.0f,  0.0f)
+            glm::vec3(  0.0f,  5.0f,  0.0f),
+            glm::vec3(  0.0f, -1.0f,  0.0f),
+            60.0f,
+            glm::vec3(  0.0f,  0.0f,  1.0f)
         );
     } catch (...) {
         std::cout << "couldn't create light" << std::endl;
