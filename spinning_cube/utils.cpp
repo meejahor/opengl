@@ -28,8 +28,8 @@ glm::mat4 calcViewProjection(glm::vec3 position, glm::vec3 lookAt, float fov, gl
     glm::mat4 matrixProjection = glm::perspective(
         glm::radians(fov),
         800.0f/800.0f,
-        0.0001f,
-        10.0f
+        2.0f,
+        8.0f
         );
 
     return matrixProjection * matrixView;

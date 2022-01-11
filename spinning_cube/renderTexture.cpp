@@ -106,12 +106,12 @@ void RenderTexture::createDepth() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
 
     // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_LESS);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LESS);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_GREATER);
 
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture, 0);
 
-    // glDrawBuffer(GL_NONE);
-    // glReadBuffer(GL_NONE);
+    glDrawBuffer(GL_NONE);
+    glReadBuffer(GL_NONE);
 
     // glGenRenderbuffers(1, &depthBuffer);
     // glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);
@@ -119,8 +119,6 @@ void RenderTexture::createDepth() {
 	// glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBuffer);
 
 	// glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture, 0);
-
-
 
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         throw std::exception();

@@ -5,7 +5,7 @@ in VS_FS_INTERFACE {
 } vertex;
 
 void main() {
-    gl_FragDepth = vertex.proj.z - 0.5;
+    // gl_FragDepth = vertex.proj.z - 0.5;
 
     // if (vertex.depth > 0.99999999) {
     //     gl_FragDepth = 1;
