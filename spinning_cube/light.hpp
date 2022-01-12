@@ -8,15 +8,11 @@
 extern Shader* depthShader;
 
 class Light {
-    private:
+    public:
+    float cone;
+    RenderTexture* texture;
     glm::vec3 position;
     glm::vec3 direction;
-    float cone;
-    
-    public:
-    RenderTexture* texture;
-
-    public:
     static void loadDepthShader();
     Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 up);
     void activate();

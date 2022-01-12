@@ -16,8 +16,14 @@ class Shader {
     Shader(const char *vertex_path, const char *fragment_path);
     void use();
     void setMatricesForLightmap(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Light_MVP);
-    void setMatricesForCamera(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP, glm::mat4 const& mat4_Light_MVP);
-    void setMatricesForCameraNoLighting(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP);
+    void setMatricesForScreenRenderingWithLighting(
+        glm::mat4 const& mat4_Model,
+        glm::mat4 const& mat4_Camera_MVP,
+        glm::mat4 const& mat4_Light_MVP,
+        glm::vec3 const& lightPosition,
+        glm::vec3 const& lightDirection
+        );
+    void setMatricesForScreenRenderingNoLighting(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP);
 
     private:
     void findIDs();
@@ -25,6 +31,8 @@ class Shader {
     unsigned int mat4_Model_ID;
     unsigned int mat4_Camera_MVP_ID;
     unsigned int mat4_Light_MVP_ID;
+    unsigned int lightPosition_ID;
+    unsigned int lightDirection_ID;
 };
 
 // GLuint loadShader(const char *vertex_path, const char *fragment_path);

@@ -32,6 +32,8 @@ void Shader::findIDs() {
     mat4_Model_ID = glGetUniformLocation(program, "mat4_Model");
     mat4_Camera_MVP_ID = glGetUniformLocation(program, "mat4_Camera_MVP");
     mat4_Light_MVP_ID = glGetUniformLocation(program, "mat4_Light_MVP");
+    lightPosition_ID = glGetUniformLocation(program, "lightPosition");
+    lightDirection_ID = glGetUniformLocation(program, "lightDirection");
 }
 
 Shader::Shader(const char *vertex_path, const char *fragment_path) {
@@ -101,18 +103,32 @@ void Shader::use() {
     // glUniform1i(TextureID, 0);
 }
 
-void Shader::setMatricesForLightmap(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Light_MVP) {
+void Shader::setMatricesForLightmap(
+    glm::mat4 const& mat4_Model,
+    glm::mat4 const& mat4_Light_MVP
+    ) {
     glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
     glUniformMatrix4fv(mat4_Light_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Light_MVP));
 }
 
-void Shader::setMatricesForCamera(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP, glm::mat4 const& mat4_Light_MVP) {
+void Shader::setMatricesForScreenRenderingWithLighting(
+    glm::mat4 const& mat4_Model,
+    glm::mat4 const& mat4_Camera_MVP,
+    glm::mat4 const& mat4_Light_MVP,
+    glm::vec3 const& lightPosition,
+    glm::vec3 const& lightDirection
+    ) {
     glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
     glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
     glUniformMatrix4fv(mat4_Light_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Light_MVP));
+    glUniform3fv(lightPosition_ID, 1, glm::value_ptr(lightPosition));
+    glUniform3fv(lightDirection_ID, 1, glm::value_ptr(lightDirection));
 }
 
-void Shader::setMatricesForCameraNoLighting(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP) {
+void Shader::setMatricesForScreenRenderingNoLighting(
+    glm::mat4 const& mat4_Model,
+    glm::mat4 const& mat4_Camera_MVP
+    ) {
     glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
     glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
 }

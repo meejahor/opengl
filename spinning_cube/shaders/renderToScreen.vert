@@ -17,6 +17,7 @@ void main() {
     vec4 lightSpace = mat4_Light_MVP * vec4(pos, 1);
     vec3 proj = lightSpace.xyz / lightSpace.w;
     proj = proj * 0.5 + 0.5;
+    // proj.z += 0.0005;
     vertex.proj = proj;
     gl_Position = mat4_Camera_MVP * vec4(pos, 1);
     vertex.normal = (mat4_Model * vec4(normal, 0)).xyz;
