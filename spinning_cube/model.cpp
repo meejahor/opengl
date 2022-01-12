@@ -153,3 +153,4 @@ void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {
 
     draw();
 }
+ 

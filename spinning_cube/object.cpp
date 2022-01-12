@@ -13,7 +13,7 @@ Object::Object(Model* _model, glm::vec3 _translation) {
 }
 
 void Object::calcMatrix() {
-    modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 0));
+    modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0.5f, 0.25f));
     modelMatrix = glm::translate(modelMatrix, translation);
 }
 

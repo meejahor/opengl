@@ -73,6 +73,9 @@ int main(int argc, char* argv[]) {
             if (event.type == SDL_QUIT) {
                 gameIsRunning = false;
             }
+            if (event.type == SDL_KEYDOWN) {
+                // objectCube->update();
+            }
         }
 
         deltaTimeUpdate();

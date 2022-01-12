@@ -34,9 +34,12 @@ void Shader::findIDs() {
     mat4_Light_MVP_ID = glGetUniformLocation(program, "mat4_Light_MVP");
     lightPosition_ID = glGetUniformLocation(program, "lightPosition");
     lightDirection_ID = glGetUniformLocation(program, "lightDirection");
+    std::cout << lightPosition_ID << std::endl;
+    std::cout << lightDirection_ID << std::endl;
 }
 
 Shader::Shader(const char *vertex_path, const char *fragment_path) {
+    std::cout << "Loading: " << vertex_path << " " << fragment_path << std::endl;
     GLuint vertShader = glCreateShader(GL_VERTEX_SHADER);
     GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 

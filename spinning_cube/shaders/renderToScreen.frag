@@ -7,8 +7,8 @@ in VS_FS_INTERFACE {
     vec3 proj;
 } vertex;
 
-vec3 lightPosition;
-vec3 lightDirection;
+uniform vec3 lightPosition;
+uniform vec3 lightDirection;
 vec4 black = vec4(0);
 vec4 white = vec4(1);
 vec4 matColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
@@ -16,11 +16,11 @@ vec4 matColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
 uniform sampler2DShadow lightmap;
 
 void main() {
-    vec3 proj = vertex.proj;
     float d = dot(vertex.normal, lightDirection);
 
-    float bias = max(0.01 * (1.0 - d), 0.005);  
-    proj.z -= bias;
+    float bias = max(0.05 * (1-d), 0.005);  
+    vec3 proj = vertex.proj;
+    // proj.z -= bias;
     
     float isLit = texture(
         lightmap,
@@ -31,9 +31,10 @@ void main() {
     // d = dot(lightDir, vertex.normal.xyz);
 
     // d = dot(lightDirection, vertex.normal);
-    d = step(d, 0);
+    float facingLight = step(d, 0);
+    facingLight = clamp(-d, 0, 1);
     // d = clamp(d, 0, 1);
-    color = mix(black, matColor, d * isLit);
+    color = mix(black, matColor, facingLight * isLit);
     // color = mix(white, color, step(0, vertex.position.x));
     // color = mix(white, color, step(0, vertex.position.y));
 } 
