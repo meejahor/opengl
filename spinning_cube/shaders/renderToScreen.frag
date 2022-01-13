@@ -11,7 +11,7 @@ uniform vec3 lightPosition;
 uniform vec3 lightDirection;
 vec4 black = vec4(0);
 vec4 white = vec4(1);
-vec4 matColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
+vec4 matColor = vec4(1.0f, 1, 1, 1.0f);
 
 uniform sampler2DShadow lightmap;
 

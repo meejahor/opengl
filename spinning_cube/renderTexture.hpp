@@ -9,18 +9,20 @@ class RenderTexture {
     GLuint frameBuffer;
     GLuint renderBuffer;
     GLuint depthBuffer;
-    // GLenum drawBuffers[1];
     int width, height;
     GLuint textureSampler;
 
     protected:
     void createColor();
     void createDepth();
+    void createColorDepthNormals();
 
     public:
-    GLuint texture;     // TODO: this should be back in private
+    GLuint color;     // TODO: this should be back in private
+    GLuint normals;     // TODO: this should be back in private
     static RenderTexture* createColorTexture(int _width, int _height);
     static RenderTexture* createDepthTexture(int _width, int _height);
+    static RenderTexture* createColorDepthNormals(int _width, int _height);
     void activateAsLightmap();
     void useAsTexture();
 };

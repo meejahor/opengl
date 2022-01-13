@@ -17,10 +17,14 @@
 Shader* shaderToScreen;
 Shader* shaderShowTexture;
 Shader* shaderShowDepth;
+Shader* shaderShowNormals;
+
+int windowWidth = 800;
+int windowHeight = 800;
 
 int main(int argc, char* argv[]) {
     try {
-        window = new Window(800, 800);
+        window = new Window(windowWidth, windowHeight);
     } catch (...) {
         return 0;
     }
@@ -30,8 +34,9 @@ int main(int argc, char* argv[]) {
     shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
     shaderShowDepth = new Shader("shaders/showDepth.vert", "shaders/showDepth.frag");
+    shaderShowNormals = new Shader("shaders/showNormals.vert", "shaders/showNormals.frag");
 
-    RenderTexture* rt = RenderTexture::createColorTexture(1024, 1024);
+    RenderTexture* colorDepthNormals = RenderTexture::createColorDepthNormals(windowWidth, windowHeight);
 
     Light* light;
     try {
@@ -48,20 +53,20 @@ int main(int argc, char* argv[]) {
 
     Model* modelCube;
     try {
-        modelCube = new Model("cube_with_plane.obj", shaderToScreen);
+        modelCube = new Model("square_with_cube_smooth.obj", shaderToScreen);
     } catch (...) {
         return 0;
     }
 
     Model* modelPlane;
     try {
-        modelPlane = new Model("plane.obj", shaderShowDepth);
+        modelPlane = new Model("plane.obj", shaderShowNormals);
     } catch (...) {
         return 0;
     }
 
     Object* objectCube = new Object(modelCube);
-    Object* objectPlane = new Object(modelPlane, glm::vec3(2, 0, 0));
+    Object* objectPlane = new Object(modelPlane, glm::vec3(2, -2, 0));
 
     bool gameIsRunning = true;
 
@@ -73,9 +78,9 @@ int main(int argc, char* argv[]) {
             if (event.type == SDL_QUIT) {
                 gameIsRunning = false;
             }
-            if (event.type == SDL_KEYDOWN) {
-                // objectCube->update();
-            }
+            // if (event.type == SDL_KEYDOWN) {
+            //     objectCube->update();
+            // }
         }
 
         deltaTimeUpdate();
@@ -98,7 +103,7 @@ int main(int argc, char* argv[]) {
 
         // window->activate();
         objectCube->renderWithShadow(light);
-        objectPlane->render(light->texture);
+        objectPlane->renderNormals(colorDepthNormals);
         // show back buffer
         window->swap();
     }

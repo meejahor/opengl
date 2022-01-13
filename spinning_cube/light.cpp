@@ -16,7 +16,7 @@ void Light::loadDepthShader() {
 
 Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 up) {
     position = _position;
-    direction = _direction;
+    direction = glm::normalize(_direction);
     cone = _cone;
 
     matrixViewProjection = calcViewProjection(
