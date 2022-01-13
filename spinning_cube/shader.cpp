@@ -116,6 +116,14 @@ void Shader::setMatricesForLightmap(
     glUniformMatrix4fv(mat4_Light_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Light_MVP));
 }
 
+void Shader::setMatricesForScreen(
+    glm::mat4 const& mat4_Model,
+    glm::mat4 const& mat4_Camera_MVP
+    ) {
+    glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
+    glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
+}
+
 void Shader::setMatricesForScreenRenderingWithLighting(
     glm::mat4 const& mat4_Model,
     glm::mat4 const& mat4_Camera_MVP,

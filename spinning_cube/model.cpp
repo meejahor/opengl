@@ -160,3 +160,10 @@ void Model::renderNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->setColorAndNormalsTextures(rt->color, rt->normals);
     draw();
 }
+
+void Model::renderColorDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
+    shader->use();
+    shader->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
+    rt->activateAsColorDepthNormals();
+    draw();
+}

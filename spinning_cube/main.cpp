@@ -18,6 +18,7 @@ Shader* shaderToScreen;
 Shader* shaderShowTexture;
 Shader* shaderShowDepth;
 Shader* shaderShowNormals;
+Shader* shaderColorDepthNormals;
 
 int windowWidth = 800;
 int windowHeight = 800;
@@ -35,6 +36,7 @@ int main(int argc, char* argv[]) {
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
     shaderShowDepth = new Shader("shaders/showDepth.vert", "shaders/showDepth.frag");
     shaderShowNormals = new Shader("shaders/showNormals.vert", "shaders/showNormals.frag");
+    shaderColorDepthNormals = new Shader("shaders/renderColorDepthNormals.vert", "shaders/renderColorDepthNormals.frag");
 
     RenderTexture* colorDepthNormals = RenderTexture::createColorDepthNormals(windowWidth, windowHeight);
 
@@ -53,7 +55,7 @@ int main(int argc, char* argv[]) {
 
     Model* modelCube;
     try {
-        modelCube = new Model("square_with_cube_smooth.obj", shaderToScreen);
+        modelCube = new Model("square_with_cube_smooth.obj", shaderColorDepthNormals);
     } catch (...) {
         return 0;
     }
@@ -89,7 +91,8 @@ int main(int argc, char* argv[]) {
 
         // render light views of objects
         light->activate();
-        objectCube->renderToLightmap(light);
+        // objectCube->renderToLightmap(light);
+        objectCube->renderColorDepthNormals(colorDepthNormals);
 
         // render camera views of objects
         // shader->use();

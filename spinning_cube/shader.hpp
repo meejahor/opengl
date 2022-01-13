@@ -25,6 +25,7 @@ class Shader {
         );
     void setMatricesForScreenRenderingNoLighting(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP);
     void setColorAndNormalsTextures(GLuint colorTexture, GLuint normalsTexture);
+    void setMatricesForScreen(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Screen_MVP);
 
     private:
     void findIDs();

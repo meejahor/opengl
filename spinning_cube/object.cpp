@@ -37,3 +37,7 @@ void Object::render(RenderTexture* rt) {
 void Object::renderNormals(RenderTexture* rt) {
     model->renderNormals(modelMatrix, rt);
 }
+
+void Object::renderColorDepthNormals(RenderTexture* rt) {
+    model->renderColorDepthNormals(modelMatrix, rt);
+}

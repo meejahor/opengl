@@ -120,15 +120,15 @@ void RenderTexture::createColorDepthNormals() {
     glGenTextures(1, &color);
     glBindTexture(GL_TEXTURE_2D, color);
 
-    // glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, 0);
 
-    int width, height, nrChannels;
+    // int width, height, nrChannels;
 
-    unsigned char *data = stbi_load("image.jpg", &width, &height, &nrChannels, 0);
-    if (data) {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    }
-    stbi_image_free(data);
+    // unsigned char *data = stbi_load("image.jpg", &width, &height, &nrChannels, 0);
+    // if (data) {
+    //     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    // }
+    // stbi_image_free(data);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -142,13 +142,13 @@ void RenderTexture::createColorDepthNormals() {
     glGenTextures(1, &normals);
     glBindTexture(GL_TEXTURE_2D, normals);
 
-    // glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, 0);
 
-    data = stbi_load("normals.jpg", &width, &height, &nrChannels, 0);
-    if (data) {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    }
-    stbi_image_free(data);
+    // data = stbi_load("normals.jpg", &width, &height, &nrChannels, 0);
+    // if (data) {
+    //     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    // }
+    // stbi_image_free(data);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -243,7 +243,17 @@ void RenderTexture::activateAsLightmap() {
     // glDisable(GL_SCISSOR_TEST);
 }
 
+void RenderTexture::activateAsColorDepthNormals() {
+    glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+    glViewport(0, 0, width, height);
+
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearDepth(1);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
 void RenderTexture::useAsTexture() {
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, color);
 
     // glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);

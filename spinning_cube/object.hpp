@@ -22,6 +22,7 @@ class Object {
     void renderWithShadow(Light* light);
     void render(RenderTexture* rt = NULL);
     void renderNormals(RenderTexture* rt = NULL);
+    void renderColorDepthNormals(RenderTexture* rt);
 };
 
 #endif
