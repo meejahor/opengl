@@ -5,15 +5,17 @@
 
 static const float SPEED = 90;
 
-Object::Object(Model* _model, glm::vec3 _translation) {
+Object::Object(Model* _model, glm::vec3 _translation, glm::vec3 _scale) {
     model = _model;
     translation = _translation;
+    scale = _scale;
     rotation = 0;
     calcMatrix();
 }
 
 void Object::calcMatrix() {
     modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 0));
+    modelMatrix = glm::scale(modelMatrix, scale);
     modelMatrix = glm::translate(modelMatrix, translation);
 }
 

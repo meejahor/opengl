@@ -111,31 +111,9 @@ void RenderTexture::createDepth() {
     }
 }
 
-void RenderTexture::createColorDepthNormals() {
+void RenderTexture::createDepthNormals() {
     glGenFramebuffers(1, &frameBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-
-    // colour
-
-    glGenTextures(1, &color);
-    glBindTexture(GL_TEXTURE_2D, color);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, 0);
-
-    // int width, height, nrChannels;
-
-    // unsigned char *data = stbi_load("image.jpg", &width, &height, &nrChannels, 0);
-    // if (data) {
-    //     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    // }
-    // stbi_image_free(data);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, color, 0);
 
     // normals
 
@@ -155,7 +133,7 @@ void RenderTexture::createColorDepthNormals() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, normals, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, normals, 0);
 
     // depth
 
@@ -164,13 +142,28 @@ void RenderTexture::createColorDepthNormals() {
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, width, height);
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBuffer);
 
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, normals, 0);
+
+    // glGenTextures(1, &depth);
+    // glBindTexture(GL_TEXTURE_2D, depth);
+
+    // glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
+
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+
+
     // we want to write to both colour and normal buffers
 
-    GLuint drawBuffers[2] = {
+    GLuint drawBuffers[1] = {
         GL_COLOR_ATTACHMENT0,
-        GL_COLOR_ATTACHMENT1
         };
-    glDrawBuffers(2, drawBuffers);
+    glDrawBuffers(1, drawBuffers);
 
     // check it all worked
 
@@ -179,7 +172,7 @@ void RenderTexture::createColorDepthNormals() {
     }
 }
 
-RenderTexture* RenderTexture::createColorDepthNormals(int _width, int _height) {
+RenderTexture* RenderTexture::createDepthNormals(int _width, int _height) {
     std::cout << "creating rt" << std::endl;
     
     RenderTexture* rt = new RenderTexture();
@@ -187,7 +180,7 @@ RenderTexture* RenderTexture::createColorDepthNormals(int _width, int _height) {
     rt->height = _height;
 
     try {
-        rt->createColorDepthNormals();
+        rt->createDepthNormals();
     } catch (...) {
         throw;
     }
@@ -253,8 +246,9 @@ void RenderTexture::activateAsColorDepthNormals() {
 }
 
 void RenderTexture::useAsTexture() {
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, color);
+    glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+    // glActiveTexture(GL_TEXTURE0);
+    // glBindTexture(GL_TEXTURE_2D, color);
 
     // glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     // glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);
