@@ -17,8 +17,8 @@
 Shader* shaderToScreen;
 Shader* shaderShowTexture;
 Shader* shaderShowDepth;
-Shader* shaderShowDepthNormals;
 Shader* shaderRenderDepthNormals;
+Shader* shaderShowDepthNormals;
 
 int windowWidth = 800;
 int windowHeight = 800;
@@ -35,8 +35,8 @@ int main(int argc, char* argv[]) {
     shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
     shaderShowDepth = new Shader("shaders/showDepth.vert", "shaders/showDepth.frag");
-    shaderShowDepthNormals = new Shader("shaders/showDepthNormals.vert", "shaders/showDepthNormals.frag");
     shaderRenderDepthNormals = new Shader("shaders/renderDepthNormals.vert", "shaders/renderDepthNormals.frag");
+    shaderShowDepthNormals = new Shader("shaders/showDepthNormals.vert", "shaders/showDepthNormals.frag");
 
     RenderTexture* rt_DepthNormals = RenderTexture::createDepthNormals(windowWidth, windowHeight);
 
@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
     }
 
     Object* objectCube = new Object(modelCube);
-    Object* objectPlane = new Object(modelPlane, glm::vec3(2, -2, 0));
+    Object* objectPlane = new Object(modelPlane, 3);
 
     bool gameIsRunning = true;
 

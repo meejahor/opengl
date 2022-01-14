@@ -151,8 +151,11 @@ void Shader::setDepthNormalsTextures(GLuint depthTexture, GLuint normalsTexture)
     glUniform1i(normalsTexture_ID, 1);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, depthTexture);
-    glActiveTexture(GL_TEXTURE0+1);
+    glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, normalsTexture);
+
+    // comment on stack said this is required but it doesn't seem to make any difference?
+    glActiveTexture(GL_TEXTURE0);
 }
 
 // void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 const& matrix) {

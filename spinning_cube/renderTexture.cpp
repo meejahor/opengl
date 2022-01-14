@@ -143,11 +143,10 @@ void RenderTexture::createDepthNormals() {
 
     // we want to write to both colour and normal buffers
 
-    GLuint drawBuffers[2] = {
-        GL_DEPTH_ATTACHMENT,
-        GL_COLOR_ATTACHMENT0
-        };
-    glDrawBuffers(2, drawBuffers);
+    // GLuint drawBuffers[1] = {
+    //     GL_COLOR_ATTACHMENT0
+    //     };
+    // glDrawBuffers(1, drawBuffers);
 
     // check it all worked
 
@@ -240,9 +239,9 @@ void RenderTexture::showTexture() {
 
 void RenderTexture::showDepthNormals() {
     // glActiveTexture(GL_TEXTURE0);
-    // glBindTexture(GL_TEXTURE_2D, normals);
-    // glActiveTexture(GL_TEXTURE0+1);
     // glBindTexture(GL_TEXTURE_2D, depth);
+    // glActiveTexture(GL_TEXTURE0+1);
+    // glBindTexture(GL_TEXTURE_2D, normals);
     
     // glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     // glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);

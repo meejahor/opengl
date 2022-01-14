@@ -63,6 +63,7 @@ void Model::setupBuffers() {
 
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
 }
 
 void Model::load(const char *filename) {
@@ -116,11 +117,11 @@ void Model::draw(bool uvs) {
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBindVertexArray(vertexArray);
 
-    if (uvs) {
-        glEnableVertexAttribArray(2);
-    } else {
-        glDisableVertexAttribArray(2);
-    }
+    // if (uvs) {
+    //     glEnableVertexAttribArray(2);
+    // } else {
+    //     glDisableVertexAttribArray(2);
+    // }
     
     glDrawArrays(GL_TRIANGLES, 0, out_vertices.size() * 3);
 }
@@ -164,13 +165,13 @@ void Model::renderDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) 
     shader->use();
     shader->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
     rt->renderDepthNormals();
-    draw(false);
+    draw(true);
 }
 
 void Model::showDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->use();
     shader->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-    shader->setDepthNormalsTextures(rt->depth, rt->normals);
     rt->showDepthNormals();
+    shader->setDepthNormalsTextures(rt->depth, rt->normals);
     draw(true);
 }

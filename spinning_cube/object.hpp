@@ -11,12 +11,13 @@ class Object {
     private:
     Model* model;
     float rotation;
+    float scale;
     glm::vec3 translation;
     glm::mat4 modelMatrix;
     void calcMatrix();
 
     public:
-    Object(Model* _model, glm::vec3 _translation = glm::vec3(0, 0, 0));
+    Object(Model* _model, float _scale = 1, glm::vec3 _translation = glm::vec3(0, 0, 0));
     void update();
     void renderToLightmap(Light* light);
     void renderWithShadow(Light* light);
