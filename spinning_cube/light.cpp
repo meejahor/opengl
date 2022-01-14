@@ -39,5 +39,5 @@ void Light::activate() {
 }
 
 void Light::useShadowMap() {
-    texture->useAsTexture();
+    texture->showTexture();
 }

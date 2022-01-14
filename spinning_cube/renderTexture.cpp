@@ -121,20 +121,13 @@ void RenderTexture::createDepthNormals() {
     glBindTexture(GL_TEXTURE_2D, normals);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, 0);
-
-    // data = stbi_load("normals.jpg", &width, &height, &nrChannels, 0);
-    // if (data) {
-    //     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    // }
-    // stbi_image_free(data);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, normals, 0);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, normals, 0);
-
     // depth
 
     glGenRenderbuffers(1, &depthBuffer);
@@ -229,7 +222,7 @@ void RenderTexture::renderDepthNormals() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void RenderTexture::useAsTexture() {
+void RenderTexture::showTexture() {
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, color);
 
@@ -238,9 +231,11 @@ void RenderTexture::useAsTexture() {
     // glViewport(0, 0, width, height);
 }
 
-void RenderTexture::useAsDepthNormals() {
+void RenderTexture::showDepthNormals() {
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, normals);
+    // glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+    // glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);
 
     // glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     // glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);

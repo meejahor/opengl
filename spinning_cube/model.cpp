@@ -153,7 +153,7 @@ void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
 
     if (rt != NULL) {
-        rt->useAsTexture();
+        rt->showTexture();
     } else {
     }
 
@@ -163,7 +163,7 @@ void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {
 void Model::showNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->use();
     shader->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-    rt->useAsDepthNormals();
+    rt->showDepthNormals();
     // shader->setColorAndNormalsTextures(rt->color, rt->normals);
     draw(true);
 }
