@@ -6,7 +6,6 @@ in VS_FS_INTERFACE {
     vec2 uv;
 } vertex;
 
-uniform sampler2D colorTexture;
 uniform sampler2D normalsTexture;
 
 void main() {

@@ -15,14 +15,14 @@ class RenderTexture {
     protected:
     void createColor();
     void createDepth();
-    void createColorDepthNormals();
+    void createDepthNormals();
 
     public:
     GLuint color;     // TODO: this should be back in private
     GLuint normals;     // TODO: this should be back in private
     static RenderTexture* createColorTexture(int _width, int _height);
     static RenderTexture* createDepthTexture(int _width, int _height);
-    static RenderTexture* createColorDepthNormals(int _width, int _height);
+    static RenderTexture* createDepthNormals(int _width, int _height);
     void activateAsLightmap();
     void useAsTexture();
     void activateAsColorDepthNormals();

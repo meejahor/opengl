@@ -34,10 +34,10 @@ void Object::render(RenderTexture* rt) {
     model->render(modelMatrix, rt);
 }
 
-void Object::renderNormals(RenderTexture* rt) {
-    model->renderNormals(modelMatrix, rt);
+void Object::showNormals(RenderTexture* rt) {
+    model->showNormals(modelMatrix, rt);
 }
 
-void Object::renderColorDepthNormals(RenderTexture* rt) {
-    model->renderColorDepthNormals(modelMatrix, rt);
+void Object::renderDepthNormals(RenderTexture* rt) {
+    model->renderDepthNormals(modelMatrix, rt);
 }

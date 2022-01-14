@@ -111,7 +111,7 @@ void RenderTexture::createDepth() {
     }
 }
 
-void RenderTexture::createColorDepthNormals() {
+void RenderTexture::createDepthNormals() {
     glGenFramebuffers(1, &frameBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 
@@ -179,7 +179,7 @@ void RenderTexture::createColorDepthNormals() {
     }
 }
 
-RenderTexture* RenderTexture::createColorDepthNormals(int _width, int _height) {
+RenderTexture* RenderTexture::createDepthNormals(int _width, int _height) {
     std::cout << "creating rt" << std::endl;
     
     RenderTexture* rt = new RenderTexture();
@@ -187,7 +187,7 @@ RenderTexture* RenderTexture::createColorDepthNormals(int _width, int _height) {
     rt->height = _height;
 
     try {
-        rt->createColorDepthNormals();
+        rt->createDepthNormals();
     } catch (...) {
         throw;
     }

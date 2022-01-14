@@ -154,14 +154,15 @@ void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {
     draw();
 }
 
-void Model::renderNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
+void Model::showNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->use();
     shader->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-    shader->setColorAndNormalsTextures(rt->color, rt->normals);
+    rt->useAsTexture();
+    // shader->setColorAndNormalsTextures(rt->color, rt->normals);
     draw();
 }
 
-void Model::renderColorDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
+void Model::renderDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->use();
     shader->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
     rt->activateAsColorDepthNormals();

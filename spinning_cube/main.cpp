@@ -18,7 +18,7 @@ Shader* shaderToScreen;
 Shader* shaderShowTexture;
 Shader* shaderShowDepth;
 Shader* shaderShowNormals;
-Shader* shaderColorDepthNormals;
+Shader* shaderRenderDepthNormals;
 
 int windowWidth = 800;
 int windowHeight = 800;
@@ -36,9 +36,9 @@ int main(int argc, char* argv[]) {
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
     shaderShowDepth = new Shader("shaders/showDepth.vert", "shaders/showDepth.frag");
     shaderShowNormals = new Shader("shaders/showNormals.vert", "shaders/showNormals.frag");
-    shaderColorDepthNormals = new Shader("shaders/renderColorDepthNormals.vert", "shaders/renderColorDepthNormals.frag");
+    shaderRenderDepthNormals = new Shader("shaders/renderDepthNormals.vert", "shaders/renderDepthNormals.frag");
 
-    RenderTexture* colorDepthNormals = RenderTexture::createColorDepthNormals(windowWidth, windowHeight);
+    RenderTexture* rt_DepthNormals = RenderTexture::createDepthNormals(windowWidth, windowHeight);
 
     Light* light;
     try {
@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
 
     Model* modelCube;
     try {
-        modelCube = new Model("square_with_cube_smooth.obj", shaderColorDepthNormals);
+        modelCube = new Model("square_with_cube_smooth.obj", shaderRenderDepthNormals);
     } catch (...) {
         return 0;
     }
@@ -92,7 +92,7 @@ int main(int argc, char* argv[]) {
         // render light views of objects
         light->activate();
         // objectCube->renderToLightmap(light);
-        objectCube->renderColorDepthNormals(colorDepthNormals);
+        objectCube->renderDepthNormals(rt_DepthNormals);
 
         // render camera views of objects
         // shader->use();
@@ -105,8 +105,8 @@ int main(int argc, char* argv[]) {
         // glUniform1i(texID, 0);
 
         // window->activate();
-        objectCube->renderWithShadow(light);
-        objectPlane->renderNormals(colorDepthNormals);
+        // objectCube->renderWithShadow(light);
+        objectPlane->showNormals(rt_DepthNormals);
         // show back buffer
         window->swap();
     }
