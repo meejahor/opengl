@@ -23,9 +23,9 @@ class RenderTexture {
     static RenderTexture* createColorTexture(int _width, int _height);
     static RenderTexture* createDepthTexture(int _width, int _height);
     static RenderTexture* createDepthNormals(int _width, int _height);
-    void activateAsLightmap();
+    void renderLightmap();
     void useAsTexture();
-    void activateAsColorDepthNormals();
+    void renderDepthNormals();
 };
 
 #endif

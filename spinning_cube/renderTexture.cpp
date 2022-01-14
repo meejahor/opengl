@@ -227,7 +227,7 @@ RenderTexture* RenderTexture::createDepthTexture(int _width, int _height) {
     return rt;
 }
 
-void RenderTexture::activateAsLightmap() {
+void RenderTexture::renderLightmap() {
     // glBindTexture(GL_TEXTURE_2D, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glViewport(0, 0, width, height);
@@ -243,7 +243,7 @@ void RenderTexture::activateAsLightmap() {
     // glDisable(GL_SCISSOR_TEST);
 }
 
-void RenderTexture::activateAsColorDepthNormals() {
+void RenderTexture::renderDepthNormals() {
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glViewport(0, 0, width, height);
 

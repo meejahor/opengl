@@ -165,6 +165,6 @@ void Model::showNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
 void Model::renderDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->use();
     shader->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
-    rt->activateAsColorDepthNormals();
+    rt->renderDepthNormals();
     draw();
 }
