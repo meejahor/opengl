@@ -18,8 +18,7 @@ Shader* shaderToScreen;
 Shader* shaderShowTexture;
 Shader* shaderShowDepth;
 Shader* shaderShowNormals;
-Shader* shaderRenderDepthNormals;
-Shader* shaderShowDepthNormals;
+Shader* shaderColorDepthNormals;
 
 int windowWidth = 800;
 int windowHeight = 800;
@@ -37,10 +36,9 @@ int main(int argc, char* argv[]) {
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
     shaderShowDepth = new Shader("shaders/showDepth.vert", "shaders/showDepth.frag");
     shaderShowNormals = new Shader("shaders/showNormals.vert", "shaders/showNormals.frag");
-    shaderRenderDepthNormals = new Shader("shaders/renderDepthNormals.vert", "shaders/renderDepthNormals.frag");
-    shaderShowDepthNormals = new Shader("shaders/showDepthNormals.vert", "shaders/showDepthNormals.frag");
+    shaderColorDepthNormals = new Shader("shaders/renderColorDepthNormals.vert", "shaders/renderColorDepthNormals.frag");
 
-    RenderTexture* depthNormals = RenderTexture::createDepthNormals(windowWidth, windowHeight);
+    RenderTexture* colorDepthNormals = RenderTexture::createColorDepthNormals(windowWidth, windowHeight);
 
     Light* light;
     try {
@@ -57,25 +55,20 @@ int main(int argc, char* argv[]) {
 
     Model* modelCube;
     try {
-        modelCube = new Model("square_with_cube_smooth.obj", shaderRenderDepthNormals);
+        modelCube = new Model("square_with_cube_smooth.obj", shaderColorDepthNormals);
     } catch (...) {
         return 0;
     }
 
     Model* modelPlane;
     try {
-        modelPlane = new Model("plane.obj", shaderShowDepthNormals);
+        modelPlane = new Model("plane.obj", shaderShowNormals);
     } catch (...) {
         return 0;
     }
 
     Object* objectCube = new Object(modelCube);
-    // Object* objectPlane = new Object(modelPlane, glm::vec3(2, -2, 0));
-    Object* objectPlane = new Object(
-        modelPlane,
-        glm::vec3(0, 0, 0),
-        glm::vec3(3)
-        );
+    Object* objectPlane = new Object(modelPlane, glm::vec3(2, -2, 0));
 
     bool gameIsRunning = true;
 
@@ -98,8 +91,8 @@ int main(int argc, char* argv[]) {
 
         // render light views of objects
         light->activate();
-        objectCube->renderToLightmap(light);
-        objectCube->renderColorDepthNormals(depthNormals);
+        // objectCube->renderToLightmap(light);
+        objectCube->renderColorDepthNormals(colorDepthNormals);
 
         // render camera views of objects
         // shader->use();
@@ -112,8 +105,8 @@ int main(int argc, char* argv[]) {
         // glUniform1i(texID, 0);
 
         // window->activate();
-        // objectCube->renderWithShadow(light);
-        objectPlane->renderNormals(depthNormals);
+        objectCube->renderWithShadow(light);
+        objectPlane->renderNormals(colorDepthNormals);
         // show back buffer
         window->swap();
     }

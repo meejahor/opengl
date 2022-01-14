@@ -34,8 +34,8 @@ void Shader::findIDs() {
     mat4_Light_MVP_ID = glGetUniformLocation(program, "mat4_Light_MVP");
     lightPosition_ID = glGetUniformLocation(program, "lightPosition");
     lightDirection_ID = glGetUniformLocation(program, "lightDirection");
+    colorTexture_ID = glGetUniformLocation(program, "colorTexture");
     normalsTexture_ID = glGetUniformLocation(program, "normalsTexture");
-    depthTexture_ID = glGetUniformLocation(program, "depthTexture");
     // std::cout << lightPosition_ID << std::endl;
     // std::cout << lightDirection_ID << std::endl;
 }
@@ -146,14 +146,18 @@ void Shader::setMatricesForScreenRenderingNoLighting(
     glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
 }
 
-// void Shader::setDepthNormalsTextures(GLuint colorTexture, GLuint normalsTexture, GLuint depthTexture) {
-//     glUniform1i(normalsTexture_ID, 0);
-//     glUniform1i(depthTexture_ID, 1);
-//     glActiveTexture(GL_TEXTURE0);
-//     glBindTexture(GL_TEXTURE_2D, normalsTexture);
-//     glActiveTexture(GL_TEXTURE0+1);
-//     glBindTexture(GL_TEXTURE_2D, depthTexture);
-// }
+void Shader::setColorAndNormalsTextures(GLuint colorTexture, GLuint normalsTexture) {
+    glUniform1i(colorTexture_ID, 0);
+    glUniform1i(normalsTexture_ID, 1);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, colorTexture);
+    glActiveTexture(GL_TEXTURE0+1);
+    glBindTexture(GL_TEXTURE_2D, normalsTexture);
+
+    // TODO: put this everywhere we bind a texture so those functions are taking care
+    // of themselves instead of relying on this one
+    glActiveTexture(GL_TEXTURE0);
+}
 
 // void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 const& matrix) {
 //     unsigned int propertyID = glGetUniformLocation(shaderID, name);
