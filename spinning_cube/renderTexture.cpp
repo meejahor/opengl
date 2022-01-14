@@ -115,28 +115,6 @@ void RenderTexture::createDepthNormals() {
     glGenFramebuffers(1, &frameBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 
-    // colour
-
-    glGenTextures(1, &color);
-    glBindTexture(GL_TEXTURE_2D, color);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, 0);
-
-    // int width, height, nrChannels;
-
-    // unsigned char *data = stbi_load("image.jpg", &width, &height, &nrChannels, 0);
-    // if (data) {
-    //     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    // }
-    // stbi_image_free(data);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, color, 0);
-
     // normals
 
     glGenTextures(1, &normals);
@@ -155,7 +133,7 @@ void RenderTexture::createDepthNormals() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, normals, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, normals, 0);
 
     // depth
 
@@ -166,11 +144,10 @@ void RenderTexture::createDepthNormals() {
 
     // we want to write to both colour and normal buffers
 
-    GLuint drawBuffers[2] = {
-        GL_COLOR_ATTACHMENT0,
-        GL_COLOR_ATTACHMENT1
+    GLuint drawBuffers[1] = {
+        GL_COLOR_ATTACHMENT0
         };
-    glDrawBuffers(2, drawBuffers);
+    glDrawBuffers(1, drawBuffers);
 
     // check it all worked
 
@@ -255,6 +232,15 @@ void RenderTexture::renderDepthNormals() {
 void RenderTexture::useAsTexture() {
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, color);
+
+    // glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+    // glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);
+    // glViewport(0, 0, width, height);
+}
+
+void RenderTexture::useAsDepthNormals() {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, normals);
 
     // glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     // glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);

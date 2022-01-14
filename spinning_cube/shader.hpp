@@ -24,7 +24,7 @@ class Shader {
         glm::vec3 const& lightDirection
         );
     void setMatricesForScreenRenderingNoLighting(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP);
-    void setColorAndNormalsTextures(GLuint colorTexture, GLuint normalsTexture);
+    // void setColorAndNormalsTextures(GLuint colorTexture, GLuint normalsTexture);
     void setMatricesForScreen(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Screen_MVP);
 
     private:
@@ -35,8 +35,8 @@ class Shader {
     unsigned int mat4_Light_MVP_ID;
     unsigned int lightPosition_ID;
     unsigned int lightDirection_ID;
-    unsigned int colorTexture_ID;
-    unsigned int normalsTexture_ID;
+    // unsigned int colorTexture_ID;
+    // unsigned int normalsTexture_ID;
 };
 
 // GLuint loadShader(const char *vertex_path, const char *fragment_path);
