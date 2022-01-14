@@ -10,8 +10,8 @@ uniform sampler2D normalsTexture;
 uniform sampler2D depthTexture;
 
 void main() {
-    // color = texture(normalsTexture, vertex.uv);
-    color = vec4(texture(depthTexture, vertex.uv).r);
+    color = texture(normalsTexture, vertex.uv);
+    // color = vec4(texture(depthTexture, vertex.uv).r);
     // vec4 c = texture(colorTexture, vertex.uv);
     // vec4 d = texture(normalsTexture, vertex.uv);
     // d -= 0.5;

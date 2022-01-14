@@ -23,7 +23,7 @@ class Model {
     void renderToLightmap(Light* light, glm::mat4 const& matrixModel);
     void renderWithShadow(Light* light, glm::mat4 const& matrixModel);
     void render(glm::mat4 const& matrixModel, RenderTexture* rt = NULL);
-    void showNormals(glm::mat4 const& matrixModel, RenderTexture* rt = NULL);
+    void showDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt = NULL);
     void renderDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt);
 
     private:

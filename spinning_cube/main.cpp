@@ -17,7 +17,7 @@
 Shader* shaderToScreen;
 Shader* shaderShowTexture;
 Shader* shaderShowDepth;
-Shader* shaderShowNormals;
+Shader* shaderShowDepthNormals;
 Shader* shaderRenderDepthNormals;
 
 int windowWidth = 800;
@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
     shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
     shaderShowDepth = new Shader("shaders/showDepth.vert", "shaders/showDepth.frag");
-    shaderShowNormals = new Shader("shaders/showNormals.vert", "shaders/showNormals.frag");
+    shaderShowDepthNormals = new Shader("shaders/showDepthNormals.vert", "shaders/showDepthNormals.frag");
     shaderRenderDepthNormals = new Shader("shaders/renderDepthNormals.vert", "shaders/renderDepthNormals.frag");
 
     RenderTexture* rt_DepthNormals = RenderTexture::createDepthNormals(windowWidth, windowHeight);
@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
 
     Model* modelPlane;
     try {
-        modelPlane = new Model("plane.obj", shaderShowNormals);
+        modelPlane = new Model("plane.obj", shaderShowDepthNormals);
     } catch (...) {
         return 0;
     }
@@ -106,7 +106,7 @@ int main(int argc, char* argv[]) {
 
         // window->activate();
         // objectCube->renderWithShadow(light);
-        objectPlane->showNormals(rt_DepthNormals);
+        objectPlane->showDepthNormals(rt_DepthNormals);
         // show back buffer
         window->swap();
     }

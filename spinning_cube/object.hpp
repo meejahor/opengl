@@ -21,7 +21,7 @@ class Object {
     void renderToLightmap(Light* light);
     void renderWithShadow(Light* light);
     void render(RenderTexture* rt = NULL);
-    void showNormals(RenderTexture* rt = NULL);
+    void showDepthNormals(RenderTexture* rt = NULL);
     void renderDepthNormals(RenderTexture* rt);
 };
 

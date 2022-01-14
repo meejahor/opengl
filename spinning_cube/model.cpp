@@ -160,17 +160,17 @@ void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {
     draw(true);
 }
 
-void Model::showNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    shader->use();
-    shader->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-    rt->showDepthNormals();
-    // shader->setColorAndNormalsTextures(rt->color, rt->normals);
-    draw(true);
-}
-
 void Model::renderDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->use();
     shader->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
     rt->renderDepthNormals();
     draw(false);
+}
+
+void Model::showDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
+    shader->use();
+    shader->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
+    shader->setDepthNormalsTextures(rt->depth, rt->normals);
+    rt->showDepthNormals();
+    draw(true);
 }
