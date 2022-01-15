@@ -34,8 +34,8 @@ void Shader::findIDs() {
     mat4_Light_MVP_ID = glGetUniformLocation(program, "mat4_Light_MVP");
     lightPosition_ID = glGetUniformLocation(program, "lightPosition");
     lightDirection_ID = glGetUniformLocation(program, "lightDirection");
-    depthTexture_ID = glGetUniformLocation(program, "depthTexture");
-    normalsTexture_ID = glGetUniformLocation(program, "normalsTexture");
+    // depthTexture_ID = glGetUniformLocation(program, "depthTexture");
+    // normalsTexture_ID = glGetUniformLocation(program, "normalsTexture");
     // std::cout << lightPosition_ID << std::endl;
     // std::cout << lightDirection_ID << std::endl;
 }
@@ -150,17 +150,17 @@ void Shader::setMatricesForScreenRenderingNoLighting(
     glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
 }
 
-void Shader::setDepthNormalsTextures(GLuint depthTexture, GLuint normalsTexture) {
-    glUniform1i(depthTexture_ID, 0);
-    glUniform1i(normalsTexture_ID, 1);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, depthTexture);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, normalsTexture);
+// void Shader::setDepthNormalsTextures(GLuint depthTexture, GLuint normalsTexture) {
+//     glUniform1i(depthTexture_ID, 0);
+//     glUniform1i(normalsTexture_ID, 1);
+//     glActiveTexture(GL_TEXTURE0);
+//     glBindTexture(GL_TEXTURE_2D, depthTexture);
+//     glActiveTexture(GL_TEXTURE1);
+//     glBindTexture(GL_TEXTURE_2D, normalsTexture);
 
-    // comment on stack said this is required but it doesn't seem to make any difference?
-    glActiveTexture(GL_TEXTURE0);
-}
+//     // comment on stack said this is required but it doesn't seem to make any difference?
+//     glActiveTexture(GL_TEXTURE0);
+// }
 
 // void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 const& matrix) {
 //     unsigned int propertyID = glGetUniformLocation(shaderID, name);
