@@ -121,32 +121,34 @@ void RenderTexture::createDepthNormals() {
     glBindTexture(GL_TEXTURE_2D, depth);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depth, 0);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depth, 0);
 
     // normals
 
     glGenTextures(1, &normals);
     glBindTexture(GL_TEXTURE_2D, normals);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, 0);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, normals, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, normals, 0);
+
     // we want to write to both colour and normal buffers
 
-    // GLuint drawBuffers[1] = {
-    //     GL_COLOR_ATTACHMENT0
-    //     };
-    // glDrawBuffers(1, drawBuffers);
+    GLuint drawBuffers[1] = {
+        GL_COLOR_ATTACHMENT0
+        };
+    glDrawBuffers(1, drawBuffers);
 
     // check it all worked
 
@@ -156,7 +158,7 @@ void RenderTexture::createDepthNormals() {
 }
 
 RenderTexture* RenderTexture::createDepthNormals(int _width, int _height) {
-    std::cout << "creating rt" << std::endl;
+    // std::cout << "creating rt" << std::endl;
     
     RenderTexture* rt = new RenderTexture();
     rt->width = _width;
@@ -172,7 +174,7 @@ RenderTexture* RenderTexture::createDepthNormals(int _width, int _height) {
 }
 
 RenderTexture* RenderTexture::createColorTexture(int _width, int _height) {
-    std::cout << "creating rt" << std::endl;
+    // std::cout << "creating rt" << std::endl;
     
     RenderTexture* rt = new RenderTexture();
     rt->width = _width;
@@ -188,7 +190,7 @@ RenderTexture* RenderTexture::createColorTexture(int _width, int _height) {
 }
 
 RenderTexture* RenderTexture::createDepthTexture(int _width, int _height) {
-    std::cout << "creating rt depth" << std::endl;
+    // std::cout << "creating rt depth" << std::endl;
     
     RenderTexture* rt = new RenderTexture();
     rt->width = _width;

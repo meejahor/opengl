@@ -57,7 +57,7 @@ Shader::Shader(const char *vertex_path, const char *fragment_path) {
 
     // Compile vertex shader
 
-    std::cout << "Compiling vertex shader." << std::endl;
+    // std::cout << "Compiling vertex shader." << std::endl;
     glShaderSource(vertShader, 1, &vertShaderSrc, NULL);
     glCompileShader(vertShader);
 
@@ -71,7 +71,7 @@ Shader::Shader(const char *vertex_path, const char *fragment_path) {
 
     // Compile fragment shader
 
-    std::cout << "Compiling fragment shader." << std::endl;
+    // std::cout << "Compiling fragment shader." << std::endl;
     glShaderSource(fragShader, 1, &fragShaderSrc, NULL);
     glCompileShader(fragShader);
 
@@ -81,9 +81,11 @@ Shader::Shader(const char *vertex_path, const char *fragment_path) {
     glGetShaderiv(fragShader, GL_INFO_LOG_LENGTH, &logLength);
     std::vector<char> fragShaderError((logLength > 1) ? logLength : 1);
     glGetShaderInfoLog(fragShader, logLength, NULL, &fragShaderError[0]);
-    std::cout << &fragShaderError[0] << std::endl;
+    if (std::strlen(&fragShaderError[0]) > 0) {
+        std::cout << &fragShaderError[0] << std::endl;
+    }
 
-    std::cout << "Linking program" << std::endl;
+    // std::cout << "Linking program" << std::endl;
     program = glCreateProgram();
     glAttachShader(program, vertShader);
     glAttachShader(program, fragShader);
@@ -93,7 +95,9 @@ Shader::Shader(const char *vertex_path, const char *fragment_path) {
     glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);
     std::vector<char> programError( (logLength > 1) ? logLength : 1 );
     glGetProgramInfoLog(program, logLength, NULL, &programError[0]);
-    std::cout << &programError[0] << std::endl;
+    if (std::strlen(&programError[0]) > 0) {
+        std::cout << &programError[0] << std::endl;
+    }
 
     glDeleteShader(vertShader);
     glDeleteShader(fragShader);
