@@ -24,6 +24,7 @@ class Object {
     void render(RenderTexture* rt = NULL);
     void showDepthNormals(RenderTexture* rt = NULL);
     void renderDepthNormals(RenderTexture* rt);
+    void showLightmap(RenderTexture* rt);
 };
 
 #endif

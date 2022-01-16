@@ -16,7 +16,7 @@
 
 Shader* shaderToScreen;
 Shader* shaderShowTexture;
-Shader* shaderShowDepth;
+Shader* shaderShowLightmap;
 Shader* shaderRenderDepthNormals;
 Shader* shaderShowDepthNormals;
 
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 
     shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
-    shaderShowDepth = new Shader("shaders/showDepth.vert", "shaders/showDepth.frag");
+    shaderShowLightmap = new Shader("shaders/showLightmap.vert", "shaders/showLightmap.frag");
     shaderRenderDepthNormals = new Shader("shaders/renderDepthNormals.vert", "shaders/renderDepthNormals.frag");
     shaderShowDepthNormals = new Shader("shaders/showDepthNormals.vert", "shaders/showDepthNormals.frag");
 
@@ -90,8 +90,10 @@ int main(int argc, char* argv[]) {
         objectCube->update();
 
         // render light views of objects
-        light->activate();
-        // objectCube->renderToLightmap(light);
+        light->beginLightmap();
+        objectCube->renderToLightmap(light);
+
+        rt_DepthNormals->beginDepthNormals();
         objectCube->renderDepthNormals(rt_DepthNormals);
 
         // render camera views of objects
@@ -107,6 +109,7 @@ int main(int argc, char* argv[]) {
         // window->activate();
         // objectCube->renderWithShadow(light);
         objectPlane->showDepthNormals(rt_DepthNormals);
+        // objectPlane->showLightmap(light->texture);
         // show back buffer
         window->swap();
     }

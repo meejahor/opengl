@@ -25,6 +25,7 @@ class Model {
     void render(glm::mat4 const& matrixModel, RenderTexture* rt = NULL);
     void showDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt = NULL);
     void renderDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt);
+    void showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt);
 
     private:
     FILE* file;

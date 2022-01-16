@@ -27,15 +27,15 @@ Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 u
         );
 
     try {
-        texture = RenderTexture::createDepth(1024, 1024);
+        texture = RenderTexture::createLightmap(1024, 1024);
     } catch (...) {
         std::cout << "couldn't create render texture for light" << std::endl;
         throw;
     }
 }
 
-void Light::activate() {
-    texture->renderLightmap();
+void Light::beginLightmap() {
+    texture->beginLightmap();
 }
 
 void Light::useShadowMap() {

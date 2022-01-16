@@ -130,8 +130,6 @@ void Model::renderToLightmap(Light* light, glm::mat4 const& matrixModel) {
     depthShader->use();
     depthShader->setMatricesForLightmap(matrixModel, light->matrixViewProjection * matrixModel);
     glCullFace(GL_FRONT);
-    // glDepthFunc(GL_ALWAYS);
-    // glDepthFunc(GL_LEQUAL);
     draw(true);
     glCullFace(GL_BACK);
 }
@@ -164,7 +162,6 @@ void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {
 void Model::renderDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->use();
     shader->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
-    rt->renderDepthNormals();
     draw(true);
 }
 
@@ -172,6 +169,14 @@ void Model::showDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shader->use();
     shader->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
     rt->showDepthNormals();
+    // shader->setDepthNormalsTextures(rt->depth, rt->normals);
+    draw(true);
+}
+
+void Model::showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt) {
+    shader->use();
+    shader->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
+    rt->showLightmap();
     // shader->setDepthNormalsTextures(rt->depth, rt->normals);
     draw(true);
 }

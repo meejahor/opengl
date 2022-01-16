@@ -8,7 +8,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-void RenderTexture::createDepth() {
+void RenderTexture::createLightmap() {
     glGenFramebuffers(1, &frameBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 
@@ -59,13 +59,13 @@ void RenderTexture::createDepthNormals() {
     }
 }
 
-RenderTexture* RenderTexture::createDepth(int _width, int _height) {
+RenderTexture* RenderTexture::createLightmap(int _width, int _height) {
     RenderTexture* rt = new RenderTexture();
     rt->width = _width;
     rt->height = _height;
 
     try {
-        rt->createDepth();
+        rt->createLightmap();
     } catch (...) {
         throw;
     }
@@ -87,7 +87,7 @@ RenderTexture* RenderTexture::createDepthNormals(int _width, int _height) {
     return rt;
 }
 
-void RenderTexture::renderLightmap() {
+void RenderTexture::beginLightmap() {
     // glBindTexture(GL_TEXTURE_2D, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glViewport(0, 0, width, height);
@@ -103,7 +103,7 @@ void RenderTexture::renderLightmap() {
     // glDisable(GL_SCISSOR_TEST);
 }
 
-void RenderTexture::renderDepthNormals() {
+void RenderTexture::beginDepthNormals() {
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glViewport(0, 0, width, height);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -132,4 +132,8 @@ void RenderTexture::showDepthNormals() {
     // glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     // glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);
     // glViewport(0, 0, width, height);
+}
+
+void RenderTexture::showLightmap() {
+    glBindTexture(GL_TEXTURE_2D, depth);
 }
