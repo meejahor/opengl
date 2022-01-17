@@ -7,10 +7,13 @@
 class RenderTexture {
     private:
     GLuint frameBuffer;
-    GLuint renderBuffer;
     GLuint depthBuffer;
     int width, height;
     GLuint textureSampler;
+    void init(GLuint& textureID);
+    void addColorTexture(GLuint textureID);
+    void addDepthTexture(GLuint textureID);
+    void addDepthBuffer();
 
     protected:
     void createColor();
@@ -18,16 +21,17 @@ class RenderTexture {
     void createDepthNormals();
 
     public:
-    GLuint color;     // TODO: this should be back in private
+    GLuint albedo;     // TODO: this should be back in private
     GLuint normals;     // TODO: this should be back in private
     GLuint depth;     // TODO: this should be back in private
-    static RenderTexture* createLightmap(int _width, int _height);
-    static RenderTexture* createDepthNormals(int _width, int _height);
+    static RenderTexture* createLightmap(int width, int height);
+    static RenderTexture* createDepthNormals(int width, int height);
     void beginLightmap();
     void showTexture();
     void showDepthNormals();
     void beginDepthNormals();
     void showLightmap();
+    RenderTexture(int _width, int _height);
 };
 
 #endif

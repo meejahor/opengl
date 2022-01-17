@@ -4,6 +4,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 static const float SPEED = 90;
+static glm::mat4 mat4_one = glm::mat4(1.0f);
 
 Object::Object(Model* _model, float _scale, glm::vec3 _translation) {
     model = _model;
@@ -14,10 +15,9 @@ Object::Object(Model* _model, float _scale, glm::vec3 _translation) {
 }
 
 void Object::calcMatrix() {
-    modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 0));
+    modelMatrix = glm::translate(mat4_one, translation);
+    modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation), glm::vec3(1, 0, 0));
     modelMatrix = glm::scale(modelMatrix, glm::vec3(scale));
-    // TODO: I think translation needs to be in a different order
-    modelMatrix = glm::translate(modelMatrix, translation);
 }
 
 void Object::update() {

@@ -62,8 +62,8 @@ int main(int argc, char* argv[]) {
     }
 
     Object* objectCube = new Object(modelCube);
-    Object* objectPlaneLightmap = new Object(modelPlane, 1, glm::vec3(-1.5f, 0, 0));
-    Object* objectPlaneDepthNormals = new Object(modelPlane, 1, glm::vec3(1.5f, 0, 0));
+    Object* objectPlaneLightmap = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, 0, 0));
+    Object* objectPlaneDepthNormals = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 0, 0));
 
     bool gameIsRunning = true;
 
