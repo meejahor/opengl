@@ -21,9 +21,6 @@ class Object {
     void update();
     void renderToLightmap(Light* light);
     void renderWithShadow(Light* light);
-    void render(RenderTexture* rt = NULL);
-    void showDepthNormals(RenderTexture* rt = NULL);
-    void renderDepthNormals(RenderTexture* rt);
     void showLightmap(Light* light);
     void renderPositionNormalsAlbedo(RenderTexture* rt);
     void showPosition(RenderTexture* rt);

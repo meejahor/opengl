@@ -27,8 +27,6 @@ int main(int argc, char* argv[]) {
     shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
     shaderShowLightmap = new Shader("shaders/showLightmap.vert", "shaders/showLightmap.frag");
-    shaderRenderDepthNormals = new Shader("shaders/renderDepthNormals.vert", "shaders/renderDepthNormals.frag");
-    shaderShowDepthNormals = new Shader("shaders/showDepthNormals.vert", "shaders/showDepthNormals.frag");
     shaderRenderPositionNormalsAlbedo = new Shader("shaders/renderPositionNormalsAlbedo.vert", "shaders/renderPositionNormalsAlbedo.frag");
     shaderShowPosition = new Shader("shaders/showPosition.vert", "shaders/showPosition.frag");
     shaderRenderToLightmap = new Shader("shaders/renderToLightmap.vert", "shaders/renderToLightmap.frag");
@@ -65,7 +63,6 @@ int main(int argc, char* argv[]) {
 
     Object* objectCube = new Object(modelCube);
     Object* objectPlaneLightmap = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, 1.5f, 0));
-    // Object* objectPlaneDepthNormals = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 0, 0));
     Object* objectPlanePosition = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 1.5f, 0));
     Object* objectPlaneNormals = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, -1.5f, 0));
     Object* objectPlaneAlbedo = new Object(modelPlane, 1.5f, glm::vec3(1.5f, -1.5f, 0));

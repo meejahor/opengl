@@ -45,8 +45,6 @@ class Shader {
 extern Shader* shaderToScreen;
 extern Shader* shaderShowTexture;
 extern Shader* shaderShowLightmap;
-extern Shader* shaderRenderDepthNormals;
-extern Shader* shaderShowDepthNormals;
 extern Shader* shaderRenderPositionNormalsAlbedo;
 extern Shader* shaderShowPosition;
 extern Shader* shaderRenderToLightmap;

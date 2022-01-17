@@ -147,32 +147,6 @@ void Model::renderWithShadow(Light* light, glm::mat4 const& matrixModel) {
     draw(true);
 }
 
-void Model::render(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    shader->use();
-    shader->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-
-    if (rt != NULL) {
-        rt->showTexture();
-    } else {
-    }
-
-    draw(true);
-}
-
-void Model::renderDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    // shader->use();
-    shaderRenderDepthNormals->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
-    draw(true);
-}
-
-void Model::showDepthNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    shaderShowDepthNormals->use();
-    shaderShowDepthNormals->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-    rt->showDepthNormals();
-    // shader->setDepthNormalsTextures(rt->depth, rt->normals);
-    draw(true);
-}
-
 void Model::showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shaderShowLightmap->use();
     shaderShowLightmap->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);

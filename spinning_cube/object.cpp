@@ -33,20 +33,8 @@ void Object::renderWithShadow(Light* light) {
     model->renderWithShadow(light, modelMatrix);
 }
 
-void Object::render(RenderTexture* rt) {
-    model->render(modelMatrix, rt);
-}
-
-void Object::showDepthNormals(RenderTexture* rt) {
-    model->showDepthNormals(modelMatrix, rt);
-}
-
 void Object::showLightmap(Light* light) {
     model->showLightmap(modelMatrix, light->texture);
-}
-
-void Object::renderDepthNormals(RenderTexture* rt) {
-    model->renderDepthNormals(modelMatrix, rt);
 }
 
 void Object::renderPositionNormalsAlbedo(RenderTexture* rt) {

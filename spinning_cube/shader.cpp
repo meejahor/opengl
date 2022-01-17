@@ -12,8 +12,6 @@
 Shader* shaderToScreen;
 Shader* shaderShowTexture;
 Shader* shaderShowLightmap;
-Shader* shaderRenderDepthNormals;
-Shader* shaderShowDepthNormals;
 Shader* shaderRenderPositionNormalsAlbedo;
 Shader* shaderShowPosition;
 Shader* shaderRenderToLightmap;
