@@ -24,8 +24,6 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    Light::loadDepthShader();
-
     shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
     shaderShowLightmap = new Shader("shaders/showLightmap.vert", "shaders/showLightmap.frag");
@@ -33,6 +31,7 @@ int main(int argc, char* argv[]) {
     shaderShowDepthNormals = new Shader("shaders/showDepthNormals.vert", "shaders/showDepthNormals.frag");
     shaderRenderPositionNormalsAlbedo = new Shader("shaders/renderPositionNormalsAlbedo.vert", "shaders/renderPositionNormalsAlbedo.frag");
     shaderShowPosition = new Shader("shaders/showPosition.vert", "shaders/showPosition.frag");
+    shaderRenderToLightmap = new Shader("shaders/renderToLightmap.vert", "shaders/renderToLightmap.frag");
 
     RenderTexture* rt_DepthNormals = RenderTexture::createDepthNormals(windowWidth, windowHeight);
     RenderTexture* rt_PositionNormalsAlbedo = RenderTexture::createPositionNormalsAlbedo(windowWidth, windowHeight);
@@ -91,13 +90,13 @@ int main(int argc, char* argv[]) {
         objectCube->update();
 
         // render light views of objects
-        light->beginLightmap();
+        light->beginRenderingLightmap();
         objectCube->renderToLightmap(light);
 
         // shaderRenderDepthNormals->use();
         // rt_DepthNormals->beginDepthNormals();
         shaderRenderPositionNormalsAlbedo->use();
-        rt_PositionNormalsAlbedo->beginPositionNormalsAlbedo();
+        rt_PositionNormalsAlbedo->beginRenderingPositionNormalsAlbedo();
         // objectCube->renderDepthNormals(rt_DepthNormals);
         objectCube->renderPositionNormalsAlbedo(rt_PositionNormalsAlbedo);
 
@@ -114,7 +113,7 @@ int main(int argc, char* argv[]) {
         // window->activate();
         // objectCube->renderWithShadow(light);
         // objectPlane->showDepthNormals(rt_DepthNormals);
-        objectPlaneLightmap->showLightmap(light->texture);
+        objectPlaneLightmap->showLightmap(light);
         // objectPlaneDepthNormals->showDepthNormals(rt_DepthNormals);
         objectPlanePosition->showPosition(rt_PositionNormalsAlbedo);
         objectPlaneNormals->showNormals(rt_PositionNormalsAlbedo);

@@ -41,8 +41,8 @@ void Object::showDepthNormals(RenderTexture* rt) {
     model->showDepthNormals(modelMatrix, rt);
 }
 
-void Object::showLightmap(RenderTexture* rt) {
-    model->showLightmap(modelMatrix, rt);
+void Object::showLightmap(Light* light) {
+    model->showLightmap(modelMatrix, light->texture);
 }
 
 void Object::renderDepthNormals(RenderTexture* rt) {

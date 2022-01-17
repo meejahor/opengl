@@ -101,20 +101,11 @@ RenderTexture* RenderTexture::createPositionNormalsAlbedo(int width, int height)
     return rt;
 }
 
-void RenderTexture::beginLightmap() {
-    // glBindTexture(GL_TEXTURE_2D, 0);
+void RenderTexture::beginRenderingLightmap() {
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glViewport(0, 0, width, height);
-
-    // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClearDepth(1);
     glClear(GL_DEPTH_BUFFER_BIT);
-
-    // glEnable(GL_SCISSOR_TEST);
-    // glClearDepth(0);
-    // glScissor(width/4, height/4, width/4, height/4);
-    // glClear(GL_DEPTH_BUFFER_BIT);
-    // glDisable(GL_SCISSOR_TEST);
 }
 
 void RenderTexture::beginDepthNormals() {
@@ -149,7 +140,7 @@ void RenderTexture::showAlbedo() {
     glBindTexture(GL_TEXTURE_2D, albedo);
 }
 
-void RenderTexture::beginPositionNormalsAlbedo() {
+void RenderTexture::beginRenderingPositionNormalsAlbedo() {
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glViewport(0, 0, width, height);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

@@ -49,5 +49,6 @@ extern Shader* shaderRenderDepthNormals;
 extern Shader* shaderShowDepthNormals;
 extern Shader* shaderRenderPositionNormalsAlbedo;
 extern Shader* shaderShowPosition;
+extern Shader* shaderRenderToLightmap;
 
 #endif

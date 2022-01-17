@@ -127,8 +127,8 @@ void Model::draw(bool uvs) {
 }
 
 void Model::renderToLightmap(Light* light, glm::mat4 const& matrixModel) {
-    depthShader->use();
-    depthShader->setMatricesForLightmap(matrixModel, light->matrixViewProjection * matrixModel);
+    shaderRenderToLightmap->use();
+    shaderRenderToLightmap->setMatricesForLightmap(matrixModel, light->matrixViewProjection * matrixModel);
     glCullFace(GL_FRONT);
     draw(true);
     glCullFace(GL_BACK);

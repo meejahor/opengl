@@ -16,6 +16,7 @@ Shader* shaderRenderDepthNormals;
 Shader* shaderShowDepthNormals;
 Shader* shaderRenderPositionNormalsAlbedo;
 Shader* shaderShowPosition;
+Shader* shaderRenderToLightmap;
 
 std::string readFile(const char *filePath) {
     std::string content;

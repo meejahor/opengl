@@ -8,12 +8,6 @@
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/gl3.h>
 
-Shader* depthShader;
-
-void Light::loadDepthShader() {
-    depthShader = new Shader("shaders/renderToLightmap.vert", "shaders/renderToLightmap.frag");
-}
-
 Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 up) {
     position = _position;
     direction = glm::normalize(_direction);
@@ -34,8 +28,8 @@ Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 u
     }
 }
 
-void Light::beginLightmap() {
-    texture->beginLightmap();
+void Light::beginRenderingLightmap() {
+    texture->beginRenderingLightmap();
 }
 
 void Light::useShadowMap() {

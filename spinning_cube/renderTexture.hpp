@@ -30,7 +30,7 @@ class RenderTexture {
     static RenderTexture* createLightmap(int width, int height);
     static RenderTexture* createDepthNormals(int width, int height);
     static RenderTexture* createPositionNormalsAlbedo(int width, int height);
-    void beginLightmap();
+    void beginRenderingLightmap();
     void showTexture();
     void showDepthNormals();
     void beginDepthNormals();
@@ -38,7 +38,7 @@ class RenderTexture {
     void showPosition();
     void showNormals();
     void showAlbedo();
-    void beginPositionNormalsAlbedo();
+    void beginRenderingPositionNormalsAlbedo();
     RenderTexture(int _width, int _height);
 };
 

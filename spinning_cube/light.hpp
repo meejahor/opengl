@@ -5,8 +5,6 @@
 #include "renderTexture.hpp"
 #include "shader.hpp"
 
-extern Shader* depthShader;
-
 class Light {
     public:
     float cone;
@@ -15,7 +13,7 @@ class Light {
     glm::vec3 direction;
     static void loadDepthShader();
     Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 up);
-    void beginLightmap();
+    void beginRenderingLightmap();
     glm::mat4 matrixViewProjection;
     void useShadowMap();
 };
