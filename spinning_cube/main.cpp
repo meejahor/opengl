@@ -14,12 +14,6 @@
 #include "renderTexture.hpp"
 #include "light.hpp"
 
-Shader* shaderToScreen;
-Shader* shaderShowTexture;
-Shader* shaderShowLightmap;
-Shader* shaderRenderDepthNormals;
-Shader* shaderShowDepthNormals;
-
 int windowWidth = 800;
 int windowHeight = 800;
 
@@ -43,8 +37,8 @@ int main(int argc, char* argv[]) {
     Light* light;
     try {
         light = new Light(
-            glm::vec3(  0.0f,  5.0f,  0.0f),
-            glm::vec3(  0.0f, -1.0f,  0.0f),
+            glm::vec3(  5.0f,  5.0f,  0.0f),
+            glm::vec3( -1.0f, -1.0f,  0.0f),
             60.0f,
             glm::vec3(  0.0f,  0.0f,  1.0f)
         );
@@ -55,20 +49,21 @@ int main(int argc, char* argv[]) {
 
     Model* modelCube;
     try {
-        modelCube = new Model("square_with_cube_smooth.obj", shaderRenderDepthNormals);
+        modelCube = new Model("square_with_cube_smooth.obj");
     } catch (...) {
         return 0;
     }
 
     Model* modelPlane;
     try {
-        modelPlane = new Model("plane.obj", shaderShowDepthNormals);
+        modelPlane = new Model("plane.obj");
     } catch (...) {
         return 0;
     }
 
     Object* objectCube = new Object(modelCube);
-    Object* objectPlane = new Object(modelPlane, 3);
+    Object* objectPlaneLightmap = new Object(modelPlane, 1, glm::vec3(-1.5f, 0, 0));
+    Object* objectPlaneDepthNormals = new Object(modelPlane, 1, glm::vec3(1.5f, 0, 0));
 
     bool gameIsRunning = true;
 
@@ -93,6 +88,7 @@ int main(int argc, char* argv[]) {
         light->beginLightmap();
         objectCube->renderToLightmap(light);
 
+        shaderRenderDepthNormals->use();
         rt_DepthNormals->beginDepthNormals();
         objectCube->renderDepthNormals(rt_DepthNormals);
 
@@ -108,8 +104,9 @@ int main(int argc, char* argv[]) {
 
         // window->activate();
         // objectCube->renderWithShadow(light);
-        objectPlane->showDepthNormals(rt_DepthNormals);
-        // objectPlane->showLightmap(light->texture);
+        // objectPlane->showDepthNormals(rt_DepthNormals);
+        objectPlaneLightmap->showLightmap(light->texture);
+        objectPlaneDepthNormals->showDepthNormals(rt_DepthNormals);
         // show back buffer
         window->swap();
     }

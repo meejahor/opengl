@@ -42,4 +42,10 @@ class Shader {
 // GLuint loadShader(const char *vertex_path, const char *fragment_path);
 // void setShaderProperty(GLuint shaderID, const char* name, glm::mat4 const& matrix);
 
+extern Shader* shaderToScreen;
+extern Shader* shaderShowTexture;
+extern Shader* shaderShowLightmap;
+extern Shader* shaderRenderDepthNormals;
+extern Shader* shaderShowDepthNormals;
+
 #endif

@@ -9,6 +9,12 @@
 
 #include "shader.hpp"
 
+Shader* shaderToScreen;
+Shader* shaderShowTexture;
+Shader* shaderShowLightmap;
+Shader* shaderRenderDepthNormals;
+Shader* shaderShowDepthNormals;
+
 std::string readFile(const char *filePath) {
     std::string content;
     std::ifstream fileStream(filePath, std::ios::in);

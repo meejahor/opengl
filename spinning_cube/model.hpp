@@ -18,7 +18,7 @@ class Model {
     std::vector<glm::vec2> out_uvs;
     std::vector<glm::vec3> out_normals;
 
-    Model(const char *filename, Shader* _shader);
+    Model(const char *filename, Shader* _shader = NULL);
     void draw(bool uvs);
     void renderToLightmap(Light* light, glm::mat4 const& matrixModel);
     void renderWithShadow(Light* light, glm::mat4 const& matrixModel);

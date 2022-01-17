@@ -16,6 +16,7 @@ Object::Object(Model* _model, float _scale, glm::vec3 _translation) {
 void Object::calcMatrix() {
     modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(1, 0, 0));
     modelMatrix = glm::scale(modelMatrix, glm::vec3(scale));
+    // TODO: I think translation needs to be in a different order
     modelMatrix = glm::translate(modelMatrix, translation);
 }
 
