@@ -66,8 +66,9 @@ void Model::setupBuffers() {
     glEnableVertexAttribArray(2);
 }
 
-void Model::load(const char *filename) {
-    file = fopen(filename, "r");
+void Model::load(std::string filename) {
+    std::string modelFilename = "models/" + filename + ".obj";
+    file = fopen(const_cast<char*>(modelFilename.c_str()), "r");
     if (file == NULL) {
         throw std::exception();
     }
@@ -101,7 +102,13 @@ void Model::load(const char *filename) {
     }
 }
 
-Model::Model(const char* filename, Shader* _shader) {
+void Model::loadTextures(std::string filename) {
+    std::string albedoFilename = "images/" + filename + "_albedo.png";
+    std::cout << albedoFilename << std::endl;
+    rt_Albedo = RenderTexture::loadAlbedo(albedoFilename);
+}
+
+Model::Model(std::string filename, Shader* _shader) {
     shader = _shader;
 
     try {
@@ -111,6 +118,7 @@ Model::Model(const char* filename, Shader* _shader) {
     }
 
     setupBuffers();
+    loadTextures(filename);
 }
 
 void Model::draw(bool uvs) {
@@ -157,6 +165,9 @@ void Model::showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt) {
 
 void Model::renderPositionNormalsAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shaderRenderPositionNormalsAlbedo->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
+    if (rt_Albedo != NULL) {
+        rt_Albedo->useAlbedo();
+    }
     draw(true);
 }
 

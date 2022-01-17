@@ -49,14 +49,14 @@ int main(int argc, char* argv[]) {
 
     Model* modelCube;
     try {
-        modelCube = new Model("square_with_cube_smooth.obj");
+        modelCube = new Model("square_with_cube_smooth_textured");
     } catch (...) {
         return 0;
     }
 
     Model* modelPlane;
     try {
-        modelPlane = new Model("plane.obj");
+        modelPlane = new Model("plane");
     } catch (...) {
         return 0;
     }

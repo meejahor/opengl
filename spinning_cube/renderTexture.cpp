@@ -8,6 +8,9 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+RenderTexture::RenderTexture() {
+}
+
 RenderTexture::RenderTexture(int _width, int _height) {
     width = _width;
     height = _height;
@@ -49,6 +52,25 @@ void RenderTexture::addDepthBuffer() {
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBuffer);
 }
 
+void RenderTexture::addImage(GLuint& textureID, std::string filename, GLenum attachment) {
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+
+    int nrChannels;
+
+    unsigned char *data = stbi_load(const_cast<char*>(filename.c_str()), &width, &height, &nrChannels, 0);
+    if (data) {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    }
+    stbi_image_free(data);
+
+	glFramebufferTexture2D(GL_FRAMEBUFFER, attachment, GL_TEXTURE_2D, textureID, 0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+}
+
 void checkValid() {
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         throw std::exception();
@@ -64,6 +86,11 @@ void RenderTexture::createDepthNormals() {
     init();
     addColorTexture(normals, GL_RGBA16F);
     addDepthBuffer();
+}
+
+void RenderTexture::loadImage_Albedo(std::string filename) {
+    init();
+    addImage(albedo, filename);
 }
 
 void RenderTexture::createPositionNormalsAlbedo() {
@@ -101,6 +128,12 @@ RenderTexture* RenderTexture::createPositionNormalsAlbedo(int width, int height)
     return rt;
 }
 
+RenderTexture* RenderTexture::loadAlbedo(std::string filename) {
+    RenderTexture* rt = new RenderTexture();
+    rt->loadImage_Albedo(filename);
+    return rt;
+}
+
 void RenderTexture::beginRenderingLightmap() {
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glViewport(0, 0, width, height);
@@ -117,6 +150,10 @@ void RenderTexture::beginDepthNormals() {
 }
 
 void RenderTexture::showTexture() {
+    glBindTexture(GL_TEXTURE_2D, albedo);
+}
+
+void RenderTexture::useAlbedo() {
     glBindTexture(GL_TEXTURE_2D, albedo);
 }
 

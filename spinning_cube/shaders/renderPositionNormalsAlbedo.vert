@@ -10,6 +10,7 @@ uniform mat4 mat4_Camera_MVP;
 out VS_FS_INTERFACE {
     vec4 worldpos;
     vec3 normal;
+    vec2 uv;
 } vertex;
 
 void main() {
@@ -19,4 +20,5 @@ void main() {
     n *= 0.5;
     n += 0.5;
     vertex.normal = n;
+    vertex.uv = uv;
 }
