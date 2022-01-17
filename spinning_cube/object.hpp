@@ -25,6 +25,10 @@ class Object {
     void showDepthNormals(RenderTexture* rt = NULL);
     void renderDepthNormals(RenderTexture* rt);
     void showLightmap(RenderTexture* rt);
+    void renderPositionNormalsAlbedo(RenderTexture* rt);
+    void showPosition(RenderTexture* rt);
+    void showNormals(RenderTexture* rt);
+    void showAlbedo(RenderTexture* rt);
 };
 
 #endif

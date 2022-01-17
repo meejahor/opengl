@@ -31,8 +31,11 @@ int main(int argc, char* argv[]) {
     shaderShowLightmap = new Shader("shaders/showLightmap.vert", "shaders/showLightmap.frag");
     shaderRenderDepthNormals = new Shader("shaders/renderDepthNormals.vert", "shaders/renderDepthNormals.frag");
     shaderShowDepthNormals = new Shader("shaders/showDepthNormals.vert", "shaders/showDepthNormals.frag");
+    shaderRenderPositionNormalsAlbedo = new Shader("shaders/renderPositionNormalsAlbedo.vert", "shaders/renderPositionNormalsAlbedo.frag");
+    shaderShowPosition = new Shader("shaders/showPosition.vert", "shaders/showPosition.frag");
 
     RenderTexture* rt_DepthNormals = RenderTexture::createDepthNormals(windowWidth, windowHeight);
+    RenderTexture* rt_PositionNormalsAlbedo = RenderTexture::createPositionNormalsAlbedo(windowWidth, windowHeight);
 
     Light* light;
     try {
@@ -62,8 +65,11 @@ int main(int argc, char* argv[]) {
     }
 
     Object* objectCube = new Object(modelCube);
-    Object* objectPlaneLightmap = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, 0, 0));
-    Object* objectPlaneDepthNormals = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 0, 0));
+    Object* objectPlaneLightmap = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, 1.5f, 0));
+    // Object* objectPlaneDepthNormals = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 0, 0));
+    Object* objectPlanePosition = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 1.5f, 0));
+    Object* objectPlaneNormals = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, -1.5f, 0));
+    Object* objectPlaneAlbedo = new Object(modelPlane, 1.5f, glm::vec3(1.5f, -1.5f, 0));
 
     bool gameIsRunning = true;
 
@@ -88,9 +94,12 @@ int main(int argc, char* argv[]) {
         light->beginLightmap();
         objectCube->renderToLightmap(light);
 
-        shaderRenderDepthNormals->use();
-        rt_DepthNormals->beginDepthNormals();
-        objectCube->renderDepthNormals(rt_DepthNormals);
+        // shaderRenderDepthNormals->use();
+        // rt_DepthNormals->beginDepthNormals();
+        shaderRenderPositionNormalsAlbedo->use();
+        rt_PositionNormalsAlbedo->beginPositionNormalsAlbedo();
+        // objectCube->renderDepthNormals(rt_DepthNormals);
+        objectCube->renderPositionNormalsAlbedo(rt_PositionNormalsAlbedo);
 
         // render camera views of objects
         // shader->use();
@@ -106,7 +115,10 @@ int main(int argc, char* argv[]) {
         // objectCube->renderWithShadow(light);
         // objectPlane->showDepthNormals(rt_DepthNormals);
         objectPlaneLightmap->showLightmap(light->texture);
-        objectPlaneDepthNormals->showDepthNormals(rt_DepthNormals);
+        // objectPlaneDepthNormals->showDepthNormals(rt_DepthNormals);
+        objectPlanePosition->showPosition(rt_PositionNormalsAlbedo);
+        objectPlaneNormals->showNormals(rt_PositionNormalsAlbedo);
+        objectPlaneAlbedo->showAlbedo(rt_PositionNormalsAlbedo);
         // show back buffer
         window->swap();
     }

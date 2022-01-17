@@ -10,4 +10,6 @@ uniform sampler2D renderedTexture;
 
 void main() {
     color = texture(renderedTexture, vertex.uv);
+    color *= 0.25;
+    color += 0.5;
 }

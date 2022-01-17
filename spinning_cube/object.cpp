@@ -48,3 +48,19 @@ void Object::showLightmap(RenderTexture* rt) {
 void Object::renderDepthNormals(RenderTexture* rt) {
     model->renderDepthNormals(modelMatrix, rt);
 }
+
+void Object::renderPositionNormalsAlbedo(RenderTexture* rt) {
+    model->renderPositionNormalsAlbedo(modelMatrix, rt);
+}
+
+void Object::showPosition(RenderTexture* rt) {
+    model->showPosition(modelMatrix, rt);
+}
+
+void Object::showNormals(RenderTexture* rt) {
+    model->showNormals(modelMatrix, rt);
+}
+
+void Object::showAlbedo(RenderTexture* rt) {
+    model->showAlbedo(modelMatrix, rt);
+}

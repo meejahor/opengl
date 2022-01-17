@@ -180,3 +180,29 @@ void Model::showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt) {
     // shader->setDepthNormalsTextures(rt->depth, rt->normals);
     draw(true);
 }
+
+void Model::renderPositionNormalsAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt) {
+    shaderRenderPositionNormalsAlbedo->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
+    draw(true);
+}
+
+void Model::showPosition(glm::mat4 const& matrixModel, RenderTexture* rt) {
+    shaderShowPosition->use();
+    shaderShowPosition->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
+    rt->showPosition();
+    draw(true);
+}
+
+void Model::showNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
+    shaderShowTexture->use();
+    shaderShowTexture->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
+    rt->showNormals();
+    draw(true);
+}
+
+void Model::showAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt) {
+    shaderShowTexture->use();
+    shaderShowTexture->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
+    rt->showAlbedo();
+    draw(true);
+}

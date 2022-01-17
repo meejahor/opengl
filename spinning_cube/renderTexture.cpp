@@ -13,23 +13,25 @@ RenderTexture::RenderTexture(int _width, int _height) {
     height = _height;
 }
 
-void RenderTexture::init(GLuint& textureID) {
+void RenderTexture::init() {
     glGenFramebuffers(1, &frameBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-    glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_2D, textureID);
 }
 
-void RenderTexture::addColorTexture(GLuint textureID) {
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_FLOAT, 0);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureID, 0);
+void RenderTexture::addColorTexture(GLuint& textureID, GLint internalFormat, GLenum attachment) {
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, GL_RGBA, GL_FLOAT, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, attachment, GL_TEXTURE_2D, textureID, 0);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 }
 
-void RenderTexture::addDepthTexture(GLuint textureID) {
+void RenderTexture::addDepthTexture(GLuint& textureID) {
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_2D, textureID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, textureID, 0);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -54,14 +56,28 @@ void checkValid() {
 }
 
 void RenderTexture::createLightmap() {
-    init(depth);
+    init();
     addDepthTexture(depth);
 }
 
 void RenderTexture::createDepthNormals() {
-    init(normals);
-    addColorTexture(normals);
+    init();
+    addColorTexture(normals, GL_RGBA16F);
     addDepthBuffer();
+}
+
+void RenderTexture::createPositionNormalsAlbedo() {
+    init();
+    addColorTexture(position, GL_RGBA16F);
+    addColorTexture(normals, GL_RGBA16F, GL_COLOR_ATTACHMENT1);
+    addColorTexture(albedo, GL_RGBA, GL_COLOR_ATTACHMENT2);
+    addDepthBuffer();
+    unsigned int drawBuffers[3] = {
+        GL_COLOR_ATTACHMENT0,
+        GL_COLOR_ATTACHMENT1,
+        GL_COLOR_ATTACHMENT2
+        };
+    glDrawBuffers(3, drawBuffers);
 }
 
 RenderTexture* RenderTexture::createLightmap(int width, int height) {
@@ -74,6 +90,13 @@ RenderTexture* RenderTexture::createLightmap(int width, int height) {
 RenderTexture* RenderTexture::createDepthNormals(int width, int height) {
     RenderTexture* rt = new RenderTexture(width, height);
     rt->createDepthNormals();
+    checkValid();
+    return rt;
+}
+
+RenderTexture* RenderTexture::createPositionNormalsAlbedo(int width, int height) {
+    RenderTexture* rt = new RenderTexture(width, height);
+    rt->createPositionNormalsAlbedo();
     checkValid();
     return rt;
 }
@@ -112,4 +135,24 @@ void RenderTexture::showDepthNormals() {
 
 void RenderTexture::showLightmap() {
     glBindTexture(GL_TEXTURE_2D, depth);
+}
+
+void RenderTexture::showPosition() {
+    glBindTexture(GL_TEXTURE_2D, position);
+}
+
+void RenderTexture::showNormals() {
+    glBindTexture(GL_TEXTURE_2D, normals);
+}
+
+void RenderTexture::showAlbedo() {
+    glBindTexture(GL_TEXTURE_2D, albedo);
+}
+
+void RenderTexture::beginPositionNormalsAlbedo() {
+    glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+    glViewport(0, 0, width, height);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearDepth(1);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

@@ -14,6 +14,8 @@ Shader* shaderShowTexture;
 Shader* shaderShowLightmap;
 Shader* shaderRenderDepthNormals;
 Shader* shaderShowDepthNormals;
+Shader* shaderRenderPositionNormalsAlbedo;
+Shader* shaderShowPosition;
 
 std::string readFile(const char *filePath) {
     std::string content;
