@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 
     Model* modelCube;
     try {
-        modelCube = new Model("square_with_cube_smooth_textured");
+        modelCube = new Model("square_with_cube_smooth");
     } catch (...) {
         return 0;
     }

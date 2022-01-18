@@ -52,14 +52,14 @@ void Model::loadFace() {
 void Model::setupBuffers() {
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * out_vertices.size(), out_vertices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * data.size(), data.data(), GL_STATIC_DRAW);
 
     glGenVertexArrays(1, &vertexArray);
     glBindVertexArray(vertexArray);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)sizeof(glm::vec3));
-    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3)*3, (void*)(sizeof(glm::vec3)*2));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float)*8, (void*)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float)*8, (void*)(sizeof(float)*3));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float)*8, (void*)(sizeof(float)*6));
 
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
@@ -94,11 +94,19 @@ void Model::load(std::string filename) {
         unsigned int normalIndex = normalIndices[i];
         unsigned int uvIndex = uvIndices[i];
         glm::vec3 vertex = temp_vertices[vertexIndex-1];
-        out_vertices.push_back(vertex);
+        // out_vertices.push_back(vertex);
+        data.push_back(vertex.x);
+        data.push_back(vertex.y);
+        data.push_back(vertex.z);
         glm::vec3 normal = temp_normals[normalIndex-1];
-        out_vertices.push_back(normal);
+        // out_vertices.push_back(normal);
+        data.push_back(normal.x);
+        data.push_back(normal.y);
+        data.push_back(normal.z);
         glm::vec2 uv = temp_uvs[uvIndex-1];
-        out_vertices.push_back(glm::vec3(uv.x, uv.y, 0));
+        // out_vertices.push_back(glm::vec3(uv.x, uv.y, 0));
+        data.push_back(uv.x);
+        data.push_back(1-uv.y);
     }
 }
 
@@ -131,7 +139,7 @@ void Model::draw(bool uvs) {
     //     glDisableVertexAttribArray(2);
     // }
     
-    glDrawArrays(GL_TRIANGLES, 0, out_vertices.size() * 3);
+    glDrawArrays(GL_TRIANGLES, 0, data.size() / 8);
 }
 
 void Model::renderToLightmap(Light* light, glm::mat4 const& matrixModel) {
