@@ -17,7 +17,6 @@ class Model {
     // std::vector<glm::vec3> out_vertices;
     // std::vector<glm::vec2> out_uvs;
     // std::vector<glm::vec3> out_normals;
-    std::vector<float> data;
 
     Model(std::string filename, Shader* _shader = NULL);
     void draw(bool uvs);
@@ -31,6 +30,7 @@ class Model {
 
     private:
     FILE* file;
+    std::vector<float> data;
 
     std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
     std::vector<glm::vec3> temp_vertices;

@@ -3,6 +3,7 @@
 #include "model.hpp"
 #include "shader.hpp"
 #include "window.hpp"
+#include "utils.hpp"
 
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/gl3.h>
@@ -110,10 +111,16 @@ void Model::load(std::string filename) {
     }
 }
 
+RenderTexture* loadTexture(std::string filename) {
+    if (fileExists(filename)) {
+        return RenderTexture::loadAlbedo(filename);
+    }
+
+    return NULL;
+}
+
 void Model::loadTextures(std::string filename) {
-    std::string albedoFilename = "images/" + filename + "_albedo.png";
-    std::cout << albedoFilename << std::endl;
-    rt_Albedo = RenderTexture::loadAlbedo(albedoFilename);
+    rt_Albedo = loadTexture("images/" + filename + "_albedo.png");
 }
 
 Model::Model(std::string filename, Shader* _shader) {

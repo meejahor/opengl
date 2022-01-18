@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -33,4 +34,8 @@ glm::mat4 calcViewProjection(glm::vec3 position, glm::vec3 lookAt, float fov, gl
         );
 
     return matrixProjection * matrixView;
+}
+
+bool fileExists(std::string filename) {
+    return std::filesystem::exists(filename);
 }

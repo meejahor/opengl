@@ -61,6 +61,13 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
+    Model* modelSphere;
+    try {
+        modelSphere = new Model("sphere");
+    } catch (...) {
+        return 0;
+    }
+
     Object* objectCube = new Object(modelCube);
     Object* objectPlaneLightmap = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, 1.5f, 0));
     Object* objectPlanePosition = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 1.5f, 0));
@@ -110,11 +117,12 @@ int main(int argc, char* argv[]) {
         // window->activate();
         // objectCube->renderWithShadow(light);
         // objectPlane->showDepthNormals(rt_DepthNormals);
+
         objectPlaneLightmap->showLightmap(light);
-        // objectPlaneDepthNormals->showDepthNormals(rt_DepthNormals);
         objectPlanePosition->showPosition(rt_PositionNormalsAlbedo);
         objectPlaneNormals->showNormals(rt_PositionNormalsAlbedo);
         objectPlaneAlbedo->showAlbedo(rt_PositionNormalsAlbedo);
+
         // show back buffer
         window->swap();
     }
