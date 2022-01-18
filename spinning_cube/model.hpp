@@ -24,6 +24,7 @@ class Model {
     void renderWithShadow(Light* light, glm::mat4 const& matrixModel);
     void showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt);
     void renderPositionNormalsAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt);
+    void renderLightSphere(glm::mat4 const& matrixModel, RenderTexture* rt);
     void showPosition(glm::mat4 const& matrixModel, RenderTexture* rt);
     void showNormals(glm::mat4 const& matrixModel, RenderTexture* rt);
     void showAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt);

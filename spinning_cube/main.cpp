@@ -30,6 +30,7 @@ int main(int argc, char* argv[]) {
     shaderRenderPositionNormalsAlbedo = new Shader("shaders/renderPositionNormalsAlbedo.vert", "shaders/renderPositionNormalsAlbedo.frag");
     shaderShowPosition = new Shader("shaders/showPosition.vert", "shaders/showPosition.frag");
     shaderRenderToLightmap = new Shader("shaders/renderToLightmap.vert", "shaders/renderToLightmap.frag");
+    shaderRenderLightSphere = new Shader("shaders/renderLightSphere.vert", "shaders/renderLightSphere.frag");
 
     RenderTexture* rt_DepthNormals = RenderTexture::createDepthNormals(windowWidth, windowHeight);
     RenderTexture* rt_PositionNormalsAlbedo = RenderTexture::createPositionNormalsAlbedo(windowWidth, windowHeight);
@@ -37,7 +38,7 @@ int main(int argc, char* argv[]) {
     Light* light;
     try {
         light = new Light(
-            glm::vec3(  5.0f,  5.0f,  0.0f),
+            glm::vec3(  3.0f,  3.0f,  0.0f),
             glm::vec3( -1.0f, -1.0f,  0.0f),
             60.0f,
             glm::vec3(  0.0f,  0.0f,  1.0f)
@@ -61,14 +62,15 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    Model* modelSphere;
+    Model* modelLightSphere;
     try {
-        modelSphere = new Model("sphere");
+        modelLightSphere = new Model("sphere");
     } catch (...) {
         return 0;
     }
 
     Object* objectCube = new Object(modelCube);
+    Object* objectLightSphere = new Object(modelLightSphere);
     Object* objectPlaneLightmap = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, 1.5f, 0));
     Object* objectPlanePosition = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 1.5f, 0));
     Object* objectPlaneNormals = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, -1.5f, 0));
@@ -103,6 +105,8 @@ int main(int argc, char* argv[]) {
         rt_PositionNormalsAlbedo->beginRenderingPositionNormalsAlbedo();
         // objectCube->renderDepthNormals(rt_DepthNormals);
         objectCube->renderPositionNormalsAlbedo(rt_PositionNormalsAlbedo);
+        shaderRenderLightSphere->use();
+        objectLightSphere->renderLightSphere(rt_PositionNormalsAlbedo);
 
         // render camera views of objects
         // shader->use();

@@ -15,6 +15,7 @@ Shader* shaderShowLightmap;
 Shader* shaderRenderPositionNormalsAlbedo;
 Shader* shaderShowPosition;
 Shader* shaderRenderToLightmap;
+Shader* shaderRenderLightSphere;
 
 std::string readFile(const char *filePath) {
     std::string content;

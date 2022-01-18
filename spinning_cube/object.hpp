@@ -23,6 +23,7 @@ class Object {
     void renderWithShadow(Light* light);
     void showLightmap(Light* light);
     void renderPositionNormalsAlbedo(RenderTexture* rt);
+    void renderLightSphere(RenderTexture* rt);
     void showPosition(RenderTexture* rt);
     void showNormals(RenderTexture* rt);
     void showAlbedo(RenderTexture* rt);

@@ -48,5 +48,6 @@ extern Shader* shaderShowLightmap;
 extern Shader* shaderRenderPositionNormalsAlbedo;
 extern Shader* shaderShowPosition;
 extern Shader* shaderRenderToLightmap;
+extern Shader* shaderRenderLightSphere;
 
 #endif

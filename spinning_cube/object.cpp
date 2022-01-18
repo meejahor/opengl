@@ -52,3 +52,7 @@ void Object::showNormals(RenderTexture* rt) {
 void Object::showAlbedo(RenderTexture* rt) {
     model->showAlbedo(modelMatrix, rt);
 }
+
+void Object::renderLightSphere(RenderTexture* rt) {
+    model->renderLightSphere(modelMatrix, rt);
+}
