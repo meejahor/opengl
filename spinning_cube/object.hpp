@@ -27,7 +27,10 @@ class Object {
     void showPosition(RenderTexture* rt);
     void showNormals(RenderTexture* rt);
     void showAlbedo(RenderTexture* rt);
+    void showFinal(RenderTexture* rt);
+
     void moveTo(glm::vec3 _translation);
+    void setScale(float _scale);
 };
 
 #endif

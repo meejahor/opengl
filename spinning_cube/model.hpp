@@ -28,6 +28,7 @@ class Model {
     void showPosition(glm::mat4 const& matrixModel, RenderTexture* rt);
     void showNormals(glm::mat4 const& matrixModel, RenderTexture* rt);
     void showAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt);
+    void showFinal(glm::mat4 const& matrixModel, RenderTexture* rt);
 
     private:
     FILE* file;

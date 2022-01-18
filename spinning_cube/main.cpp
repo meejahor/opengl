@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
     shaderShowPosition = new Shader("shaders/showPosition.vert", "shaders/showPosition.frag");
     shaderRenderToLightmap = new Shader("shaders/renderToLightmap.vert", "shaders/renderToLightmap.frag");
     shaderRenderLightSphere = new Shader("shaders/renderLightSphere.vert", "shaders/renderLightSphere.frag");
+    shaderShowFinal = new Shader("shaders/showFinal.vert", "shaders/showFinal.frag");
 
     RenderTexture* rt_DepthNormals = RenderTexture::createDepthNormals(windowWidth, windowHeight);
     RenderTexture* rt_PositionNormalsAlbedo = RenderTexture::createPositionNormalsAlbedo(windowWidth, windowHeight);
@@ -41,6 +42,7 @@ int main(int argc, char* argv[]) {
             glm::vec3(  2.0f,  2.0f,  0.0f),
             glm::vec3( -1.0f, -1.0f,  0.0f),
             60.0f,
+            4,
             glm::vec3(  0.0f,  0.0f,  1.0f)
         );
     } catch (...) {
@@ -69,6 +71,7 @@ int main(int argc, char* argv[]) {
     Object* objectPlanePosition = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 1.5f, 0));
     Object* objectPlaneNormals = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, -1.5f, 0));
     Object* objectPlaneAlbedo = new Object(modelPlane, 1.5f, glm::vec3(1.5f, -1.5f, 0));
+    Object* objectPlaneFinal = new Object(modelPlane, 1.5f, glm::vec3(1.5f, -1.5f, 0));
 
     bool gameIsRunning = true;
 
@@ -99,13 +102,17 @@ int main(int argc, char* argv[]) {
         rt_PositionNormalsAlbedo->beginRenderingPositionNormalsAlbedo();
         // objectCube->renderDepthNormals(rt_DepthNormals);
         objectCube->renderPositionNormalsAlbedo(rt_PositionNormalsAlbedo);
+
         shaderRenderLightSphere->use();
+        rt_PositionNormalsAlbedo->beginRenderingLighting();
         light->renderLightSphere(rt_PositionNormalsAlbedo);
 
         // render camera views of objects
         // shader->use();
         window->activate();
         window->clear();
+
+        RenderTexture::resetDrawBuffer();
 
         // objectCube->render(window->matrixViewProjection, shader);
         // GLuint texID = glGetUniformLocation(shaderTexture, "renderedTexture");
@@ -119,7 +126,8 @@ int main(int argc, char* argv[]) {
         objectPlaneLightmap->showLightmap(light);
         objectPlanePosition->showPosition(rt_PositionNormalsAlbedo);
         objectPlaneNormals->showNormals(rt_PositionNormalsAlbedo);
-        objectPlaneAlbedo->showAlbedo(rt_PositionNormalsAlbedo);
+        // objectPlaneAlbedo->showAlbedo(rt_PositionNormalsAlbedo);
+        objectPlaneFinal->showFinal(rt_PositionNormalsAlbedo);
 
         // show back buffer
         window->swap();

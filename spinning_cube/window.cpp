@@ -10,6 +10,7 @@
 
 #include "window.hpp"
 #include "utils.hpp"
+#include "renderTexture.hpp"
 
 Window* window;
 
@@ -86,6 +87,8 @@ void Window::clear() {
 void Window::activate() {
     // glBindTexture(GL_TEXTURE_2D, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    // RenderTexture::resetDrawBuffer();
+        
     // glBindRenderbuffer(GL_RENDERBUFFER, 0);
     // glDrawBuffer(GL_BACK);
     glViewport(0, 0, width, height);

@@ -60,3 +60,11 @@ void Object::renderLightSphere(RenderTexture* rt) {
 void Object::moveTo(glm::vec3 _position) {
     position = _position;
 }
+
+void Object::setScale(float _scale) {
+    scale = _scale;
+}
+
+void Object::showFinal(RenderTexture* rt) {
+    model->showFinal(modelMatrix, rt);
+}

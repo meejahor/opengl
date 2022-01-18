@@ -213,6 +213,14 @@ void Model::showAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt) {
     draw(true);
 }
 
+void Model::showFinal(glm::mat4 const& matrixModel, RenderTexture* rt) {
+    shaderShowFinal->use();
+    shaderShowFinal->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
+    shaderShowFinal->setAlbedoLightingTextures();
+    rt->showFinal();
+    draw(true);
+}
+
 void Model::renderLightSphere(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shaderRenderLightSphere->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
     draw(true);

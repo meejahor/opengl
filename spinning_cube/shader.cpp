@@ -16,6 +16,7 @@ Shader* shaderRenderPositionNormalsAlbedo;
 Shader* shaderShowPosition;
 Shader* shaderRenderToLightmap;
 Shader* shaderRenderLightSphere;
+Shader* shaderShowFinal;
 
 std::string readFile(const char *filePath) {
     std::string content;
@@ -46,6 +47,9 @@ void Shader::findIDs() {
     // normalsTexture_ID = glGetUniformLocation(program, "normalsTexture");
     // std::cout << lightPosition_ID << std::endl;
     // std::cout << lightDirection_ID << std::endl;
+
+    texture_albedo_ID = glGetUniformLocation(program, "texture_albedo");
+    texture_lighting_ID = glGetUniformLocation(program, "texture_lighting");
 }
 
 Shader::Shader(const char *vertex_path, const char *fragment_path) {
@@ -156,6 +160,11 @@ void Shader::setMatricesForScreenRenderingNoLighting(
     ) {
     glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
     glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
+}
+
+void Shader::setAlbedoLightingTextures() {
+    glUniform1i(texture_albedo_ID, 0);
+    glUniform1i(texture_lighting_ID, 1);
 }
 
 // void Shader::setDepthNormalsTextures(GLuint depthTexture, GLuint normalsTexture) {

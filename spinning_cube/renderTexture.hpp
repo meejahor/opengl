@@ -28,6 +28,7 @@ class RenderTexture {
     GLuint position;     // TODO: this should be back in private
     GLuint normals;     // TODO: this should be back in private
     GLuint albedo;     // TODO: this should be back in private
+    GLuint lighting;
     GLuint depth;     // TODO: this should be back in private
     RenderTexture();
     RenderTexture(int _width, int _height);
@@ -42,8 +43,11 @@ class RenderTexture {
     void showPosition();
     void showNormals();
     void showAlbedo();
+    void showFinal();
     void beginRenderingPositionNormalsAlbedo();
+    void beginRenderingLighting();
     void useAlbedo();
+    static void resetDrawBuffer();
     static RenderTexture* loadAlbedo(std::string filename);
 };
 

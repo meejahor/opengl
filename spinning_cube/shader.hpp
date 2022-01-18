@@ -25,6 +25,7 @@ class Shader {
         );
     void setMatricesForScreenRenderingNoLighting(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Camera_MVP);
     // void setDepthNormalsTextures(GLuint depthTexture, GLuint normalsTexture);
+    void setAlbedoLightingTextures();
     void setMatricesForScreen(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Screen_MVP);
 
     private:
@@ -37,6 +38,8 @@ class Shader {
     unsigned int lightDirection_ID;
     // unsigned int depthTexture_ID;
     // unsigned int normalsTexture_ID;
+    unsigned int texture_albedo_ID;
+    unsigned int texture_lighting_ID;
 };
 
 // GLuint loadShader(const char *vertex_path, const char *fragment_path);
@@ -49,5 +52,6 @@ extern Shader* shaderRenderPositionNormalsAlbedo;
 extern Shader* shaderShowPosition;
 extern Shader* shaderRenderToLightmap;
 extern Shader* shaderRenderLightSphere;
+extern Shader* shaderShowFinal;
 
 #endif

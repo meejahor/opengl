@@ -8,6 +8,20 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+unsigned int drawBuffersColor[1] = {
+    GL_COLOR_ATTACHMENT0
+    };
+
+unsigned int drawBuffersPositionNormalsAlbedo[3] = {
+    GL_COLOR_ATTACHMENT0,
+    GL_COLOR_ATTACHMENT1,
+    GL_COLOR_ATTACHMENT2
+    };
+
+unsigned int drawBuffersLighting[1] = {
+    GL_COLOR_ATTACHMENT3
+    };
+
 RenderTexture::RenderTexture() {
 }
 
@@ -98,13 +112,8 @@ void RenderTexture::createPositionNormalsAlbedo() {
     addColorTexture(position, GL_RGBA16F);
     addColorTexture(normals, GL_RGBA16F, GL_COLOR_ATTACHMENT1);
     addColorTexture(albedo, GL_RGBA, GL_COLOR_ATTACHMENT2);
+    addColorTexture(lighting, GL_RGBA, GL_COLOR_ATTACHMENT3);
     addDepthBuffer();
-    unsigned int drawBuffers[3] = {
-        GL_COLOR_ATTACHMENT0,
-        GL_COLOR_ATTACHMENT1,
-        GL_COLOR_ATTACHMENT2
-        };
-    glDrawBuffers(3, drawBuffers);
 }
 
 RenderTexture* RenderTexture::createLightmap(int width, int height) {
@@ -177,10 +186,32 @@ void RenderTexture::showAlbedo() {
     glBindTexture(GL_TEXTURE_2D, albedo);
 }
 
+void RenderTexture::showFinal() {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, albedo);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, lighting);
+    glActiveTexture(GL_TEXTURE0);
+}
+
 void RenderTexture::beginRenderingPositionNormalsAlbedo() {
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+    glDrawBuffers(3, drawBuffersPositionNormalsAlbedo);
     glViewport(0, 0, width, height);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClearDepth(1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void RenderTexture::beginRenderingLighting() {
+    glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+    glDrawBuffers(1, drawBuffersLighting);
+    glViewport(0, 0, width, height);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearDepth(1);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void RenderTexture::resetDrawBuffer() {
+    glDrawBuffers(1, drawBuffersColor);
 }
