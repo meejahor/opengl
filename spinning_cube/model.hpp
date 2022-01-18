@@ -18,7 +18,7 @@ class Model {
     // std::vector<glm::vec2> out_uvs;
     // std::vector<glm::vec3> out_normals;
 
-    Model(std::string filename, Shader* _shader = NULL);
+    Model(std::string filename, Shader* _shader = NULL, bool flipUV_y = true);
     void draw(bool uvs);
     void renderToLightmap(Light* light, glm::mat4 const& matrixModel);
     void renderWithShadow(Light* light, glm::mat4 const& matrixModel);
@@ -48,7 +48,7 @@ class Model {
     void loadNormal();
     void loadFace();
     void setupBuffers();
-    void load(std::string filename);
+    void load(std::string filename, bool flipUV_y);
     void loadTextures(std::string filename);
 
     RenderTexture* rt_Albedo;

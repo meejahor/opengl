@@ -12,12 +12,12 @@ class Object {
     Model* model;
     float rotation;
     float scale;
-    glm::vec3 translation;
+    glm::vec3 position;
     glm::mat4 modelMatrix;
     void calcMatrix();
 
     public:
-    Object(Model* _model, float _scale = 1, glm::vec3 _translation = glm::vec3(0, 0, 0));
+    Object(Model* _model, float _scale = 1, glm::vec3 _position = glm::vec3(0, 0, 0));
     void update();
     void renderToLightmap(Light* light);
     void renderWithShadow(Light* light);
@@ -27,6 +27,7 @@ class Object {
     void showPosition(RenderTexture* rt);
     void showNormals(RenderTexture* rt);
     void showAlbedo(RenderTexture* rt);
+    void moveTo(glm::vec3 _translation);
 };
 
 #endif

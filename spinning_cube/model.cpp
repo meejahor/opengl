@@ -67,7 +67,7 @@ void Model::setupBuffers() {
     glEnableVertexAttribArray(2);
 }
 
-void Model::load(std::string filename) {
+void Model::load(std::string filename, bool flipUV_y) {
     std::string modelFilename = "models/" + filename + ".obj";
     file = fopen(const_cast<char*>(modelFilename.c_str()), "r");
     if (file == NULL) {
@@ -107,7 +107,13 @@ void Model::load(std::string filename) {
         glm::vec2 uv = temp_uvs[uvIndex-1];
         // out_vertices.push_back(glm::vec3(uv.x, uv.y, 0));
         data.push_back(uv.x);
-        data.push_back(1-uv.y);
+
+        float uvy = uv.y;
+        if (flipUV_y) {
+            uvy = 1 - uvy;
+        }
+
+        data.push_back(uvy);
     }
 }
 
@@ -123,11 +129,11 @@ void Model::loadTextures(std::string filename) {
     rt_Albedo = loadTexture("images/" + filename + "_albedo.png");
 }
 
-Model::Model(std::string filename, Shader* _shader) {
+Model::Model(std::string filename, Shader* _shader, bool flipUV_y) {
     shader = _shader;
 
     try {
-        load(filename);
+        load(filename, flipUV_y);
     } catch (...) {
         throw;
     }

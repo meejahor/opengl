@@ -4,9 +4,24 @@
 #include "renderTexture.hpp"
 #include "utils.hpp"
 #include "shader.hpp"
+#include "model.hpp"
+#include "object.hpp"
 
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/gl3.h>
+
+Model* modelLightSphere;
+Object* objectLightSphere;
+
+void Light::loadResources() {
+    try {
+        modelLightSphere = new Model("sphere");
+    } catch (...) {
+        throw;
+    }
+
+    objectLightSphere = new Object(modelLightSphere);
+}
 
 Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 up) {
     position = _position;
@@ -34,4 +49,10 @@ void Light::beginRenderingLightmap() {
 
 void Light::useShadowMap() {
     texture->showTexture();
+}
+
+void Light::renderLightSphere(RenderTexture* rt) {
+    objectLightSphere->moveTo(position);
+    objectLightSphere->update();
+    objectLightSphere->renderLightSphere(rt);
 }

@@ -11,11 +11,12 @@ class Light {
     RenderTexture* texture;
     glm::vec3 position;
     glm::vec3 direction;
-    static void loadDepthShader();
     Light(glm::vec3 _position, glm::vec3 _direction, float _cone, glm::vec3 up);
     void beginRenderingLightmap();
     glm::mat4 matrixViewProjection;
     void useShadowMap();
+    static void loadResources();
+    void renderLightSphere(RenderTexture* rt);
 };
 
 #endif

@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
     Light* light;
     try {
         light = new Light(
-            glm::vec3(  3.0f,  3.0f,  0.0f),
+            glm::vec3(  2.0f,  2.0f,  0.0f),
             glm::vec3( -1.0f, -1.0f,  0.0f),
             60.0f,
             glm::vec3(  0.0f,  0.0f,  1.0f)
@@ -57,20 +57,14 @@ int main(int argc, char* argv[]) {
 
     Model* modelPlane;
     try {
-        modelPlane = new Model("plane");
+        modelPlane = new Model("plane", NULL, false);
     } catch (...) {
         return 0;
     }
 
-    Model* modelLightSphere;
-    try {
-        modelLightSphere = new Model("sphere");
-    } catch (...) {
-        return 0;
-    }
+    Light::loadResources();
 
     Object* objectCube = new Object(modelCube);
-    Object* objectLightSphere = new Object(modelLightSphere);
     Object* objectPlaneLightmap = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, 1.5f, 0));
     Object* objectPlanePosition = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 1.5f, 0));
     Object* objectPlaneNormals = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, -1.5f, 0));
@@ -106,7 +100,7 @@ int main(int argc, char* argv[]) {
         // objectCube->renderDepthNormals(rt_DepthNormals);
         objectCube->renderPositionNormalsAlbedo(rt_PositionNormalsAlbedo);
         shaderRenderLightSphere->use();
-        objectLightSphere->renderLightSphere(rt_PositionNormalsAlbedo);
+        light->renderLightSphere(rt_PositionNormalsAlbedo);
 
         // render camera views of objects
         // shader->use();

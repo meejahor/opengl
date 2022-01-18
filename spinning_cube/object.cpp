@@ -6,16 +6,16 @@
 static const float SPEED = 90;
 static glm::mat4 mat4_one = glm::mat4(1.0f);
 
-Object::Object(Model* _model, float _scale, glm::vec3 _translation) {
+Object::Object(Model* _model, float _scale, glm::vec3 _position) {
     model = _model;
     scale = _scale;
-    translation = _translation;
+    position = _position;
     rotation = 0;
     calcMatrix();
 }
 
 void Object::calcMatrix() {
-    modelMatrix = glm::translate(mat4_one, translation);
+    modelMatrix = glm::translate(mat4_one, position);
     modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation), glm::vec3(1, 0, 0));
     modelMatrix = glm::scale(modelMatrix, glm::vec3(scale));
 }
@@ -55,4 +55,8 @@ void Object::showAlbedo(RenderTexture* rt) {
 
 void Object::renderLightSphere(RenderTexture* rt) {
     model->renderLightSphere(modelMatrix, rt);
+}
+
+void Object::moveTo(glm::vec3 _position) {
+    position = _position;
 }
