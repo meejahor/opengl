@@ -177,10 +177,7 @@ void Shader::setAlbedoNormalsTextures() {
     glUniform1i(texture_normals_ID, 1);
 }
 
-void Shader::setLightPosAndRadius(
-    glm::vec3 const& lightPos,
-    float lightRadius
-    ) {
+void Shader::setLightPosAndRadius(glm::vec3 const& lightPos, float lightRadius) {
     glUniform3fv(lightPos_ID, 1, glm::value_ptr(lightPos));
     glUniform1f(lightRadius_ID, lightRadius);
 }

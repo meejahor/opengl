@@ -13,6 +13,7 @@
 #include "object.hpp"
 #include "renderTexture.hpp"
 #include "light.hpp"
+#include "rendering.hpp"
 
 int main(int argc, char* argv[]) {
     try {
@@ -30,9 +31,8 @@ int main(int argc, char* argv[]) {
     shaderRenderLightSphere = new Shader("shaders/renderLightSphere.vert", "shaders/renderLightSphere.frag");
     shaderShowFinal = new Shader("shaders/showFinal.vert", "shaders/showFinal.frag");
 
-    RenderTexture* rt_DepthNormals = RenderTexture::createDepthNormals(windowWidth, windowHeight);
-    RenderTexture* rt_PositionNormalsAlbedo = RenderTexture::createPositionNormalsAlbedo(windowWidth, windowHeight);
-
+    Rendering::init();
+    
     Light* light;
     try {
         light = new Light(
@@ -89,16 +89,15 @@ int main(int argc, char* argv[]) {
 
         objectCube->update();
 
-        // render light views of objects
-        light->beginRenderingLightmap();
-        objectCube->renderToLightmap(light);
+        Rendering::beginLightmaps();
+        Rendering::renderObjectToLightmap(objectCube, light);
 
-        // shaderRenderDepthNormals->use();
-        // rt_DepthNormals->beginDepthNormals();
-        shaderRenderPositionNormalsAlbedo->use();
-        rt_PositionNormalsAlbedo->beginRenderingPositionNormalsAlbedo();
-        // objectCube->renderDepthNormals(rt_DepthNormals);
-        objectCube->renderPositionNormalsAlbedo(rt_PositionNormalsAlbedo);
+        Rendering::beginPositionsNormalAlbedo();
+        Rendering::renderObjectToPositionsNormalAlbedo(objectCube);
+
+        // shaderRenderPositionNormalsAlbedo->use();
+        // rt_PositionNormalsAlbedo->beginRenderingPositionNormalsAlbedo();
+        // objectCube->renderPositionNormalsAlbedo(rt_PositionNormalsAlbedo);
 
         shaderRenderLightSphere->use();
         shaderRenderLightSphere->setAlbedoNormalsTextures();

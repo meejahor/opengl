@@ -9,20 +9,19 @@
 
 class Object {
     private:
-    Model* model;
     float rotation;
     float scale;
     glm::vec3 position;
-    glm::mat4 modelMatrix;
     void calcMatrix();
 
     public:
+    Model* model;
+    glm::mat4 modelMatrix;
     Object(Model* _model, float _scale = 1, glm::vec3 _position = glm::vec3(0, 0, 0));
     void update();
-    void renderToLightmap(Light* light);
     void renderWithShadow(Light* light);
     void showLightmap(Light* light);
-    void renderPositionNormalsAlbedo(RenderTexture* rt);
+    // void renderPositionNormalsAlbedo(RenderTexture* rt);
     void renderLightSphere(RenderTexture* rt);
     void showPosition(RenderTexture* rt);
     void showNormals(RenderTexture* rt);

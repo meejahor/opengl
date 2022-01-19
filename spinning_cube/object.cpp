@@ -25,10 +25,6 @@ void Object::update() {
     calcMatrix();
 }
 
-void Object::renderToLightmap(Light* light) {
-    model->renderToLightmap(light, modelMatrix);
-}
-
 void Object::renderWithShadow(Light* light) {
     model->renderWithShadow(light, modelMatrix);
 }
@@ -37,9 +33,9 @@ void Object::showLightmap(Light* light) {
     model->showLightmap(modelMatrix, light->texture);
 }
 
-void Object::renderPositionNormalsAlbedo(RenderTexture* rt) {
-    model->renderPositionNormalsAlbedo(modelMatrix, rt);
-}
+// void Object::renderPositionNormalsAlbedo(RenderTexture* rt) {
+//     model->renderPositionNormalsAlbedo(modelMatrix, rt);
+// }
 
 void Object::showPosition(RenderTexture* rt) {
     model->showPosition(modelMatrix, rt);

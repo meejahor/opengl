@@ -20,10 +20,10 @@ class Model {
 
     Model(std::string filename, Shader* _shader = NULL, bool flipUV_y = true);
     void draw(bool uvs);
-    void renderToLightmap(Light* light, glm::mat4 const& matrixModel);
+    void renderToLightmap();
     void renderWithShadow(Light* light, glm::mat4 const& matrixModel);
     void showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt);
-    void renderPositionNormalsAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt);
+    void renderPositionNormalsAlbedo();
     void renderLightSphere(glm::mat4 const& matrixModel, RenderTexture* rt);
     void showPosition(glm::mat4 const& matrixModel, RenderTexture* rt);
     void showNormals(glm::mat4 const& matrixModel, RenderTexture* rt);

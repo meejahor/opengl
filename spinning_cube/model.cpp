@@ -155,9 +155,7 @@ void Model::draw(bool uvs) {
     glDrawArrays(GL_TRIANGLES, 0, data.size() / 8);
 }
 
-void Model::renderToLightmap(Light* light, glm::mat4 const& matrixModel) {
-    shaderRenderToLightmap->use();
-    shaderRenderToLightmap->setMatricesForLightmap(matrixModel, light->matrixViewProjection * matrixModel);
+void Model::renderToLightmap() {
     glCullFace(GL_FRONT);
     draw(true);
     glCullFace(GL_BACK);
@@ -184,11 +182,7 @@ void Model::showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt) {
     draw(true);
 }
 
-void Model::renderPositionNormalsAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    shaderRenderPositionNormalsAlbedo->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
-    if (rt_Albedo != NULL) {
-        rt_Albedo->useAlbedo();
-    }
+void Model::renderPositionNormalsAlbedo() {
     draw(true);
 }
 

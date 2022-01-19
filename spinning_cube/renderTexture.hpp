@@ -5,6 +5,8 @@
 #include <OpenGL/OpenGL.h>
 #include <OpenGL/gl3.h>
 
+#include <string>
+
 class RenderTexture {
     private:
     GLuint frameBuffer;
