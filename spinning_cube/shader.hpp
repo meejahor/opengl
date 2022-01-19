@@ -27,6 +27,8 @@ class Shader {
     // void setDepthNormalsTextures(GLuint depthTexture, GLuint normalsTexture);
     void setAlbedoLightingTextures();
     void setMatricesForScreen(glm::mat4 const& mat4_Model, glm::mat4 const& mat4_Screen_MVP);
+    void setTextureSize(glm::vec2 const& textureSize);
+    void setLightPosAndRadius(glm::vec3 const& lightPos, float lightRadius);
 
     private:
     void findIDs();
@@ -40,6 +42,9 @@ class Shader {
     // unsigned int normalsTexture_ID;
     unsigned int texture_albedo_ID;
     unsigned int texture_lighting_ID;
+    unsigned int lightPos_ID;
+    unsigned int lightRadius_ID;
+    unsigned int textureSize_ID;
 };
 
 // GLuint loadShader(const char *vertex_path, const char *fragment_path);

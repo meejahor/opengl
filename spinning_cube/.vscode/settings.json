@@ -3,6 +3,8 @@
         "cpp": "cd $dir && /usr/bin/clang++ *.cpp -std=c++17 -I/Library/Frameworks/SDL2.framework/Headers -F/Library/Frameworks/ -framework SDL2 -framework OpenGL -o main && ./main",
     },
     "files.associations": {
+        "*.frag": "glsl",
+        "*.vert": "glsl",
         "ios": "cpp",
         "__bit_reference": "cpp",
         "__config": "cpp",
@@ -68,6 +70,7 @@
         "utility": "cpp",
         "vector": "cpp",
         "__functional_03": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "memory_resource": "cpp"
     },
 }

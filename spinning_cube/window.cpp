@@ -13,6 +13,8 @@
 #include "renderTexture.hpp"
 
 Window* window;
+int windowWidth = 800;
+int windowHeight = 800;
 
 void Window::initSDL() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -30,8 +32,8 @@ void Window::initSDL() {
         "C++ SDL2 Window",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        width,
-        height,
+        windowHeight,
+        windowHeight,
         SDL_WINDOW_SHOWN
         );
 
@@ -65,10 +67,7 @@ void Window::destroy() {
     SDL_DestroyWindow(window);
 }
 
-Window::Window(int _width, int _height) {
-    width = _width;
-    height = _height;
-
+Window::Window() {
     try {
         initSDL();
     } catch (...) {
@@ -91,5 +90,5 @@ void Window::activate() {
         
     // glBindRenderbuffer(GL_RENDERBUFFER, 0);
     // glDrawBuffer(GL_BACK);
-    glViewport(0, 0, width, height);
+    glViewport(0, 0, windowWidth, windowHeight);
 }

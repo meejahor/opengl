@@ -50,6 +50,10 @@ void Shader::findIDs() {
 
     texture_albedo_ID = glGetUniformLocation(program, "texture_albedo");
     texture_lighting_ID = glGetUniformLocation(program, "texture_lighting");
+
+    lightPos_ID = glGetUniformLocation(program, "lightPos");
+    lightRadius_ID = glGetUniformLocation(program, "lightRadius");
+    textureSize_ID = glGetUniformLocation(program, "textureSize");
 }
 
 Shader::Shader(const char *vertex_path, const char *fragment_path) {
@@ -165,6 +169,18 @@ void Shader::setMatricesForScreenRenderingNoLighting(
 void Shader::setAlbedoLightingTextures() {
     glUniform1i(texture_albedo_ID, 0);
     glUniform1i(texture_lighting_ID, 1);
+}
+
+void Shader::setLightPosAndRadius(
+    glm::vec3 const& lightPos,
+    float lightRadius
+    ) {
+    glUniform3fv(lightPos_ID, 1, glm::value_ptr(lightPos));
+    glUniform1f(lightRadius_ID, lightRadius);
+}
+
+void Shader::setTextureSize(glm::vec2 const& textureSize) {
+    glUniform2fv(textureSize_ID, 1, glm::value_ptr(textureSize));
 }
 
 // void Shader::setDepthNormalsTextures(GLuint depthTexture, GLuint normalsTexture) {

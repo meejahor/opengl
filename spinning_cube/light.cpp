@@ -23,11 +23,11 @@ void Light::loadResources() {
     objectLightSphere = new Object(modelLightSphere);
 }
 
-Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, float _size, glm::vec3 up) {
+Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, float _radius, glm::vec3 up) {
     position = _position;
     direction = glm::normalize(_direction);
     cone = _cone;
-    size = _size;
+    radius = _radius;
 
     matrixViewProjection = calcViewProjection(
         position,
@@ -54,7 +54,9 @@ void Light::useShadowMap() {
 
 void Light::renderLightSphere(RenderTexture* rt) {
     objectLightSphere->moveTo(position);
-    objectLightSphere->setScale(size);
+    objectLightSphere->setScale(radius * 2);
     objectLightSphere->update();
+    shaderRenderLightSphere->setLightPosAndRadius(position, radius);
+    shaderRenderLightSphere->setTextureSize(glm::vec2(windowWidth, windowHeight));
     objectLightSphere->renderLightSphere(rt);
 }

@@ -8,11 +8,11 @@
 class Light {
     public:
     float cone;
-    float size;
+    float radius;
     RenderTexture* texture;
     glm::vec3 position;
     glm::vec3 direction;
-    Light(glm::vec3 _position, glm::vec3 _direction, float _cone, float _size, glm::vec3 up);
+    Light(glm::vec3 _position, glm::vec3 _direction, float _cone, float _radius, glm::vec3 up);
     void beginRenderingLightmap();
     glm::mat4 matrixViewProjection;
     void useShadowMap();

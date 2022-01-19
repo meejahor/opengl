@@ -8,11 +8,14 @@
 
 #include "glm/glm.hpp"
 
+extern int windowWidth;
+extern int windowHeight;
+
 class Window {
     public:
         glm::mat4 matrixViewProjection;
 
-        Window(int _width, int _height);
+        Window();
         void swap();
         void destroy();
         void clear();
@@ -21,7 +24,6 @@ class Window {
     private:
         SDL_Window* window;
         SDL_GLContext context;
-        int width, height;
 
         void initSDL();
         void initGL();
