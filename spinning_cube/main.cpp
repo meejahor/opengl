@@ -95,35 +95,19 @@ int main(int argc, char* argv[]) {
         Rendering::beginPositionsNormalAlbedo();
         Rendering::renderObjectToPositionsNormalAlbedo(objectCube);
 
-        // shaderRenderPositionNormalsAlbedo->use();
-        // rt_PositionNormalsAlbedo->beginRenderingPositionNormalsAlbedo();
-        // objectCube->renderPositionNormalsAlbedo(rt_PositionNormalsAlbedo);
+        // shaderRenderLightSphere->use();
+        // shaderRenderLightSphere->setAlbedoNormalsTextures();
+        // rt_PositionNormalsAlbedo->beginRenderingLighting();
+        // light->renderLightSphere(rt_PositionNormalsAlbedo);
 
-        shaderRenderLightSphere->use();
-        shaderRenderLightSphere->setAlbedoNormalsTextures();
-        rt_PositionNormalsAlbedo->beginRenderingLighting();
-        light->renderLightSphere(rt_PositionNormalsAlbedo);
-
-        // render camera views of objects
-        // shader->use();
         window->activate();
         window->clear();
 
         RenderTexture::resetDrawBuffer();
 
-        // objectCube->render(window->matrixViewProjection, shader);
-        // GLuint texID = glGetUniformLocation(shaderTexture, "renderedTexture");
-        // glActiveTexture(GL_TEXTURE0);
-        // glUniform1i(texID, 0);
-
-        // window->activate();
-        // objectCube->renderWithShadow(light);
-        // objectPlane->showDepthNormals(rt_DepthNormals);
-
         objectPlaneLightmap->showLightmap(light);
         objectPlanePosition->showPosition(rt_PositionNormalsAlbedo);
         objectPlaneNormals->showNormals(rt_PositionNormalsAlbedo);
-        // objectPlaneAlbedo->showAlbedo(rt_PositionNormalsAlbedo);
         objectPlaneFinal->showFinal(rt_PositionNormalsAlbedo);
 
         // show back buffer

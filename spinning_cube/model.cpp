@@ -183,6 +183,7 @@ void Model::showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt) {
 }
 
 void Model::renderPositionNormalsAlbedo() {
+    rt_Albedo->useAlbedo();
     draw(true);
 }
 
