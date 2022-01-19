@@ -15,8 +15,6 @@ class Rendering {
     static void renderObjectToLightmap(Object* object, Light* light);
     static void beginPositionsNormalAlbedo();
     static void renderObjectToPositionsNormalAlbedo(Object* object);
-    static void beginLightSpheres();
-    static void renderLightSphere(Light* light);
 };
 
 #endif

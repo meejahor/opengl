@@ -29,7 +29,6 @@ class Model {
     void showNormals(glm::mat4 const& matrixModel, RenderTexture* rt);
     void showAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt);
     void showFinal(glm::mat4 const& matrixModel, RenderTexture* rt);
-    void renderLightSphere();
 
     private:
     FILE* file;

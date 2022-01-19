@@ -95,9 +95,6 @@ int main(int argc, char* argv[]) {
         Rendering::beginPositionsNormalAlbedo();
         Rendering::renderObjectToPositionsNormalAlbedo(objectCube);
 
-        Rendering::beginLightSpheres();
-        Rendering::renderLightSphere(light);
-
         // shaderRenderLightSphere->use();
         // shaderRenderLightSphere->setAlbedoNormalsTextures();
         // rt_PositionNormalsAlbedo->beginRenderingLighting();
