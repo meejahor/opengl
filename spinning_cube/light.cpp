@@ -60,3 +60,10 @@ void Light::renderLightSphere(RenderTexture* rt) {
     shaderRenderLightSphere->setTextureSize(glm::vec2(windowWidth, windowHeight));
     objectLightSphere->renderLightSphere(rt);
 }
+
+void Light::setShaderPositionAndRadius() {
+    objectLightSphere->moveTo(position);
+    objectLightSphere->setScale(radius * 2);
+    objectLightSphere->update();
+    shaderRenderLightSphere->setLightPosAndRadius(position, radius);
+}
