@@ -205,7 +205,13 @@ void RenderTexture::beginRenderingPositionNormalsAlbedo() {
 
 void RenderTexture::beginRenderingLighting() {
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, position);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, normals);
+    glActiveTexture(GL_TEXTURE0);
+
     glDrawBuffers(1, drawBuffersLighting);
     glViewport(0, 0, width, height);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

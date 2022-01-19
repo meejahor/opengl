@@ -39,8 +39,8 @@ int main(int argc, char* argv[]) {
             glm::vec3(  3.0f,  3.0f,  0.0f),
             glm::vec3( -1.0f, -1.0f,  0.0f),
             60.0f,
-            5,
-            glm::vec3(  0.0f,  0.0f,  1.0f)
+            6,
+            glm::vec3(  0.0f,  1.0f,  0.0f)
         );
     } catch (...) {
         std::cout << "couldn't create light" << std::endl;
@@ -101,6 +101,7 @@ int main(int argc, char* argv[]) {
         objectCube->renderPositionNormalsAlbedo(rt_PositionNormalsAlbedo);
 
         shaderRenderLightSphere->use();
+        shaderRenderLightSphere->setAlbedoNormalsTextures();
         rt_PositionNormalsAlbedo->beginRenderingLighting();
         light->renderLightSphere(rt_PositionNormalsAlbedo);
 

@@ -50,6 +50,7 @@ void Shader::findIDs() {
 
     texture_albedo_ID = glGetUniformLocation(program, "texture_albedo");
     texture_lighting_ID = glGetUniformLocation(program, "texture_lighting");
+    texture_normals_ID = glGetUniformLocation(program, "texture_normals");
 
     lightPos_ID = glGetUniformLocation(program, "lightPos");
     lightRadius_ID = glGetUniformLocation(program, "lightRadius");
@@ -169,6 +170,11 @@ void Shader::setMatricesForScreenRenderingNoLighting(
 void Shader::setAlbedoLightingTextures() {
     glUniform1i(texture_albedo_ID, 0);
     glUniform1i(texture_lighting_ID, 1);
+}
+
+void Shader::setAlbedoNormalsTextures() {
+    glUniform1i(texture_albedo_ID, 0);
+    glUniform1i(texture_normals_ID, 1);
 }
 
 void Shader::setLightPosAndRadius(
