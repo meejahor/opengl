@@ -4,9 +4,6 @@
 #include "glm/glm.hpp"
 #include "renderTexture.hpp"
 #include "shader.hpp"
-#include "object.hpp"
-
-extern Object* objectLightSphere;
 
 class Light {
     public:
@@ -19,9 +16,8 @@ class Light {
     void beginRenderingLightmap();
     glm::mat4 matrixViewProjection;
     void useShadowMap();
-    static void loadResources();
-    void renderLightSphere(RenderTexture* rt);
-    void setShaderPositionAndRadius();
+    // void renderLightSphere(RenderTexture* rt);
+    // void setShaderPositionAndRadius();
 };
 
 #endif

@@ -61,8 +61,6 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    Light::loadResources();
-
     Object* objectCube = new Object(modelCube);
     Object* objectPlaneLightmap = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, 1.5f, 0));
     Object* objectPlanePosition = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 1.5f, 0));

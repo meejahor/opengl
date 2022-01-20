@@ -4,9 +4,17 @@
 #include "light.hpp"
 
 RenderTexture* rt_PositionNormalsAlbedo;
+Object* objectLightSphere;
 
 void Rendering::init() {
     rt_PositionNormalsAlbedo = RenderTexture::createPositionNormalsAlbedo(windowWidth, windowHeight);
+
+    try {
+        Model* modelLightSphere = new Model("sphere");
+        objectLightSphere = new Object(modelLightSphere);
+    } catch (...) {
+        throw;
+    }
 }
 
 void Rendering::beginLightmaps() {
@@ -43,10 +51,15 @@ void Rendering::beginLightSpheres() {
 }
 
 void Rendering::renderLightSphere(Light* light) {
-    light->setShaderPositionAndRadius();
+    // light->setShaderPositionAndRadius();
     shaderRenderLightSphere->setMatricesForScreen(
         objectLightSphere->modelMatrix,
         window->matrixViewProjection * objectLightSphere->modelMatrix
         );
+
+    objectLightSphere->moveTo(light->position);
+    objectLightSphere->setScale(light->radius * 2);
+    objectLightSphere->update();
+    shaderRenderLightSphere->setLightPosAndRadius(light->position, light->radius);
     objectLightSphere->model->renderLightSphere();
 }

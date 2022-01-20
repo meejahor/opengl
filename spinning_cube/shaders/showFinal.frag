@@ -12,7 +12,7 @@ uniform sampler2D texture_lighting;
 void main() {
     vec4 albedo = texture(texture_albedo, vertex.uv);
     vec4 lighting = texture(texture_lighting, vertex.uv);
-    // color = albedo * 2 * lighting;
+    color = albedo * 2 * lighting;
     // color = albedo;
-    color = lighting;
+    // color = lighting;
 }
