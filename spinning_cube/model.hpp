@@ -14,14 +14,10 @@
 
 class Model {
     public:
-    // std::vector<glm::vec3> out_vertices;
-    // std::vector<glm::vec2> out_uvs;
-    // std::vector<glm::vec3> out_normals;
-
     Model(std::string filename, Shader* _shader = NULL, bool flipUV_y = true);
-    void draw(bool uvs);
+    void draw(bool uvs = true);
     void renderToLightmap();
-    void renderWithShadow(Light* light, glm::mat4 const& matrixModel);
+    // void renderWithShadow(Light* light, glm::mat4 const& matrixModel);
     void showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt);
     void renderPositionNormalsAlbedo();
     void renderLightSphere(glm::mat4 const& matrixModel, RenderTexture* rt);
@@ -32,7 +28,6 @@ class Model {
     void renderLightSphere();
 
     private:
-    FILE* file;
     std::vector<float> data;
 
     std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;

@@ -22,44 +22,19 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
-    shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
-    shaderShowLightmap = new Shader("shaders/showLightmap.vert", "shaders/showLightmap.frag");
-    shaderRenderPositionNormalsAlbedo = new Shader("shaders/renderPositionNormalsAlbedo.vert", "shaders/renderPositionNormalsAlbedo.frag");
-    shaderShowPosition = new Shader("shaders/showPosition.vert", "shaders/showPosition.frag");
-    shaderRenderToLightmap = new Shader("shaders/renderToLightmap.vert", "shaders/renderToLightmap.frag");
-    shaderRenderLightSphere = new Shader("shaders/renderLightSphere.vert", "shaders/renderLightSphere.frag");
-    shaderShowFinal = new Shader("shaders/showFinal.vert", "shaders/showFinal.frag");
-
+    Shader::loadShaders();
     Rendering::init();
     
-    Light* light;
-    try {
-        light = new Light(
-            glm::vec3(  3.0f,  3.0f,  0.0f),
-            glm::vec3( -1.0f, -1.0f,  0.0f),
-            60.0f,
-            6,
-            glm::vec3(  0.0f,  1.0f,  0.0f)
+    Light* light = new Light(
+        glm::vec3(  3.0f,  3.0f,  0.0f),
+        glm::vec3( -1.0f, -1.0f,  0.0f),
+        60.0f,
+        6,
+        glm::vec3(  0.0f,  1.0f,  0.0f)
         );
-    } catch (...) {
-        std::cout << "couldn't create light" << std::endl;
-        return 0;
-    }
 
-    Model* modelCube;
-    try {
-        modelCube = new Model("square_with_cube_smooth");
-    } catch (...) {
-        return 0;
-    }
-
-    Model* modelPlane;
-    try {
-        modelPlane = new Model("plane", NULL, false);
-    } catch (...) {
-        return 0;
-    }
+    Model* modelCube = new Model("square_with_cube_smooth");
+    Model* modelPlane = new Model("plane", NULL, false);
 
     Object* objectCube = new Object(modelCube);
     Object* objectPlaneLightmap = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, 1.5f, 0));
@@ -89,29 +64,29 @@ int main(int argc, char* argv[]) {
 
         Rendering::beginLightmaps();
         Rendering::renderObjectToLightmap(objectCube, light);
+        Rendering::endLightmaps();
 
-        Rendering::beginPositionsNormalAlbedo();
-        Rendering::renderObjectToPositionsNormalAlbedo(objectCube);
+        Rendering::beginPositionNormalsAlbedo();
+        Rendering::renderObjectToPositionNormalsAlbedo(objectCube);
 
         Rendering::beginLightSpheres();
         Rendering::renderLightSphere(light);
-
-        // shaderRenderLightSphere->use();
-        // shaderRenderLightSphere->setAlbedoNormalsTextures();
-        // rt_PositionNormalsAlbedo->beginRenderingLighting();
-        // light->renderLightSphere(rt_PositionNormalsAlbedo);
 
         window->activate();
         window->clear();
 
         RenderTexture::resetDrawBuffer();
 
-        objectPlaneLightmap->showLightmap(light);
-        objectPlanePosition->showPosition(rt_PositionNormalsAlbedo);
-        objectPlaneNormals->showNormals(rt_PositionNormalsAlbedo);
-        objectPlaneFinal->showFinal(rt_PositionNormalsAlbedo);
+        Rendering::showLightmap(objectPlaneLightmap, light);
+        Rendering::showPosition(objectPlanePosition);
+        Rendering::showNormals(objectPlaneNormals);
+        Rendering::showFinal(objectPlaneFinal);
+        // objectPlaneLightmap->showLightmap(light);
+        // objectPlanePosition->showPosition(rt_PositionNormalsAlbedo);
+        // objectPlaneNormals->showNormals(rt_PositionNormalsAlbedo);
+        // objectPlaneFinal->showFinal(rt_PositionNormalsAlbedo);
 
-        // show back buffer
+        // make rendered buffer visible
         window->swap();
     }
 

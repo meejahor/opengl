@@ -19,6 +19,7 @@ void Rendering::init() {
 
 void Rendering::beginLightmaps() {
     shaderRenderToLightmap->use();
+    glCullFace(GL_FRONT);
 }
 
 void Rendering::renderObjectToLightmap(Object* object, Light* light) {
@@ -27,15 +28,19 @@ void Rendering::renderObjectToLightmap(Object* object, Light* light) {
         light->matrixViewProjection * object->modelMatrix
         );
     light->texture->beginRenderingLightmap();
-    object->model->renderToLightmap();
+    object->model->draw();
 }
 
-void Rendering::beginPositionsNormalAlbedo() {
+void Rendering::endLightmaps() {
+    glCullFace(GL_BACK);
+}
+
+void Rendering::beginPositionNormalsAlbedo() {
     shaderRenderPositionNormalsAlbedo->use();
     rt_PositionNormalsAlbedo->beginRenderingPositionNormalsAlbedo();
 }
 
-void Rendering::renderObjectToPositionsNormalAlbedo(Object* object) {
+void Rendering::renderObjectToPositionNormalsAlbedo(Object* object) {
     shaderRenderPositionNormalsAlbedo->setMatricesForScreen(
         object->modelMatrix,
         window->matrixViewProjection * object->modelMatrix
@@ -45,13 +50,10 @@ void Rendering::renderObjectToPositionsNormalAlbedo(Object* object) {
 
 void Rendering::beginLightSpheres() {
     shaderRenderLightSphere->use();
-    shaderRenderLightSphere->setTextureSize(glm::vec2(windowWidth, windowHeight));
-    shaderRenderLightSphere->setPositionNormalsTextures();
     rt_PositionNormalsAlbedo->beginRenderingLighting();
 }
 
 void Rendering::renderLightSphere(Light* light) {
-    // light->setShaderPositionAndRadius();
     shaderRenderLightSphere->setMatricesForScreen(
         objectLightSphere->modelMatrix,
         window->matrixViewProjection * objectLightSphere->modelMatrix
@@ -61,5 +63,46 @@ void Rendering::renderLightSphere(Light* light) {
     objectLightSphere->setScale(light->radius * 2);
     objectLightSphere->update();
     shaderRenderLightSphere->setLightPosAndRadius(light->position, light->radius);
-    objectLightSphere->model->renderLightSphere();
+    objectLightSphere->model->draw();
+}
+
+void Rendering::showLightmap(Object* plane, Light* light) {
+    shaderShowLightmap->use();
+    shaderShowLightmap->setMatricesForScreenRenderingNoLighting(
+        plane->modelMatrix,
+        window->matrixViewProjection * plane->modelMatrix
+        );
+    light->texture->showLightmap();
+    plane->model->draw();
+}
+
+void Rendering::showPosition(Object* plane) {
+    shaderShowPosition->use();
+    shaderShowLightmap->setMatricesForScreenRenderingNoLighting(
+        plane->modelMatrix,
+        window->matrixViewProjection * plane->modelMatrix
+        );
+    rt_PositionNormalsAlbedo->showPosition();
+    plane->model->draw();
+}
+
+void Rendering::showNormals(Object* plane) {
+    shaderShowTexture->use();
+    shaderShowLightmap->setMatricesForScreenRenderingNoLighting(
+        plane->modelMatrix,
+        window->matrixViewProjection * plane->modelMatrix
+        );
+    rt_PositionNormalsAlbedo->showNormals();
+    plane->model->draw();
+}
+
+void Rendering::showFinal(Object* plane) {
+    shaderShowFinal->use();
+    shaderShowLightmap->setMatricesForScreenRenderingNoLighting(
+        plane->modelMatrix,
+        window->matrixViewProjection * plane->modelMatrix
+        );
+    shaderShowFinal->setAlbedoLightingTextures();
+    rt_PositionNormalsAlbedo->showFinal();
+    plane->model->draw();
 }

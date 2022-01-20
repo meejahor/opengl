@@ -9,6 +9,8 @@
 #include <OpenGL/gl3.h>
 #include "glm/glm.hpp"
 
+FILE* file;
+
 void Model::loadVertex() {
     glm::vec3 vertex;
     fscanf(file, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z);
@@ -161,18 +163,18 @@ void Model::renderToLightmap() {
     glCullFace(GL_BACK);
 }
 
-void Model::renderWithShadow(Light* light, glm::mat4 const& matrixModel) {
-    shader->use();
-    shader->setMatricesForScreenRenderingWithLighting(
-        matrixModel,
-        window->matrixViewProjection * matrixModel,
-        light->matrixViewProjection * matrixModel,
-        light->position,
-        light->direction
-        );
-    light->useShadowMap();
-    draw(true);
-}
+// void Model::renderWithShadow(Light* light, glm::mat4 const& matrixModel) {
+//     shader->use();
+//     shader->setMatricesForScreenRenderingWithLighting(
+//         matrixModel,
+//         window->matrixViewProjection * matrixModel,
+//         light->matrixViewProjection * matrixModel,
+//         light->position,
+//         light->direction
+//         );
+//     light->useShadowMap();
+//     draw(true);
+// }
 
 void Model::showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt) {
     shaderShowLightmap->use();

@@ -3,8 +3,6 @@
 #include "light.hpp"
 #include "renderTexture.hpp"
 #include "utils.hpp"
-#include "shader.hpp"
-#include "model.hpp"
 
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/gl3.h>
@@ -30,26 +28,10 @@ Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, float _radi
     }
 }
 
-void Light::beginRenderingLightmap() {
-    texture->beginRenderingLightmap();
-}
-
-void Light::useShadowMap() {
-    texture->showTexture();
-}
-
-// void Light::renderLightSphere(RenderTexture* rt) {
-//     objectLightSphere->moveTo(position);
-//     objectLightSphere->setScale(radius * 2);
-//     objectLightSphere->update();
-//     shaderRenderLightSphere->setLightPosAndRadius(position, radius);
-//     shaderRenderLightSphere->setTextureSize(glm::vec2(windowWidth, windowHeight));
-//     objectLightSphere->renderLightSphere(rt);
+// void Light::beginRenderingLightmap() {
+//     texture->beginRenderingLightmap();
 // }
 
-// void Light::setShaderPositionAndRadius() {
-//     objectLightSphere->moveTo(position);
-//     objectLightSphere->setScale(radius * 2);
-//     objectLightSphere->update();
-//     shaderRenderLightSphere->setLightPosAndRadius(position, radius);
+// void Light::useShadowMap() {
+//     texture->showTexture();
 // }

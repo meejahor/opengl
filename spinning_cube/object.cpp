@@ -25,9 +25,9 @@ void Object::update() {
     calcMatrix();
 }
 
-void Object::renderWithShadow(Light* light) {
-    model->renderWithShadow(light, modelMatrix);
-}
+// void Object::renderWithShadow(Light* light) {
+//     model->renderWithShadow(light, modelMatrix);
+// }
 
 void Object::showLightmap(Light* light) {
     model->showLightmap(modelMatrix, light->texture);
@@ -47,10 +47,6 @@ void Object::showNormals(RenderTexture* rt) {
 
 void Object::showAlbedo(RenderTexture* rt) {
     model->showAlbedo(modelMatrix, rt);
-}
-
-void Object::renderLightSphere(RenderTexture* rt) {
-    model->renderLightSphere(modelMatrix, rt);
 }
 
 void Object::moveTo(glm::vec3 _position) {

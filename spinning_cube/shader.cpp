@@ -8,6 +8,7 @@
 #include "glm/gtc/type_ptr.hpp"
 
 #include "shader.hpp"
+#include "window.hpp"
 
 Shader* shaderToScreen;
 Shader* shaderShowTexture;
@@ -17,6 +18,21 @@ Shader* shaderShowPosition;
 Shader* shaderRenderToLightmap;
 Shader* shaderRenderLightSphere;
 Shader* shaderShowFinal;
+
+void Shader::loadShaders() {
+    shaderRenderLightSphere = new Shader("shaders/renderLightSphere.vert", "shaders/renderLightSphere.frag");
+    shaderRenderLightSphere->use();
+    shaderRenderLightSphere->setTextureSize(glm::vec2(windowWidth, windowHeight));
+    shaderRenderLightSphere->setPositionNormalsTextures();
+
+    shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
+    shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
+    shaderShowLightmap = new Shader("shaders/showLightmap.vert", "shaders/showLightmap.frag");
+    shaderRenderPositionNormalsAlbedo = new Shader("shaders/renderPositionNormalsAlbedo.vert", "shaders/renderPositionNormalsAlbedo.frag");
+    shaderShowPosition = new Shader("shaders/showPosition.vert", "shaders/showPosition.frag");
+    shaderRenderToLightmap = new Shader("shaders/renderToLightmap.vert", "shaders/renderToLightmap.frag");
+    shaderShowFinal = new Shader("shaders/showFinal.vert", "shaders/showFinal.frag");
+}
 
 std::string readFile(const char *filePath) {
     std::string content;
