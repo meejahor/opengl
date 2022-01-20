@@ -1,6 +1,7 @@
 #include "rendering.hpp"
 #include "window.hpp"
 #include "shader.hpp"
+#include "light.hpp"
 
 RenderTexture* rt_PositionNormalsAlbedo;
 
@@ -32,4 +33,20 @@ void Rendering::renderObjectToPositionsNormalAlbedo(Object* object) {
         window->matrixViewProjection * object->modelMatrix
         );
     object->model->renderPositionNormalsAlbedo();
+}
+
+void Rendering::beginLightSpheres() {
+    shaderRenderLightSphere->use();
+    shaderRenderLightSphere->setTextureSize(glm::vec2(windowWidth, windowHeight));
+    shaderRenderLightSphere->setPositionNormalsTextures();
+    rt_PositionNormalsAlbedo->beginRenderingLighting();
+}
+
+void Rendering::renderLightSphere(Light* light) {
+    light->setShaderPositionAndRadius();
+    shaderRenderLightSphere->setMatricesForScreen(
+        objectLightSphere->modelMatrix,
+        window->matrixViewProjection * objectLightSphere->modelMatrix
+        );
+    objectLightSphere->model->renderLightSphere();
 }

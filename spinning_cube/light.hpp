@@ -4,6 +4,9 @@
 #include "glm/glm.hpp"
 #include "renderTexture.hpp"
 #include "shader.hpp"
+#include "object.hpp"
+
+extern Object* objectLightSphere;
 
 class Light {
     public:
@@ -18,6 +21,7 @@ class Light {
     void useShadowMap();
     static void loadResources();
     void renderLightSphere(RenderTexture* rt);
+    void setShaderPositionAndRadius();
 };
 
 #endif

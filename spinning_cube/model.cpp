@@ -217,6 +217,9 @@ void Model::showFinal(glm::mat4 const& matrixModel, RenderTexture* rt) {
 }
 
 void Model::renderLightSphere(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    shaderRenderLightSphere->setMatricesForScreen(matrixModel, window->matrixViewProjection * matrixModel);
+    draw(true);
+}
+
+void Model::renderLightSphere() {
     draw(true);
 }
