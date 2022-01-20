@@ -81,10 +81,6 @@ int main(int argc, char* argv[]) {
         Rendering::showPosition(objectPlanePosition);
         Rendering::showNormals(objectPlaneNormals);
         Rendering::showFinal(objectPlaneFinal);
-        // objectPlaneLightmap->showLightmap(light);
-        // objectPlanePosition->showPosition(rt_PositionNormalsAlbedo);
-        // objectPlaneNormals->showNormals(rt_PositionNormalsAlbedo);
-        // objectPlaneFinal->showFinal(rt_PositionNormalsAlbedo);
 
         // make rendered buffer visible
         window->swap();

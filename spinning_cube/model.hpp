@@ -15,7 +15,7 @@
 class Model {
     public:
     Model(std::string filename, Shader* _shader = NULL, bool flipUV_y = true);
-    void draw(bool uvs = true);
+    void draw();
     void renderToLightmap();
     // void renderWithShadow(Light* light, glm::mat4 const& matrixModel);
     void showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt);
@@ -26,6 +26,7 @@ class Model {
     void showAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt);
     void showFinal(glm::mat4 const& matrixModel, RenderTexture* rt);
     void renderLightSphere();
+    RenderTexture* rt_Albedo;
 
     private:
     std::vector<float> data;
@@ -47,8 +48,6 @@ class Model {
     void setupBuffers();
     void load(std::string filename, bool flipUV_y);
     void loadTextures(std::string filename);
-
-    RenderTexture* rt_Albedo;
 };
 
 #endif

@@ -45,7 +45,8 @@ void Rendering::renderObjectToPositionNormalsAlbedo(Object* object) {
         object->modelMatrix,
         window->matrixViewProjection * object->modelMatrix
         );
-    object->model->renderPositionNormalsAlbedo();
+    object->model->rt_Albedo->showAlbedo();
+    object->model->draw();
 }
 
 void Rendering::beginLightSpheres() {

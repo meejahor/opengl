@@ -144,84 +144,8 @@ Model::Model(std::string filename, Shader* _shader, bool flipUV_y) {
     loadTextures(filename);
 }
 
-void Model::draw(bool uvs) {
+void Model::draw() {
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBindVertexArray(vertexArray);
-
-    // if (uvs) {
-    //     glEnableVertexAttribArray(2);
-    // } else {
-    //     glDisableVertexAttribArray(2);
-    // }
-    
     glDrawArrays(GL_TRIANGLES, 0, data.size() / 8);
-}
-
-void Model::renderToLightmap() {
-    glCullFace(GL_FRONT);
-    draw(true);
-    glCullFace(GL_BACK);
-}
-
-// void Model::renderWithShadow(Light* light, glm::mat4 const& matrixModel) {
-//     shader->use();
-//     shader->setMatricesForScreenRenderingWithLighting(
-//         matrixModel,
-//         window->matrixViewProjection * matrixModel,
-//         light->matrixViewProjection * matrixModel,
-//         light->position,
-//         light->direction
-//         );
-//     light->useShadowMap();
-//     draw(true);
-// }
-
-void Model::showLightmap(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    shaderShowLightmap->use();
-    shaderShowLightmap->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-    rt->showLightmap();
-    // shader->setDepthNormalsTextures(rt->depth, rt->normals);
-    draw(true);
-}
-
-void Model::renderPositionNormalsAlbedo() {
-    rt_Albedo->useAlbedo();
-    draw(true);
-}
-
-void Model::showPosition(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    shaderShowPosition->use();
-    shaderShowPosition->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-    rt->showPosition();
-    draw(true);
-}
-
-void Model::showNormals(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    shaderShowTexture->use();
-    shaderShowTexture->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-    rt->showNormals();
-    draw(true);
-}
-
-void Model::showAlbedo(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    shaderShowTexture->use();
-    shaderShowTexture->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-    rt->showAlbedo();
-    draw(true);
-}
-
-void Model::showFinal(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    shaderShowFinal->use();
-    shaderShowFinal->setMatricesForScreenRenderingNoLighting(matrixModel, window->matrixViewProjection * matrixModel);
-    shaderShowFinal->setAlbedoLightingTextures();
-    rt->showFinal();
-    draw(true);
-}
-
-void Model::renderLightSphere(glm::mat4 const& matrixModel, RenderTexture* rt) {
-    draw(true);
-}
-
-void Model::renderLightSphere() {
-    draw(true);
 }

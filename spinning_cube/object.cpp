@@ -25,38 +25,10 @@ void Object::update() {
     calcMatrix();
 }
 
-// void Object::renderWithShadow(Light* light) {
-//     model->renderWithShadow(light, modelMatrix);
-// }
-
-void Object::showLightmap(Light* light) {
-    model->showLightmap(modelMatrix, light->texture);
-}
-
-// void Object::renderPositionNormalsAlbedo(RenderTexture* rt) {
-//     model->renderPositionNormalsAlbedo(modelMatrix, rt);
-// }
-
-void Object::showPosition(RenderTexture* rt) {
-    model->showPosition(modelMatrix, rt);
-}
-
-void Object::showNormals(RenderTexture* rt) {
-    model->showNormals(modelMatrix, rt);
-}
-
-void Object::showAlbedo(RenderTexture* rt) {
-    model->showAlbedo(modelMatrix, rt);
-}
-
 void Object::moveTo(glm::vec3 _position) {
     position = _position;
 }
 
 void Object::setScale(float _scale) {
     scale = _scale;
-}
-
-void Object::showFinal(RenderTexture* rt) {
-    model->showFinal(modelMatrix, rt);
 }

@@ -27,11 +27,3 @@ Light::Light(glm::vec3 _position, glm::vec3 _direction, float _cone, float _radi
         throw;
     }
 }
-
-// void Light::beginRenderingLightmap() {
-//     texture->beginRenderingLightmap();
-// }
-
-// void Light::useShadowMap() {
-//     texture->showTexture();
-// }

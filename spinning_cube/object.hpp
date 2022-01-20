@@ -19,12 +19,6 @@ class Object {
     glm::mat4 modelMatrix;
     Object(Model* _model, float _scale = 1, glm::vec3 _position = glm::vec3(0, 0, 0));
     void update();
-    void showLightmap(Light* light);
-    void showPosition(RenderTexture* rt);
-    void showNormals(RenderTexture* rt);
-    void showAlbedo(RenderTexture* rt);
-    void showFinal(RenderTexture* rt);
-
     void moveTo(glm::vec3 _translation);
     void setScale(float _scale);
 };
