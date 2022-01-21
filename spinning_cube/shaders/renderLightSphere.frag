@@ -5,6 +5,8 @@ layout (location = 0) out vec4 lighting;
 vec4 white = vec4(1);
 vec4 black = vec4(0);
 
+uniform mat4 mat4_Light_VP;
+
 uniform vec3 lightPos;
 uniform float lightRadius;
 uniform vec2 textureSize;
@@ -32,4 +34,10 @@ void main() {
     float d = dot(normal, angleToLight);
     d = clamp(d, 0, 1);
     lighting = mix(black, lighting, d);
+
+    vec4 lightSpace = mat4_Light_VP * vec4(position, 1);
+    vec3 lightmap_uv = lightSpace.xyz / lightSpace.w;
+    lightmap_uv = lightmap_uv * 0.5 + 0.5;
+    float isLit = texture(texture_lightmap, lightmap_uv);
+    lighting = mix(lighting, black, isLit);
 }
