@@ -4,22 +4,25 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 static const float SPEED = 90;
-static glm::mat4 mat4_identity;
+static glm::mat4 mat4_one = glm::mat4(1.0f);
 
-Object::Object(Model* _model) {
+Object::Object(Model* _model, float _scale, glm::vec3 _position) {
     model = _model;
-    update();
+    scale = _scale;
+    position = _position;
+    rotation = 0;
+    calcMatrix();
+}
+
+void Object::calcMatrix() {
+    modelMatrix = glm::translate(mat4_one, position);
+    modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation), glm::vec3(1, 0, 0));
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(scale));
 }
 
 void Object::update() {
-    modelMatrix = glm::translate(mat4_identity, position);
-    modelMatrix *= rotation;
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(scale));
-    modelMatrix = mat4_identity;
-}
-
-void Object::rotate(float degrees, glm::vec3 axis) {
-    rotation = glm::rotate(rotation, glm::radians(degrees), axis);
+    rotation += SPEED * deltaTime;
+    calcMatrix();
 }
 
 void Object::moveTo(glm::vec3 _position) {

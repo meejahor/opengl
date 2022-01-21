@@ -9,16 +9,16 @@
 
 class Object {
     private:
-    float scale = 1;
+    float rotation;
+    float scale;
     glm::vec3 position;
-    glm::mat4 rotation;
+    void calcMatrix();
 
     public:
     Model* model;
     glm::mat4 modelMatrix;
-    Object(Model* _model);
+    Object(Model* _model, float _scale = 1, glm::vec3 _position = glm::vec3(0, 0, 0));
     void update();
-    void rotate(float degrees, glm::vec3 axis);
     void moveTo(glm::vec3 _translation);
     void setScale(float _scale);
 };
