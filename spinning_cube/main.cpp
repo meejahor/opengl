@@ -37,11 +37,13 @@ int main(int argc, char* argv[]) {
     Model* modelPlane = new Model("plane", NULL, false);
 
     Object* objectCube = new Object(modelCube);
-    Object* objectPlaneLightmap = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, 1.5f, 0));
-    Object* objectPlanePosition = new Object(modelPlane, 1.5f, glm::vec3(1.5f, 1.5f, 0));
-    Object* objectPlaneNormals = new Object(modelPlane, 1.5f, glm::vec3(-1.5f, -1.5f, 0));
-    Object* objectPlaneAlbedo = new Object(modelPlane, 1.5f, glm::vec3(1.5f, -1.5f, 0));
-    Object* objectPlaneFinal = new Object(modelPlane, 1.5f, glm::vec3(1.5f, -1.5f, 0));
+    Object* objectPlaneLightmap = new Object(modelPlane);
+    Object* objectPlanePosition = new Object(modelPlane);
+    Object* objectPlaneNormals = new Object(modelPlane);
+    Object* objectPlaneAlbedo = new Object(modelPlane);
+    Object* objectPlaneFinal = new Object(modelPlane);
+
+    Object* objectPlaneFinalLarge = new Object(modelPlane);
 
     bool gameIsRunning = true;
 
@@ -60,7 +62,9 @@ int main(int argc, char* argv[]) {
 
         deltaTimeUpdate();
 
-        objectCube->update();
+        // objectPlaneFinalLarge->rotate(deltaTime, glm::vec3(1, 0, 0));
+        // objectPlaneFinalLarge->update();
+        // objectCube->update();
 
         Rendering::beginLightmaps();
         Rendering::renderObjectToLightmap(objectCube, light);
@@ -76,10 +80,12 @@ int main(int argc, char* argv[]) {
         window->activate();
         window->clear();
 
-        Rendering::showLightmap(objectPlaneLightmap, light);
-        Rendering::showPosition(objectPlanePosition);
-        Rendering::showNormals(objectPlaneNormals);
-        Rendering::showFinal(objectPlaneFinal);
+        // Rendering::showLightmap(objectPlaneLightmap, light);
+        // Rendering::showPosition(objectPlanePosition);
+        // Rendering::showNormals(objectPlaneNormals);
+        // Rendering::showFinal(objectPlaneFinal);
+        // objectPlaneFinalLarge->update();
+        Rendering::showFinal(objectPlaneFinalLarge);
 
         // make rendered buffer visible
         window->swap();
