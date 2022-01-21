@@ -18,6 +18,7 @@ class Rendering {
     static void renderObjectToPositionNormalsAlbedo(Object* object);
     static void beginLightSpheres();
     static void renderLightSphere(Light* light);
+    static void endLightSpheres();
     static void showLightmap(Object* plane, Light* light);
     static void showPosition(Object* plane);
     static void showNormals(Object* plane);

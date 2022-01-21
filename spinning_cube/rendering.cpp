@@ -45,6 +45,7 @@ void Rendering::renderObjectToPositionNormalsAlbedo(Object* object) {
         object->modelMatrix,
         window->matrixViewProjection * object->modelMatrix
         );
+
     object->model->rt_Albedo->showAlbedo();
     object->model->draw();
 }
@@ -55,16 +56,22 @@ void Rendering::beginLightSpheres() {
 }
 
 void Rendering::renderLightSphere(Light* light) {
-    shaderRenderLightSphere->setMatricesForScreen(
+    shaderRenderLightSphere->setMatricesForScreenAndLight(
         objectLightSphere->modelMatrix,
-        window->matrixViewProjection * objectLightSphere->modelMatrix
+        window->matrixViewProjection * objectLightSphere->modelMatrix,
+        light->matrixViewProjection
         );
 
     objectLightSphere->moveTo(light->position);
-    objectLightSphere->setScale(light->radius * 2);
+    objectLightSphere->setScale(light->radius);
     objectLightSphere->update();
     shaderRenderLightSphere->setLightPosAndRadius(light->position, light->radius);
+    light->texture->showLightmap();
     objectLightSphere->model->draw();
+}
+
+void Rendering::endLightSpheres() {
+    RenderTexture::setDefaultDrawBuffersAndTexture();
 }
 
 void Rendering::showLightmap(Object* plane, Light* light) {

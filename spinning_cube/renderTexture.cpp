@@ -8,7 +8,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-unsigned int drawBuffersColor[1] = {
+unsigned int drawBuffersDefault[1] = {
     GL_COLOR_ATTACHMENT0
     };
 
@@ -96,12 +96,6 @@ void RenderTexture::createLightmap() {
     addDepthTexture(depth);
 }
 
-void RenderTexture::createDepthNormals() {
-    init();
-    addColorTexture(normals, GL_RGBA16F);
-    addDepthBuffer();
-}
-
 void RenderTexture::loadImage_Albedo(std::string filename) {
     init();
     addImage(albedo, filename);
@@ -123,13 +117,6 @@ RenderTexture* RenderTexture::createLightmap(int width, int height) {
     return rt;
 }
 
-RenderTexture* RenderTexture::createDepthNormals(int width, int height) {
-    RenderTexture* rt = new RenderTexture(width, height);
-    rt->createDepthNormals();
-    checkValid();
-    return rt;
-}
-
 RenderTexture* RenderTexture::createPositionNormalsAlbedo(int width, int height) {
     RenderTexture* rt = new RenderTexture(width, height);
     rt->createPositionNormalsAlbedo();
@@ -145,17 +132,10 @@ RenderTexture* RenderTexture::loadAlbedo(std::string filename) {
 
 void RenderTexture::beginRenderingLightmap() {
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+    glDrawBuffers(1, drawBuffersDefault);
     glViewport(0, 0, width, height);
     glClearDepth(1);
     glClear(GL_DEPTH_BUFFER_BIT);
-}
-
-void RenderTexture::beginDepthNormals() {
-    glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-    glViewport(0, 0, width, height);
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClearDepth(1);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void RenderTexture::showTexture() {
@@ -164,10 +144,6 @@ void RenderTexture::showTexture() {
 
 void RenderTexture::useAlbedo() {
     glBindTexture(GL_TEXTURE_2D, albedo);
-}
-
-void RenderTexture::showDepthNormals() {
-    glBindTexture(GL_TEXTURE_2D, normals);
 }
 
 void RenderTexture::showLightmap() {
@@ -210,7 +186,8 @@ void RenderTexture::beginRenderingLighting() {
     glBindTexture(GL_TEXTURE_2D, position);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, normals);
-    glActiveTexture(GL_TEXTURE0);
+    glActiveTexture(GL_TEXTURE2);
+    // we set this to GL_TEXTURE2 because we'll call showLightmap for each light
 
     glDrawBuffers(1, drawBuffersLighting);
     glViewport(0, 0, width, height);
@@ -219,6 +196,7 @@ void RenderTexture::beginRenderingLighting() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void RenderTexture::resetDrawBuffer() {
-    glDrawBuffers(1, drawBuffersColor);
+void RenderTexture::setDefaultDrawBuffersAndTexture() {
+    glDrawBuffers(1, drawBuffersDefault);
+    glActiveTexture(GL_TEXTURE0);
 }

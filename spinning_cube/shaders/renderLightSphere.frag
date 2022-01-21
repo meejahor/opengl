@@ -10,6 +10,7 @@ uniform float lightRadius;
 uniform vec2 textureSize;
 uniform sampler2D texture_position;
 uniform sampler2D texture_normals;
+uniform sampler2DShadow texture_lightmap;
 
 void main() {
     vec3 position = texture(texture_position, gl_FragCoord.xy / textureSize).xyz;

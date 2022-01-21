@@ -23,15 +23,14 @@ class RenderTexture {
     protected:
     void createColor();
     void createLightmap();
-    void createDepthNormals();
     void createPositionNormalsAlbedo();
 
     public:
-    GLuint position;     // TODO: this should be back in private
-    GLuint normals;     // TODO: this should be back in private
-    GLuint albedo;     // TODO: this should be back in private
+    GLuint position;
+    GLuint normals;
+    GLuint albedo;
     GLuint lighting;
-    GLuint depth;     // TODO: this should be back in private
+    GLuint depth;
     RenderTexture();
     RenderTexture(int _width, int _height);
     static RenderTexture* createLightmap(int width, int height);
@@ -39,8 +38,6 @@ class RenderTexture {
     static RenderTexture* createPositionNormalsAlbedo(int width, int height);
     void beginRenderingLightmap();
     void showTexture();
-    void showDepthNormals();
-    void beginDepthNormals();
     void showLightmap();
     void showPosition();
     void showNormals();
@@ -49,8 +46,8 @@ class RenderTexture {
     void beginRenderingPositionNormalsAlbedo();
     void beginRenderingLighting();
     void useAlbedo();
-    static void resetDrawBuffer();
     static RenderTexture* loadAlbedo(std::string filename);
+    static void setDefaultDrawBuffersAndTexture();
 };
 
 #endif

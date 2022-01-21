@@ -71,11 +71,10 @@ int main(int argc, char* argv[]) {
 
         Rendering::beginLightSpheres();
         Rendering::renderLightSphere(light);
+        Rendering::endLightSpheres();
 
         window->activate();
         window->clear();
-
-        RenderTexture::resetDrawBuffer();
 
         Rendering::showLightmap(objectPlaneLightmap, light);
         Rendering::showPosition(objectPlanePosition);

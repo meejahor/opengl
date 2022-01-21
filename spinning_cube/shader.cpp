@@ -23,7 +23,7 @@ void Shader::loadShaders() {
     shaderRenderLightSphere = new Shader("shaders/renderLightSphere.vert", "shaders/renderLightSphere.frag");
     shaderRenderLightSphere->use();
     shaderRenderLightSphere->setTextureSize(glm::vec2(windowWidth, windowHeight));
-    shaderRenderLightSphere->setPositionNormalsTextures();
+    shaderRenderLightSphere->setPositionNormalsLightmapTextures();
 
     shaderToScreen = new Shader("shaders/renderToScreen.vert", "shaders/renderToScreen.frag");
     shaderShowTexture = new Shader("shaders/showTexture.vert", "shaders/showTexture.frag");
@@ -57,6 +57,8 @@ void Shader::findIDs() {
     mat4_Model_ID = glGetUniformLocation(program, "mat4_Model");
     mat4_Camera_MVP_ID = glGetUniformLocation(program, "mat4_Camera_MVP");
     mat4_Light_MVP_ID = glGetUniformLocation(program, "mat4_Light_MVP");
+    mat4_Light_VP_ID = glGetUniformLocation(program, "mat4_Light_VP");
+
     lightPosition_ID = glGetUniformLocation(program, "lightPosition");
     lightDirection_ID = glGetUniformLocation(program, "lightDirection");
     // depthTexture_ID = glGetUniformLocation(program, "depthTexture");
@@ -68,6 +70,7 @@ void Shader::findIDs() {
     texture_lighting_ID = glGetUniformLocation(program, "texture_lighting");
     texture_normals_ID = glGetUniformLocation(program, "texture_normals");
     texture_position_ID = glGetUniformLocation(program, "texture_position");
+    texture_lightmap_ID = glGetUniformLocation(program, "texture_lightmap");
 
     lightPos_ID = glGetUniformLocation(program, "lightPos");
     lightRadius_ID = glGetUniformLocation(program, "lightRadius");
@@ -162,6 +165,16 @@ void Shader::setMatricesForScreen(
     glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
 }
 
+void Shader::setMatricesForScreenAndLight(
+    glm::mat4 const& mat4_Model,
+    glm::mat4 const& mat4_Camera_MVP,
+    glm::mat4 const& mat4_Light_VP
+    ) {
+    glUniformMatrix4fv(mat4_Model_ID, 1, GL_FALSE, glm::value_ptr(mat4_Model));
+    glUniformMatrix4fv(mat4_Camera_MVP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Camera_MVP));
+    glUniformMatrix4fv(mat4_Light_VP_ID, 1, GL_FALSE, glm::value_ptr(mat4_Light_VP));
+}
+
 void Shader::setMatricesForScreenRenderingWithLighting(
     glm::mat4 const& mat4_Model,
     glm::mat4 const& mat4_Camera_MVP,
@@ -194,9 +207,10 @@ void Shader::setAlbedoNormalsTextures() {
     glUniform1i(texture_normals_ID, 1);
 }
 
-void Shader::setPositionNormalsTextures() {
+void Shader::setPositionNormalsLightmapTextures() {
     glUniform1i(texture_position_ID, 0);
     glUniform1i(texture_normals_ID, 1);
+    glUniform1i(texture_lightmap_ID, 2);
 }
 
 void Shader::setLightPosAndRadius(glm::vec3 const& lightPos, float lightRadius) {
