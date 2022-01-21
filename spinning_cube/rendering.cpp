@@ -108,7 +108,7 @@ void Rendering::showFinal(Object* plane) {
     shaderShowFinal->use();
     shaderShowLightmap->setMatricesForScreenRenderingNoLighting(
         plane->modelMatrix,
-        window->matrixViewProjection * plane->modelMatrix
+        plane->modelMatrix
         );
     shaderShowFinal->setAlbedoLightingTextures();
     rt_PositionNormalsAlbedo->showFinal();

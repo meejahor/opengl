@@ -4,7 +4,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 static const float SPEED = 90;
-static glm::mat4 mat4_identity;
+static glm::mat4 mat4_identity = glm::mat4(1.0f);
 
 Object::Object(Model* _model) {
     model = _model;
@@ -13,9 +13,8 @@ Object::Object(Model* _model) {
 
 void Object::update() {
     modelMatrix = glm::translate(mat4_identity, position);
-    modelMatrix *= rotation;
+    modelMatrix = modelMatrix * rotation;
     modelMatrix = glm::scale(modelMatrix, glm::vec3(scale));
-    modelMatrix = mat4_identity;
 }
 
 void Object::rotate(float degrees, glm::vec3 axis) {

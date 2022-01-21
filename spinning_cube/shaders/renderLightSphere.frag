@@ -39,5 +39,5 @@ void main() {
     vec3 lightmap_uv = lightSpace.xyz / lightSpace.w;
     lightmap_uv = lightmap_uv * 0.5 + 0.5;
     float isLit = texture(texture_lightmap, lightmap_uv);
-    lighting = mix(lighting, black, isLit);
+    lighting = mix(black, lighting, isLit);
 }

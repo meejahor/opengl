@@ -37,6 +37,9 @@ int main(int argc, char* argv[]) {
     Model* modelPlane = new Model("plane", NULL, false);
 
     Object* objectCube = new Object(modelCube);
+    // objectCube->rotate(45, glm::vec3(1, 0, 0));
+    // objectCube->moveTo(glm::vec3(0, -1, 0));
+
     Object* objectPlaneLightmap = new Object(modelPlane);
     Object* objectPlanePosition = new Object(modelPlane);
     Object* objectPlaneNormals = new Object(modelPlane);
@@ -44,6 +47,8 @@ int main(int argc, char* argv[]) {
     Object* objectPlaneFinal = new Object(modelPlane);
 
     Object* objectPlaneFinalLarge = new Object(modelPlane);
+    // objectPlaneFinalLarge->setScale(3);
+    objectPlaneFinalLarge->update();
 
     bool gameIsRunning = true;
 
@@ -62,8 +67,8 @@ int main(int argc, char* argv[]) {
 
         deltaTimeUpdate();
 
-        // objectPlaneFinalLarge->rotate(deltaTime, glm::vec3(1, 0, 0));
-        // objectPlaneFinalLarge->update();
+        objectCube->rotate(45 * deltaTime, glm::vec3(0, 1, 0));
+        objectCube->update();
         // objectCube->update();
 
         Rendering::beginLightmaps();

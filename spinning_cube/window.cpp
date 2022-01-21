@@ -47,7 +47,7 @@ void Window::initSDL() {
 }
 
 void Window::initGL() {
-    glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 5.0f);
+    glm::vec3 cameraPos = glm::vec3(0.0f, 5.0f, 5.0f);
     glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
 
     matrixViewProjection = calcViewProjection(cameraPos, cameraTarget, 70.0f);
