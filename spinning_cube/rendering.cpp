@@ -53,6 +53,8 @@ void Rendering::renderObjectToPositionNormalsAlbedo(Object* object) {
 void Rendering::beginLightSpheres() {
     shaderRenderLightSphere->use();
     rt_PositionNormalsAlbedo->beginRenderingLighting();
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_DEPTH_TEST);
 }
 
 void Rendering::renderLightSphere(Light* light) {
@@ -72,6 +74,8 @@ void Rendering::renderLightSphere(Light* light) {
 
 void Rendering::endLightSpheres() {
     RenderTexture::setDefaultDrawBuffersAndTexture();
+    glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
 }
 
 void Rendering::showLightmap(Object* plane, Light* light) {
@@ -106,10 +110,6 @@ void Rendering::showNormals(Object* plane) {
 
 void Rendering::showFinal(Object* plane) {
     shaderShowFinal->use();
-    shaderShowLightmap->setMatricesForScreenRenderingNoLighting(
-        plane->modelMatrix,
-        plane->modelMatrix
-        );
     shaderShowFinal->setAlbedoLightingTextures();
     rt_PositionNormalsAlbedo->showFinal();
     plane->model->draw();

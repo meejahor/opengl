@@ -7,6 +7,8 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include "glm/ext.hpp"
 
+#include "window.hpp"
+
 // glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f); 
 
 glm::mat4 calcViewProjection(glm::vec3 position, glm::vec3 lookAt, float fov, glm::vec3 up) {
@@ -28,7 +30,7 @@ glm::mat4 calcViewProjection(glm::vec3 position, glm::vec3 lookAt, float fov, gl
 
     glm::mat4 matrixProjection = glm::perspective(
         glm::radians(fov),
-        800.0f/800.0f,
+        float(windowWidth / windowHeight),
         0.1f,
         10.0f
         );
