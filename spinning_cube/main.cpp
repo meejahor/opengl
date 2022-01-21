@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
 
     bool gameIsRunning = true;
 
-    deltaTimeInit();
+    DeltaTime::init();
 
     while (gameIsRunning) {
         SDL_Event event;
@@ -65,9 +65,9 @@ int main(int argc, char* argv[]) {
             // }
         }
 
-        deltaTimeUpdate();
+        DeltaTime::update();
 
-        objectCube->rotate(45 * deltaTime, glm::vec3(0, 1, 0));
+        objectCube->rotate(45 * DeltaTime::time, glm::vec3(0, 1, 0));
         objectCube->update();
         // objectCube->update();
 

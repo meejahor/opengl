@@ -1,9 +1,11 @@
 #ifndef DELTATIME_H
 #define DELTATIME_H
 
-extern float deltaTime;
-
-void deltaTimeInit();
-void deltaTimeUpdate();
+class DeltaTime {
+    public:
+    static void init();
+    static void update();
+    static float time;
+};
 
 #endif
