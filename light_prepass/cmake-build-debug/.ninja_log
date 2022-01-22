@@ -1,0 +1,23 @@
+# ninja log v5
+0	914	1642862423549350329	CMakeFiles/spinning_cube_clion.dir/deltatime.cpp.o	6b0deba8da8b23fb
+2	2252	1642862424884790905	CMakeFiles/spinning_cube_clion.dir/utils.cpp.o	e00c56a233809461
+3	1784	1642862424416018073	CMakeFiles/spinning_cube_clion.dir/window.cpp.o	fcbabbc71d889867
+2	1661	1642862424294973772	CMakeFiles/spinning_cube_clion.dir/renderTexture.cpp.o	bb8a875cdb8ffd25
+1	2022	1642862424653163468	CMakeFiles/spinning_cube_clion.dir/main.cpp.o	2f22fa6655d0d3bd
+1	1391	1642862424021970142	CMakeFiles/spinning_cube_clion.dir/light.cpp.o	d386ae807e22c9ab
+1	2032	1642862424664908239	CMakeFiles/spinning_cube_clion.dir/rendering.cpp.o	cfa552f406f7fb08
+1	2040	1642862424672467363	CMakeFiles/spinning_cube_clion.dir/object.cpp.o	14e4d15f5d7a1f94
+1	2189	1642862424821038247	CMakeFiles/spinning_cube_clion.dir/model.cpp.o	11b7039cb867a271
+2	2128	1642862424760064250	CMakeFiles/spinning_cube_clion.dir/shader.cpp.o	2bed12c89f704090
+2252	2338	1642862424982723303	spinning_cube_clion	f4f49fb7a93446bd
+4	708	1642862628281829762	CMakeFiles/spinning_cube_clion.dir/deltatime.cpp.o	300f25caaa3ec31a
+5	1099	1642862628672342779	CMakeFiles/spinning_cube_clion.dir/light.cpp.o	7254eaf304134303
+6	1344	1642862628917641018	CMakeFiles/spinning_cube_clion.dir/renderTexture.cpp.o	68b31a0e62494c1
+7	1439	1642862629012066138	CMakeFiles/spinning_cube_clion.dir/window.cpp.o	e0aa6e3315554b76
+5	1706	1642862629276051730	CMakeFiles/spinning_cube_clion.dir/main.cpp.o	fedb3b5ec7beeb03
+6	1725	1642862629296080123	CMakeFiles/spinning_cube_clion.dir/rendering.cpp.o	5b69a7fe93ba5534
+6	1738	1642862629311234582	CMakeFiles/spinning_cube_clion.dir/object.cpp.o	60eaa56b5ec4d60e
+6	1805	1642862629379764736	CMakeFiles/spinning_cube_clion.dir/shader.cpp.o	b72bc3eb1bad94bb
+5	1860	1642862629432969078	CMakeFiles/spinning_cube_clion.dir/model.cpp.o	3cfc61136304c6be
+7	1916	1642862629490117123	CMakeFiles/spinning_cube_clion.dir/utils.cpp.o	2bb90a6718e269fc
+1917	1975	1642862629556004801	spinning_cube_clion	f4f49fb7a93446bd
