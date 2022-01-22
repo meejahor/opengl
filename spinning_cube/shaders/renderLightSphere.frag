@@ -13,6 +13,7 @@ uniform vec2 textureSize;
 uniform sampler2D texture_position;
 uniform sampler2D texture_normals;
 uniform sampler2DShadow texture_lightmap;
+uniform sampler2D texture_cookie;
 
 void main() {
     vec3 position = texture(texture_position, gl_FragCoord.xy / textureSize).xyz;
@@ -41,4 +42,7 @@ void main() {
     float isLit = texture(texture_lightmap, lightmap_uv);
     isLit = mix(0.5, 1, isLit);
     lighting = mix(black, lighting, isLit);
+
+    float cookie = texture(texture_cookie, lightmap_uv.xy).r;
+    lighting = mix(black, lighting, cookie);
 }

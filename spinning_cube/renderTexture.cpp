@@ -79,8 +79,8 @@ void RenderTexture::addImage(GLuint& textureID, std::string filename, GLenum att
     stbi_image_free(data);
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, attachment, GL_TEXTURE_2D, textureID, 0);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
@@ -99,6 +99,11 @@ void RenderTexture::createLightmap() {
 void RenderTexture::loadImage_Albedo(std::string filename) {
     init();
     addImage(albedo, filename);
+}
+
+void RenderTexture::loadImage_Cookie(std::string filename) {
+    init();
+    addImage(cookie, filename);
 }
 
 void RenderTexture::createPositionNormalsAlbedo() {
@@ -130,6 +135,12 @@ RenderTexture* RenderTexture::loadAlbedo(std::string filename) {
     return rt;
 }
 
+RenderTexture* RenderTexture::loadCookie(std::string filename) {
+    RenderTexture* rt = new RenderTexture();
+    rt->loadImage_Cookie(filename);
+    return rt;
+}
+
 void RenderTexture::beginRenderingLightmap() {
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glDrawBuffers(1, drawBuffersDefault);
@@ -147,7 +158,13 @@ void RenderTexture::useAlbedo() {
 }
 
 void RenderTexture::showLightmap() {
+    glActiveTexture(GL_TEXTURE2);
     glBindTexture(GL_TEXTURE_2D, depth);
+}
+
+void RenderTexture::showCookie() {
+    glActiveTexture(GL_TEXTURE3);
+    glBindTexture(GL_TEXTURE_2D, cookie);
 }
 
 void RenderTexture::showPosition() {
@@ -186,7 +203,7 @@ void RenderTexture::beginRenderingLighting() {
     glBindTexture(GL_TEXTURE_2D, position);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, normals);
-    glActiveTexture(GL_TEXTURE2);
+    // glActiveTexture(GL_TEXTURE2);
     // we set this to GL_TEXTURE2 because we'll call showLightmap for each light
 
     glDrawBuffers(1, drawBuffersLighting);

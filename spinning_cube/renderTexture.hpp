@@ -19,6 +19,7 @@ class RenderTexture {
     void addDepthBuffer();
     void addImage(GLuint& textureID, std::string filename, GLenum attachment = GL_COLOR_ATTACHMENT0);
     void loadImage_Albedo(std::string filename);
+    void loadImage_Cookie(std::string filename);
 
     protected:
     void createColor();
@@ -31,6 +32,7 @@ class RenderTexture {
     GLuint albedo;
     GLuint lighting;
     GLuint depth;
+    GLuint cookie;
     RenderTexture();
     RenderTexture(int _width, int _height);
     static RenderTexture* createLightmap(int width, int height);
@@ -46,7 +48,9 @@ class RenderTexture {
     void beginRenderingPositionNormalsAlbedo();
     void beginRenderingLighting();
     void useAlbedo();
+    void showCookie();
     static RenderTexture* loadAlbedo(std::string filename);
+    static RenderTexture* loadCookie(std::string filename);
     static void setDefaultDrawBuffersAndTexture();
 };
 

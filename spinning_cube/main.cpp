@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
     Light* light = new Light(
         glm::vec3(  3.0f,  3.0f,  0.0f),
         glm::vec3( -1.0f, -1.0f,  0.0f),
-        60.0f,
+        45.0f,
         6,
         glm::vec3(  0.0f,  1.0f,  0.0f)
         );

@@ -4,10 +4,13 @@
 #include "light.hpp"
 
 RenderTexture* rt_PositionNormalsAlbedo;
+RenderTexture* rt_TorchCookie;
+
 Object* objectLightSphere;
 
 void Rendering::init() {
     rt_PositionNormalsAlbedo = RenderTexture::createPositionNormalsAlbedo(windowWidth, windowHeight);
+    rt_TorchCookie = RenderTexture::loadCookie("images/torch_cookie.png");
 
     try {
         Model* modelLightSphere = new Model("sphere");
@@ -53,8 +56,8 @@ void Rendering::renderObjectToPositionNormalsAlbedo(Object* object) {
 void Rendering::beginLightSpheres() {
     shaderRenderLightSphere->use();
     rt_PositionNormalsAlbedo->beginRenderingLighting();
-    glDisable(GL_CULL_FACE);
-    glDisable(GL_DEPTH_TEST);
+    // glDisable(GL_CULL_FACE);
+    // glDisable(GL_DEPTH_TEST);
 }
 
 void Rendering::renderLightSphere(Light* light) {
@@ -69,13 +72,14 @@ void Rendering::renderLightSphere(Light* light) {
     objectLightSphere->update();
     shaderRenderLightSphere->setLightPosAndRadius(light->position, light->radius);
     light->texture->showLightmap();
+    rt_TorchCookie->showCookie();
     objectLightSphere->model->draw();
 }
 
 void Rendering::endLightSpheres() {
     RenderTexture::setDefaultDrawBuffersAndTexture();
-    glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);
+    // glEnable(GL_CULL_FACE);
+    // glEnable(GL_DEPTH_TEST);
 }
 
 void Rendering::showLightmap(Object* plane, Light* light) {

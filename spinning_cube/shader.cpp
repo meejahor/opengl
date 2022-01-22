@@ -71,6 +71,7 @@ void Shader::findIDs() {
     texture_normals_ID = glGetUniformLocation(program, "texture_normals");
     texture_position_ID = glGetUniformLocation(program, "texture_position");
     texture_lightmap_ID = glGetUniformLocation(program, "texture_lightmap");
+    texture_cookie_ID = glGetUniformLocation(program, "texture_cookie");
 
     lightPos_ID = glGetUniformLocation(program, "lightPos");
     lightRadius_ID = glGetUniformLocation(program, "lightRadius");
@@ -211,6 +212,7 @@ void Shader::setPositionNormalsLightmapTextures() {
     glUniform1i(texture_position_ID, 0);
     glUniform1i(texture_normals_ID, 1);
     glUniform1i(texture_lightmap_ID, 2);
+    glUniform1i(texture_cookie_ID, 3);
 }
 
 void Shader::setLightPosAndRadius(glm::vec3 const& lightPos, float lightRadius) {

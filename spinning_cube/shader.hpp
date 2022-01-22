@@ -54,6 +54,7 @@ class Shader {
     unsigned int texture_normals_ID;
     unsigned int texture_position_ID;
     unsigned int texture_lightmap_ID;
+    unsigned int texture_cookie_ID;
     unsigned int lightPos_ID;
     unsigned int lightRadius_ID;
     unsigned int textureSize_ID;
