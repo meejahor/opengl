@@ -33,14 +33,16 @@ void main() {
     vec3 angleToLight = lightPos - position;
     angleToLight = normalize(angleToLight);
     float d = dot(normal, angleToLight);
-    d = clamp(d, 0, 1);
+    d -= 0.5;
+    d = clamp(d, 0, 0.5);
+    d *= 2;
     lighting = mix(black, lighting, d);
 
     vec4 lightSpace = mat4_Light_VP * vec4(position, 1);
     vec3 lightmap_uv = lightSpace.xyz / lightSpace.w;
     lightmap_uv = lightmap_uv * 0.5 + 0.5;
     float isLit = texture(texture_lightmap, lightmap_uv);
-    isLit = mix(0.5, 1, isLit);
+    isLit = mix(0, 1, isLit);
     lighting = mix(black, lighting, isLit);
 
     float cookie = texture(texture_cookie, lightmap_uv.xy).r;

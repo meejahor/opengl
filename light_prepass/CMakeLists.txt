@@ -30,6 +30,6 @@ add_executable(light_prepass ${SOURCE_FILES})
 
 target_link_libraries(light_prepass ${SDL2} ${OPENGL})
 
-file(COPY shaders DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY models DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY images DESTINATION ${CMAKE_BINARY_DIR})
+#file(COPY shaders DESTINATION ${CMAKE_BINARY_DIR})
+#file(COPY models DESTINATION ${CMAKE_BINARY_DIR})
+#file(COPY images DESTINATION ${CMAKE_BINARY_DIR})

@@ -21,6 +21,7 @@ class Object {
     void rotate(float degrees, glm::vec3 axis);
     void moveTo(glm::vec3 _translation);
     void setScale(float _scale);
+    void moveTo(float x, float y, float z);
 };
 
 #endif

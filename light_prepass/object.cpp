@@ -25,6 +25,10 @@ void Object::moveTo(glm::vec3 _position) {
     position = _position;
 }
 
+void Object::moveTo(float x, float y, float z) {
+    position = glm::vec3(x, y, z);
+}
+
 void Object::setScale(float _scale) {
     scale = _scale;
 }

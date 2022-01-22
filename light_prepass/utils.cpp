@@ -32,7 +32,7 @@ glm::mat4 calcViewProjection(glm::vec3 position, glm::vec3 lookAt, float fov, gl
         glm::radians(fov),
         float(windowWidth / windowHeight),
         0.1f,
-        10.0f
+        100.0f
         );
 
     return matrixProjection * matrixView;

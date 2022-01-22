@@ -47,10 +47,10 @@ void Window::initSDL() {
 }
 
 void Window::initGL() {
-    glm::vec3 cameraPos = glm::vec3(0.0f, 5.0f, 5.0f);
+    glm::vec3 cameraPos = glm::vec3(0.0f, 30.0f, 50.0f);
     glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
 
-    matrixViewProjection = calcViewProjection(cameraPos, cameraTarget, 45.0f);
+    matrixViewProjection = calcViewProjection(cameraPos, cameraTarget, 30.0f);
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);

@@ -25,12 +25,15 @@ void Rendering::beginLightmaps() {
     glCullFace(GL_FRONT);
 }
 
+void Rendering::beginLightmapOneLight(Light* light) {
+    light->texture->beginRenderingLightmap();
+}
+
 void Rendering::renderObjectToLightmap(Object* object, Light* light) {
     shaderRenderToLightmap->setMatricesForLightmap(
         object->modelMatrix,
         light->matrixViewProjection * object->modelMatrix
         );
-    light->texture->beginRenderingLightmap();
     object->model->draw();
 }
 

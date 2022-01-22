@@ -22,7 +22,6 @@ class RenderTexture {
     void loadImage_Cookie(std::string filename);
 
     protected:
-    void createColor();
     void createLightmap();
     void createPositionNormalsAlbedo();
 
@@ -36,7 +35,6 @@ class RenderTexture {
     RenderTexture();
     RenderTexture(int _width, int _height);
     static RenderTexture* createLightmap(int width, int height);
-    static RenderTexture* createDepthNormals(int width, int height);
     static RenderTexture* createPositionNormalsAlbedo(int width, int height);
     void beginRenderingLightmap();
     void showTexture();

@@ -12,53 +12,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faafd9f3-2bb9-4a34-9b95-0ca0109a8fc6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cache-v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-e5510f2b27449459c0f2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-2a36f97783a3b31dce9c.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-897f3228993eb89daf91.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-01-22T14-43-40-0106.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-spinning_cube_clion-Debug-279478952a8228d9c354.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-a0735d0e6a4326b16741.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdC/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdCXX/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/deltatime.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/light.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/model.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/object.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/renderTexture.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/rendering.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/shader.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/utils.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/window.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-01-22T14-48-13-0599.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/light.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/light.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/model.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/model.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/object.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/object.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/renderTexture.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/renderTexture.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/rendering.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/rendering.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/utils.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/utils.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/window.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/light_prepass.dir/window.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/images/square_with_cube_smooth_albedo.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/images/torch_cookie.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/light_prepass" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/light_prepass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/models/cube.obj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/models/cube_with_plane.obj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/models/plane.obj" beforeDir="false" />
@@ -87,10 +57,23 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showPosition.vert" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showTexture.frag" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showTexture.vert" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/spinning_cube_clion" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/light.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/light.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/light.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/light.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/sphere.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/object.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/object.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/object.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderTexture.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/renderTexture.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rendering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rendering.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rendering.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/rendering.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/renderLightSphere.frag" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/renderLightSphere.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/showFinal.frag" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/showFinal.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/utils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/window.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/window.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../spinning_cube/glad/include/KHR/khrplatform.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../spinning_cube/glad/include/glad/glad.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../spinning_cube/glad/src/glad.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spinning_cube/models/sphere.mtl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../spinning_cube/renderTexture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../spinning_cube/renderTexture.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../spinning_cube_clion/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../spinning_cube_clion/.idea/misc.xml" beforeDir="false" />
@@ -121,10 +104,12 @@
   <component name="ProjectId" id="243MFdJIOHcapF8F7RZHKdPy2h8" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
@@ -133,7 +118,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor.code.editing" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
@@ -141,7 +126,7 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="light_prepass" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="light_prepass" TARGET_NAME="light_prepass" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="light_prepass" RUN_TARGET_NAME="light_prepass">
+    <configuration name="light_prepass" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="light_prepass" TARGET_NAME="light_prepass" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="light_prepass" RUN_TARGET_NAME="light_prepass">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -157,7 +142,10 @@
       <updated>1642854717520</updated>
       <workItem from="1642854719038" duration="4523000" />
       <workItem from="1642862619702" duration="198000" />
-      <workItem from="1642862843634" duration="51000" />
+      <workItem from="1642862843634" duration="3169000" />
+      <workItem from="1642866627605" duration="560000" />
+      <workItem from="1642867274809" duration="13000" />
+      <workItem from="1642867298134" duration="8136000" />
     </task>
     <servers />
   </component>

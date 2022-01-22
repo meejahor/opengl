@@ -12,6 +12,7 @@ class Rendering {
     public:
     static void init();
     static void beginLightmaps();
+    static void beginLightmapOneLight(Light *light);
     static void renderObjectToLightmap(Object* object, Light* light);
     static void endLightmaps();
     static void beginPositionNormalsAlbedo();
