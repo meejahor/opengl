@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "spinning_cube_clion"
+			"path" : "light_prepass"
 		}
 	],
 	"backtrace" : 1,
@@ -86,7 +86,7 @@
 			]
 		}
 	],
-	"id" : "spinning_cube_clion::@6890427a1f51a3e7e1df",
+	"id" : "light_prepass::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -131,8 +131,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "spinning_cube_clion",
-	"nameOnDisk" : "spinning_cube_clion",
+	"name" : "light_prepass",
+	"nameOnDisk" : "light_prepass",
 	"paths" : 
 	{
 		"build" : ".",

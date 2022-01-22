@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-project(spinning_cube_clion)
+project(light_prepass)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -26,9 +26,9 @@ set(SOURCE_FILES
         stb_image.h
         )
 
-add_executable(spinning_cube_clion ${SOURCE_FILES})
+add_executable(light_prepass ${SOURCE_FILES})
 
-target_link_libraries(spinning_cube_clion ${SDL2} ${OPENGL})
+target_link_libraries(light_prepass ${SDL2} ${OPENGL})
 
 file(COPY shaders DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY models DESTINATION ${CMAKE_BINARY_DIR})

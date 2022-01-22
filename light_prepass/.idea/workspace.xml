@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="spinning_cube_clion" targetName="spinning_cube_clion" />
+      <config projectName="light_prepass" targetName="light_prepass" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -12,10 +12,91 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faafd9f3-2bb9-4a34-9b95-0ca0109a8fc6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cache-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-e5510f2b27449459c0f2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-2a36f97783a3b31dce9c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-897f3228993eb89daf91.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-01-22T14-43-40-0106.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-spinning_cube_clion-Debug-279478952a8228d9c354.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-a0735d0e6a4326b16741.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdC/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdCXX/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/deltatime.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/light.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/model.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/object.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/renderTexture.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/rendering.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/shader.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/utils.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/spinning_cube_clion.dir/window.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/images/square_with_cube_smooth_albedo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/images/torch_cookie.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/models/cube.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/models/cube_with_plane.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/models/plane.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/models/sphere.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/models/sphere.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/models/square_with_cube_smooth.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/old/renderDepthNormals.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/old/renderDepthNormals.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/old/showDepthNormals.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/old/showDepthNormals.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/old/showNormals.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/old/showNormals.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/renderLightSphere.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/renderLightSphere.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/renderPositionNormalsAlbedo.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/renderPositionNormalsAlbedo.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/renderToLightmap.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/renderToLightmap.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/renderToScreen.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/renderToScreen.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showFinal.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showFinal.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showLightmap.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showLightmap.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showPosition.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showPosition.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showTexture.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/shaders/showTexture.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/spinning_cube_clion" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../spinning_cube/glad/include/KHR/khrplatform.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../spinning_cube/glad/include/glad/glad.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../spinning_cube/glad/src/glad.c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../spinning_cube/renderTexture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../spinning_cube/renderTexture.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spinning_cube_clion/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spinning_cube_clion/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spinning_cube_clion/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spinning_cube_clion/.idea/spinning_cube_clion.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spinning_cube_clion/.idea/vcs.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +106,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -54,12 +136,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="spinning_cube_clion" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="spinning_cube_clion" TARGET_NAME="spinning_cube_clion" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="spinning_cube_clion" RUN_TARGET_NAME="spinning_cube_clion">
+    <configuration name="light_prepass" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="light_prepass" TARGET_NAME="light_prepass" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="light_prepass" RUN_TARGET_NAME="light_prepass">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -74,7 +156,8 @@
       <option name="presentableId" value="Default" />
       <updated>1642854717520</updated>
       <workItem from="1642854719038" duration="4523000" />
-      <workItem from="1642862619702" duration="1000" />
+      <workItem from="1642862619702" duration="198000" />
+      <workItem from="1642862843634" duration="51000" />
     </task>
     <servers />
   </component>

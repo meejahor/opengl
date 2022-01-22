@@ -795,7 +795,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "spinning_cube_clion"
+			"value" : "light_prepass"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1102,7 +1102,7 @@
 			"value" : "/Library/Frameworks/SDL2.framework"
 		},
 		{
-			"name" : "spinning_cube_clion_BINARY_DIR",
+			"name" : "light_prepass_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1114,7 +1114,7 @@
 			"value" : "/Users/andrew/Documents/opengl/light_prepass/cmake-build-debug"
 		},
 		{
-			"name" : "spinning_cube_clion_IS_TOP_LEVEL",
+			"name" : "light_prepass_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1126,7 +1126,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "spinning_cube_clion_SOURCE_DIR",
+			"name" : "light_prepass_SOURCE_DIR",
 			"properties" : 
 			[
 				{

@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: spinning_cube_clion
+# Project: light_prepass
 # Configurations: Debug
 # =============================================================================
 
@@ -64,122 +64,101 @@ build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
 build edit_cache: phony CMakeFiles/edit_cache.util
 
 # =============================================================================
-# Object build statements for EXECUTABLE target spinning_cube_clion
+# Object build statements for EXECUTABLE target light_prepass
 
 
 #############################################
-# Order-only phony target for spinning_cube_clion
+# Order-only phony target for light_prepass
 
-build cmake_object_order_depends_target_spinning_cube_clion: phony || CMakeFiles/spinning_cube_clion.dir
+build cmake_object_order_depends_target_light_prepass: phony || CMakeFiles/light_prepass.dir
 
-build CMakeFiles/spinning_cube_clion.dir/deltatime.cpp.o: CXX_COMPILER__spinning_cube_clion_Debug /Users/andrew/Documents/opengl/light_prepass/deltatime.cpp || cmake_object_order_depends_target_spinning_cube_clion
-  DEP_FILE = CMakeFiles/spinning_cube_clion.dir/deltatime.cpp.o.d
+build CMakeFiles/light_prepass.dir/deltatime.cpp.o: CXX_COMPILER__light_prepass_Debug /Users/andrew/Documents/opengl/light_prepass/deltatime.cpp || cmake_object_order_depends_target_light_prepass
+  DEP_FILE = CMakeFiles/light_prepass.dir/deltatime.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -F/Library/Frameworks  -std=gnu++17
   INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
-  OBJECT_FILE_DIR = CMakeFiles/spinning_cube_clion.dir
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_PDB = spinning_cube_clion.pdb
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
+  OBJECT_FILE_DIR = CMakeFiles/light_prepass.dir
 
-build CMakeFiles/spinning_cube_clion.dir/light.cpp.o: CXX_COMPILER__spinning_cube_clion_Debug /Users/andrew/Documents/opengl/light_prepass/light.cpp || cmake_object_order_depends_target_spinning_cube_clion
-  DEP_FILE = CMakeFiles/spinning_cube_clion.dir/light.cpp.o.d
+build CMakeFiles/light_prepass.dir/light.cpp.o: CXX_COMPILER__light_prepass_Debug /Users/andrew/Documents/opengl/light_prepass/light.cpp || cmake_object_order_depends_target_light_prepass
+  DEP_FILE = CMakeFiles/light_prepass.dir/light.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -F/Library/Frameworks  -std=gnu++17
   INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
-  OBJECT_FILE_DIR = CMakeFiles/spinning_cube_clion.dir
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_PDB = spinning_cube_clion.pdb
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
+  OBJECT_FILE_DIR = CMakeFiles/light_prepass.dir
 
-build CMakeFiles/spinning_cube_clion.dir/main.cpp.o: CXX_COMPILER__spinning_cube_clion_Debug /Users/andrew/Documents/opengl/light_prepass/main.cpp || cmake_object_order_depends_target_spinning_cube_clion
-  DEP_FILE = CMakeFiles/spinning_cube_clion.dir/main.cpp.o.d
+build CMakeFiles/light_prepass.dir/main.cpp.o: CXX_COMPILER__light_prepass_Debug /Users/andrew/Documents/opengl/light_prepass/main.cpp || cmake_object_order_depends_target_light_prepass
+  DEP_FILE = CMakeFiles/light_prepass.dir/main.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -F/Library/Frameworks  -std=gnu++17
   INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
-  OBJECT_FILE_DIR = CMakeFiles/spinning_cube_clion.dir
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_PDB = spinning_cube_clion.pdb
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
+  OBJECT_FILE_DIR = CMakeFiles/light_prepass.dir
 
-build CMakeFiles/spinning_cube_clion.dir/model.cpp.o: CXX_COMPILER__spinning_cube_clion_Debug /Users/andrew/Documents/opengl/light_prepass/model.cpp || cmake_object_order_depends_target_spinning_cube_clion
-  DEP_FILE = CMakeFiles/spinning_cube_clion.dir/model.cpp.o.d
+build CMakeFiles/light_prepass.dir/model.cpp.o: CXX_COMPILER__light_prepass_Debug /Users/andrew/Documents/opengl/light_prepass/model.cpp || cmake_object_order_depends_target_light_prepass
+  DEP_FILE = CMakeFiles/light_prepass.dir/model.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -F/Library/Frameworks  -std=gnu++17
   INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
-  OBJECT_FILE_DIR = CMakeFiles/spinning_cube_clion.dir
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_PDB = spinning_cube_clion.pdb
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
+  OBJECT_FILE_DIR = CMakeFiles/light_prepass.dir
 
-build CMakeFiles/spinning_cube_clion.dir/object.cpp.o: CXX_COMPILER__spinning_cube_clion_Debug /Users/andrew/Documents/opengl/light_prepass/object.cpp || cmake_object_order_depends_target_spinning_cube_clion
-  DEP_FILE = CMakeFiles/spinning_cube_clion.dir/object.cpp.o.d
+build CMakeFiles/light_prepass.dir/object.cpp.o: CXX_COMPILER__light_prepass_Debug /Users/andrew/Documents/opengl/light_prepass/object.cpp || cmake_object_order_depends_target_light_prepass
+  DEP_FILE = CMakeFiles/light_prepass.dir/object.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -F/Library/Frameworks  -std=gnu++17
   INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
-  OBJECT_FILE_DIR = CMakeFiles/spinning_cube_clion.dir
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_PDB = spinning_cube_clion.pdb
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
+  OBJECT_FILE_DIR = CMakeFiles/light_prepass.dir
 
-build CMakeFiles/spinning_cube_clion.dir/rendering.cpp.o: CXX_COMPILER__spinning_cube_clion_Debug /Users/andrew/Documents/opengl/light_prepass/rendering.cpp || cmake_object_order_depends_target_spinning_cube_clion
-  DEP_FILE = CMakeFiles/spinning_cube_clion.dir/rendering.cpp.o.d
+build CMakeFiles/light_prepass.dir/rendering.cpp.o: CXX_COMPILER__light_prepass_Debug /Users/andrew/Documents/opengl/light_prepass/rendering.cpp || cmake_object_order_depends_target_light_prepass
+  DEP_FILE = CMakeFiles/light_prepass.dir/rendering.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -F/Library/Frameworks  -std=gnu++17
   INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
-  OBJECT_FILE_DIR = CMakeFiles/spinning_cube_clion.dir
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_PDB = spinning_cube_clion.pdb
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
+  OBJECT_FILE_DIR = CMakeFiles/light_prepass.dir
 
-build CMakeFiles/spinning_cube_clion.dir/renderTexture.cpp.o: CXX_COMPILER__spinning_cube_clion_Debug /Users/andrew/Documents/opengl/light_prepass/renderTexture.cpp || cmake_object_order_depends_target_spinning_cube_clion
-  DEP_FILE = CMakeFiles/spinning_cube_clion.dir/renderTexture.cpp.o.d
+build CMakeFiles/light_prepass.dir/renderTexture.cpp.o: CXX_COMPILER__light_prepass_Debug /Users/andrew/Documents/opengl/light_prepass/renderTexture.cpp || cmake_object_order_depends_target_light_prepass
+  DEP_FILE = CMakeFiles/light_prepass.dir/renderTexture.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -F/Library/Frameworks  -std=gnu++17
   INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
-  OBJECT_FILE_DIR = CMakeFiles/spinning_cube_clion.dir
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_PDB = spinning_cube_clion.pdb
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
+  OBJECT_FILE_DIR = CMakeFiles/light_prepass.dir
 
-build CMakeFiles/spinning_cube_clion.dir/shader.cpp.o: CXX_COMPILER__spinning_cube_clion_Debug /Users/andrew/Documents/opengl/light_prepass/shader.cpp || cmake_object_order_depends_target_spinning_cube_clion
-  DEP_FILE = CMakeFiles/spinning_cube_clion.dir/shader.cpp.o.d
+build CMakeFiles/light_prepass.dir/shader.cpp.o: CXX_COMPILER__light_prepass_Debug /Users/andrew/Documents/opengl/light_prepass/shader.cpp || cmake_object_order_depends_target_light_prepass
+  DEP_FILE = CMakeFiles/light_prepass.dir/shader.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -F/Library/Frameworks  -std=gnu++17
   INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
-  OBJECT_FILE_DIR = CMakeFiles/spinning_cube_clion.dir
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_PDB = spinning_cube_clion.pdb
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
+  OBJECT_FILE_DIR = CMakeFiles/light_prepass.dir
 
-build CMakeFiles/spinning_cube_clion.dir/utils.cpp.o: CXX_COMPILER__spinning_cube_clion_Debug /Users/andrew/Documents/opengl/light_prepass/utils.cpp || cmake_object_order_depends_target_spinning_cube_clion
-  DEP_FILE = CMakeFiles/spinning_cube_clion.dir/utils.cpp.o.d
+build CMakeFiles/light_prepass.dir/utils.cpp.o: CXX_COMPILER__light_prepass_Debug /Users/andrew/Documents/opengl/light_prepass/utils.cpp || cmake_object_order_depends_target_light_prepass
+  DEP_FILE = CMakeFiles/light_prepass.dir/utils.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -F/Library/Frameworks  -std=gnu++17
   INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
-  OBJECT_FILE_DIR = CMakeFiles/spinning_cube_clion.dir
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_PDB = spinning_cube_clion.pdb
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
+  OBJECT_FILE_DIR = CMakeFiles/light_prepass.dir
 
-build CMakeFiles/spinning_cube_clion.dir/window.cpp.o: CXX_COMPILER__spinning_cube_clion_Debug /Users/andrew/Documents/opengl/light_prepass/window.cpp || cmake_object_order_depends_target_spinning_cube_clion
-  DEP_FILE = CMakeFiles/spinning_cube_clion.dir/window.cpp.o.d
+build CMakeFiles/light_prepass.dir/window.cpp.o: CXX_COMPILER__light_prepass_Debug /Users/andrew/Documents/opengl/light_prepass/window.cpp || cmake_object_order_depends_target_light_prepass
+  DEP_FILE = CMakeFiles/light_prepass.dir/window.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -F/Library/Frameworks  -std=gnu++17
   INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
-  OBJECT_FILE_DIR = CMakeFiles/spinning_cube_clion.dir
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_PDB = spinning_cube_clion.pdb
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
+  OBJECT_FILE_DIR = CMakeFiles/light_prepass.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target spinning_cube_clion
+# Link build statements for EXECUTABLE target light_prepass
 
 
 #############################################
-# Link the executable spinning_cube_clion
+# Link the executable light_prepass
 
-build spinning_cube_clion: CXX_EXECUTABLE_LINKER__spinning_cube_clion_Debug CMakeFiles/spinning_cube_clion.dir/deltatime.cpp.o CMakeFiles/spinning_cube_clion.dir/light.cpp.o CMakeFiles/spinning_cube_clion.dir/main.cpp.o CMakeFiles/spinning_cube_clion.dir/model.cpp.o CMakeFiles/spinning_cube_clion.dir/object.cpp.o CMakeFiles/spinning_cube_clion.dir/rendering.cpp.o CMakeFiles/spinning_cube_clion.dir/renderTexture.cpp.o CMakeFiles/spinning_cube_clion.dir/shader.cpp.o CMakeFiles/spinning_cube_clion.dir/utils.cpp.o CMakeFiles/spinning_cube_clion.dir/window.cpp.o
+build light_prepass: CXX_EXECUTABLE_LINKER__light_prepass_Debug CMakeFiles/light_prepass.dir/deltatime.cpp.o CMakeFiles/light_prepass.dir/light.cpp.o CMakeFiles/light_prepass.dir/main.cpp.o CMakeFiles/light_prepass.dir/model.cpp.o CMakeFiles/light_prepass.dir/object.cpp.o CMakeFiles/light_prepass.dir/rendering.cpp.o CMakeFiles/light_prepass.dir/renderTexture.cpp.o CMakeFiles/light_prepass.dir/shader.cpp.o CMakeFiles/light_prepass.dir/utils.cpp.o CMakeFiles/light_prepass.dir/window.cpp.o
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
   LINK_LIBRARIES = -Wl,-rpath,/Library/Frameworks  -framework  SDL2  -framework  OpenGL
   LINK_PATH = -F/Library/Frameworks  -L/Library/Frameworks
-  OBJECT_DIR = CMakeFiles/spinning_cube_clion.dir
+  OBJECT_DIR = CMakeFiles/light_prepass.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = CMakeFiles/spinning_cube_clion.dir/
-  TARGET_FILE = spinning_cube_clion
-  TARGET_PDB = spinning_cube_clion.pdb
+  TARGET_FILE = light_prepass
+  TARGET_PDB = light_prepass.dbg
 
 # =============================================================================
 # Target aliases.
@@ -192,7 +171,7 @@ build spinning_cube_clion: CXX_EXECUTABLE_LINKER__spinning_cube_clion_Debug CMak
 #############################################
 # Folder: /Users/andrew/Documents/opengl/light_prepass/cmake-build-debug
 
-build all: phony spinning_cube_clion
+build all: phony light_prepass
 
 # =============================================================================
 # Built-in targets
@@ -201,14 +180,14 @@ build all: phony spinning_cube_clion
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCCompilerABI.c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXCompilerABI.cpp /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCompilerIdDetection.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCompileFeatures.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCompilerABI.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCompilerId.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeFindBinUtils.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeParseImplicitIncludeInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeParseLibraryArchitecture.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystem.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeTestCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeTestCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeTestCompilerCommon.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/ADSP-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/ARMCC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/ARMClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Borland-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Cray-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GHS-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/HP-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/IAR-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Intel-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/MSVC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/NVHPC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/PGI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/PathScale-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/ROCMClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/SCO-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/TI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Watcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/XL-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/zOS-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Internal/FeatureTesting.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin-Determine-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCCompilerABI.c /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXCompilerABI.cpp /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCompilerIdDetection.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCompileFeatures.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCompilerABI.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineCompilerId.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeDetermineSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeFindBinUtils.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeParseImplicitIncludeInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeParseLibraryArchitecture.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystem.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeTestCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeTestCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeTestCompilerCommon.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/ADSP-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/ARMCC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/ARMClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Borland-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Cray-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GHS-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/HP-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/IAR-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Intel-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/MSVC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/NVHPC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/PGI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/PathScale-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/ROCMClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/SCO-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/TI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Watcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/XL-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/zOS-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Internal/FeatureTesting.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin-Determine-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake: phony
+build ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake: phony
 
 
 #############################################

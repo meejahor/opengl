@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "spinning_cube_clion",
+					"name" : "light_prepass",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "spinning_cube_clion::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-spinning_cube_clion-Debug-279478952a8228d9c354.json",
-					"name" : "spinning_cube_clion",
+					"id" : "light_prepass::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-light_prepass-Debug-49a0f7896809fe09465e.json",
+					"name" : "light_prepass",
 					"projectIndex" : 0
 				}
 			]
